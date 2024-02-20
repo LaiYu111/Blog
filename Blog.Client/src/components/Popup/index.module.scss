@@ -1,0 +1,16 @@
+@import "src/style/base.scss";
+
+.active{
+  position: absolute;
+  top: 2.5%;
+  height: 95%;
+  left: 2.5%;
+  width: 95%;
+  z-index: 1;
+  background-color: $grey100;
+
+}
+
+.hidden{
+  display: none;
+}

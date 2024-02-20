@@ -1,0 +1,17 @@
+@import "src/style/base.scss";
+
+.root {
+  background-color: $grey100;
+  border-radius: $smRadius;
+
+  box-shadow: $box-shadow;
+  display: flex;
+  flex-direction: column;
+
+  margin: 5px;
+  //justify-content: center;
+  //align-items: center;
+
+  //position: relative;
+}
+

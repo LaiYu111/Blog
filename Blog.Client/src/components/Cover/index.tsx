@@ -1,0 +1,73 @@
+import {FC} from "react";
+import style from './index.module.scss'
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import ChromeReaderModeOutlinedIcon from '@mui/icons-material/ChromeReaderModeOutlined';
+import img from '../../assets/aaa.jpg'
+import Popup from "../Popup";
+import {useDispatch, useSelector} from "react-redux";
+import {setPopup} from "../../redux/actions/popupAction.ts";
+import {AppState} from "../../redux/interfaces.ts";
+
+
+interface Props{
+	title: string,
+	image?: string,
+	content: string,
+	author: string,
+	like: number,
+	articleID: number | string
+}
+
+const Cover:FC<Props> = ({image, articleID}) => {
+	const dispatch = useDispatch()
+	const popupState = useSelector((state: AppState) => state.componentReducers.popup.hidden)
+
+	const handleOpenPopup = () => {
+		dispatch(setPopup(true))
+	}
+
+	return (
+	<>
+		{ popupState && < Popup articleID={articleID}/>}
+		<div
+			className={style.root}
+			onClick={handleOpenPopup}
+		>
+			{/* text */}
+			<div className={style.text}>
+				<div className={style.title}>
+					你好示例中，我们创建了一个 container 容器，里面包含asdfsdf我们希望有间隔的ner 容器，里面包含了两个项目（
+				</div>
+				<div className={style.article}>
+					哈哈dfgsdfg在这个示例中，我们创建了一个 container 容器，里面包含了两个项目（item），它们是我们希望有间隔的两个
+					div。我们添加了一个额外的 div 元素（class 为 gap），通过设置其宽度来创建间隔。
+
+					你可以根据需要调整间隔的宽度和样式。这种方法可以在 flex 布局中很方便地添加间隔。哈哈dfgsdfg在这个示例中，我们创建了一个
+					container 容器，里面包含了两个项目（item），它们是我们希望有间隔的两个 div。我们添加了一个额外的 div 元素（class 为
+					gap），通过设置其宽度来创建间隔。
+
+					你可以根据需要调整间隔的宽度和样式。这种方法可以在 flex 布局中很方便地添加间隔。
+				</div>
+
+				<div className={style.others}>
+					<ThumbUpOffAltIcon fontSize={"small"}/>
+					<ChatBubbleOutlineIcon fontSize={'small'}/>
+					<ChromeReaderModeOutlinedIcon fontSize={'small'}/>
+				</div>
+			</div>
+
+
+			<div className={style.gap}></div>
+			{/* image */}
+			{image && (
+				<div className={style.image}>
+					<img src={img}/>
+				</div>
+			)}
+		</div>
+	</>
+	)
+}
+
+export default Cover

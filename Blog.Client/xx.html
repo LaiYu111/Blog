@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-adjust Font Size</title>
+    <style>
+        .parent {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            resize: both;
+            overflow: auto;
+        }
+
+        .child {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text {
+            font-size: 5vw; /* 使用 vw 单位，相对于视窗宽度 */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="parent" style="width: 100px; height: 100px;">
+    <div class="child">
+        <p class="text">自适应字体大小</p>
+    </div>
+</div>
+<script>
+  // 在这里可以使用 JavaScript 代码动态改变父元素的大小
+  // 例如：document.querySelector('.parent').style.width = '400px';
+</script>
+</body>
+</html>

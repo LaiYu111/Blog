@@ -1,0 +1,73 @@
+@import "src/style/base.scss";
+
+.root{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  padding: 15px;
+
+  width: inherit;
+  height: 170px;
+
+  cursor: pointer;
+}
+
+.root:hover{
+  background-color: $grey300;
+  transform: scale(1.01);
+  transition: background-color 0.5s ease, transform 0.5s ease; // 动画
+  border-radius: inherit;
+}
+
+
+.gap{
+  width: 20px;
+}
+
+.image{
+  flex-grow: 0;
+  height: 170px;
+  width: 170px;
+  img{
+    border-radius: $smRadius;
+    object-fit: cover;
+  }
+}
+
+.text{
+  flex-grow: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  overflow: hidden;
+
+  .title{
+    flex-grow: 1;
+    width: 100%;
+
+    //overflow: inherit;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* 添加这一行 */
+
+    font-size: 24px; /* 字体大小 */
+    font-weight: bold; /* 字体粗细 */
+    color: #333; /* 字体颜色 */
+    margin-bottom: 5px; /* 底部边距 */
+  }
+  .article{
+    flex-grow: 1;
+    //height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+  }
+  .others{
+    flex-grow: 0;
+    //align-self: flex-end;
+
+  }
+}
+

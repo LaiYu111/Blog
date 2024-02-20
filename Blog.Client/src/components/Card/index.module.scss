@@ -1,0 +1,34 @@
+@import "src/style/base.scss";
+.root {
+  position: relative;
+  img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: $smRadius;
+  }
+}
+
+.root:hover{
+  transform: scale(1.02);
+  transition:  transform 0.5s ease; // 动画
+  border-radius: inherit;
+  cursor: pointer;
+}
+
+.title{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  font-size: 5vh;
+
+  color: white;
+  overflow-wrap: break-word;
+
+  user-select: none;
+}
+
+.caption{
+
+}
