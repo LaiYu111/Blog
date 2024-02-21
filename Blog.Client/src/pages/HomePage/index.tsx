@@ -48,14 +48,15 @@ function HomePage () {
 				</div>
 
 				<Panel>
-					{/*<Cover title={"1"} content={"1"} author={"1"} like={1} articleID={1}/>*/}
-					{/*<hr/>*/}
-					{/*<Cover title={"1"} content={"1"} author={"1"} like={1} image={"1"} articleID={2}/>*/}
-					{/*<hr/>*/}
-					{/*<Cover title={"1"} content={"1"} author={"1"} like={1} image={"1"} articleID={4}/>*/}
 					{ [1,2,3].map( (key :number, value:number) => (
 						<div key={value}>
-							<Cover title={"1"} content={"1"} author={"1"} like={1} articleID={key}  />
+							{ key ===1 ? (
+								<>
+									xx
+								</>
+								) : (
+								<Cover title={"1"} content={"1"} author={"1"} like={1} articleID={key} image={image} />
+							)}
 							<hr />
 						</div>
 					))}

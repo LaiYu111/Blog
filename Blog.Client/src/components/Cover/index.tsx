@@ -4,10 +4,6 @@ import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import ChromeReaderModeOutlinedIcon from '@mui/icons-material/ChromeReaderModeOutlined';
 import img from '../../assets/aaa.jpg'
-import Popup from "../Popup";
-import {useDispatch, useSelector} from "react-redux";
-import {setPopup} from "../../redux/actions/popupAction.ts";
-import {AppState} from "../../redux/interfaces.ts";
 
 
 interface Props{
@@ -20,24 +16,15 @@ interface Props{
 }
 
 const Cover:FC<Props> = ({image, articleID}) => {
-	const dispatch = useDispatch()
-	const popupState = useSelector((state: AppState) => state.componentReducers.popup.hidden)
-
-	const handleOpenPopup = () => {
-		dispatch(setPopup(true))
-	}
-
 	return (
 	<>
-		{ popupState && < Popup articleID={articleID}/>}
 		<div
 			className={style.root}
-			onClick={handleOpenPopup}
 		>
 			{/* text */}
 			<div className={style.text}>
 				<div className={style.title}>
-					你好示例中，我们创建了一个 container 容器，里面包含asdfsdf我们希望有间隔的ner 容器，里面包含了两个项目（
+					{articleID} 你好示例中，我们创建了一个 container 容器，里面包含asdfsdf我们希望有间隔的ner 容器，里面包含了两个项目（
 				</div>
 				<div className={style.article}>
 					哈哈dfgsdfg在这个示例中，我们创建了一个 container 容器，里面包含了两个项目（item），它们是我们希望有间隔的两个

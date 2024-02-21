@@ -1,6 +1,6 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Nav from "./components/Nav";
-import HomePage from "./pages/Home";
+import HomePage from "./pages/HomePage";
 import {useEffect} from "react";
 import {setNav} from "./redux/actions/navAction.ts";
 import {useDispatch, useSelector} from "react-redux";
@@ -8,7 +8,7 @@ import {AppState} from "./redux/interfaces.ts";
 import {useMediaQuery} from "@mui/material";
 import {setDevice} from "./redux/actions/deviceAction.ts";
 import {Device} from "./util.ts";
-import Article from "./pages/Article";
+import Article from "./pages/ArticlePage";
 
 interface WheelEvent extends MouseEvent {
   deltaY: number
