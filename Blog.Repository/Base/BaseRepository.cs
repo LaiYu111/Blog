@@ -13,8 +13,7 @@ namespace Blog.Repository.Base
         public async Task<List<TEntity>> Query()
         {
             await Task.CompletedTask;
-            var data = "[{ \"Id\" : 18,  \"Name\" : \"sb\"}]";
-            return JsonConvert.DeserializeObject<List<TEntity>>(data) ?? new List<TEntity>();
+            return new List<TEntity>();
         }
     }
 }

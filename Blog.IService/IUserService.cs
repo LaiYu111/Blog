@@ -9,6 +9,5 @@ namespace Blog.IService
 {
     public interface IUserService : IBaseService<User, UserVo>
     {
-        Task<List<UserVo>> Query();
     }
 }

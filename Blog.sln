@@ -7,15 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.WebAPI", "Blog.WebAPI\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Model", "Blog.Model\Blog.Model.csproj", "{8F310F25-D9C6-48E6-9172-62C9CFAC6684}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Common", "Blog.Common\Blog.Common.csproj", "{5930934D-9416-4C24-8E10-EE5CF316DD08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Common", "Blog.Common\Blog.Common.csproj", "{5930934D-9416-4C24-8E10-EE5CF316DD08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Repository", "Blog.Repository\Blog.Repository.csproj", "{5CC34FE8-D984-404E-B315-176F512D8D00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Repository", "Blog.Repository\Blog.Repository.csproj", "{5CC34FE8-D984-404E-B315-176F512D8D00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Service", "Blog.Service\Blog.Service.csproj", "{928978A7-4502-4A06-B169-B8BFD79FE59D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Service", "Blog.Service\Blog.Service.csproj", "{928978A7-4502-4A06-B169-B8BFD79FE59D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.IService", "Blog.IService\Blog.IService.csproj", "{CD42144C-69C2-4958-960D-3E426EBAAE82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.IService", "Blog.IService\Blog.IService.csproj", "{CD42144C-69C2-4958-960D-3E426EBAAE82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Extension", "Blog.Extension\Blog.Extension.csproj", "{B3D64F6D-67EA-46DE-8B05-502F735BB271}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Extension", "Blog.Extension\Blog.Extension.csproj", "{B3D64F6D-67EA-46DE-8B05-502F735BB271}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

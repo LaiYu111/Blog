@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Blog.Common;
 using Blog.IService;
 using Blog.Model;
 using Blog.Service;
@@ -18,7 +19,11 @@ namespace Blog.WebAPI.Controllers
         [HttpGet]
         public async Task<List<UserVo>> Get()
         {
-            return await _userService.Query();
+            var result = await _userService.Query();
+            var result1 = AppSettings.GetValue("Redis:ConnectionString");
+            Console.WriteLine(result1);
+            
+            return result;
         }
     }
 }

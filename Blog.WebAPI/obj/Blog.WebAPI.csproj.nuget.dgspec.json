@@ -32,7 +32,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj": {
+                "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -52,6 +56,22 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyModel": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -130,6 +150,14 @@
             "Autofac.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "Autofac.Extras.DynamicProxy": {
+              "target": "Package",
+              "version": "[7.1.0, )"
+            },
+            "Castle.Core": {
+              "target": "Package",
+              "version": "[5.1.1, )"
             }
           },
           "imports": [
@@ -247,11 +275,7 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {
-              "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj": {
-                "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -263,6 +287,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "SqlSugarCore": {
+              "target": "Package",
+              "version": "[5.1.4.142, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
