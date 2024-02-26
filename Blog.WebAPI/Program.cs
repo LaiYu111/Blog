@@ -32,6 +32,9 @@ builder.Services.AddSingleton(new AppSettings(builder.Configuration));
 //builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 //builder.Services.AddScoped(typeof(IBaseService<,>), typeof(BaseService<,>));
 
+// »º´æ
+builder.Services.AddCacheSetup();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

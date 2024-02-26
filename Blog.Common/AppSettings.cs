@@ -8,6 +8,13 @@ using System.Threading.Tasks;
 
 namespace Blog.Common
 {
+    public class Redis
+    {
+        public bool Enable { get; set; }
+        public string ConnectionString { get; set; }
+        public string InstanceName { get; set; }
+    }
+
     /// <summary>
     /// appsettings.json 注入单例模式
     /// </summary>
@@ -28,11 +35,27 @@ namespace Blog.Common
         public static string GetValue(string sectionsPath)
         {
             try
-            {
+            {  
                 return Configuration[sectionsPath];
             }
             catch(Exception ex) { }
             return "";
         }
+        // 重载 GetValue 方法以返回 Redis 对象
+        public static Redis GetRedisSettings()
+        {
+            try
+            {
+                var redisSettings = new Redis();
+                Configuration.GetSection("Redis").Bind(redisSettings);
+                return redisSettings;
+            }
+            catch (Exception ex)
+            {
+                // 在实际应用中，应该记录异常信息
+                return null;
+            }
+        }
+
     }
 }
