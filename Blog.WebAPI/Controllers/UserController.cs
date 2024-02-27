@@ -27,16 +27,18 @@ namespace Blog.WebAPI.Controllers
         public async Task<List<UserVo>> Get()
         {
             var result = await _userService.Query();
-            var result1 = AppSettings.GetValue("Redis:ConnectionString");
+            //var result1 = AppSettings.GetValue("Redis:ConnectionString");
 
-            var cacheKey = "cache-key";
-            List<string> cacheKeys = await _caching.GetAllCacheKeysAsync();
-            await Console.Out.WriteLineAsync("全部keys -->" + JsonConvert.SerializeObject(cacheKeys));
+            //var cacheKey = "cache-key";
+            //List<string> cacheKeys = await _caching.GetAllCacheKeysAsync();
+            //await Console.Out.WriteLineAsync("全部keys -->" + JsonConvert.SerializeObject(cacheKeys));
 
-            await Console.Out.WriteLineAsync("添加一个缓存");
-            await _caching.SetStringAsync(cacheKey, "hi laozhang");
-            await Console.Out.WriteLineAsync("全部keys -->" + JsonConvert.SerializeObject(await _caching.GetAllCacheKeysAsync()));
-            await Console.Out.WriteLineAsync("当前key内容-->" + JsonConvert.SerializeObject(await _caching.GetStringAsync(cacheKey)));
+            //await Console.Out.WriteLineAsync("添加一个缓存");
+            //await _caching.SetStringAsync(cacheKey, "hi laozhang");
+            //await Console.Out.WriteLineAsync("全部keys -->" + JsonConvert.SerializeObject(await _caching.GetAllCacheKeysAsync()));
+            //await Console.Out.WriteLineAsync("当前key内容-->" + JsonConvert.SerializeObject(await _caching.GetStringAsync(cacheKey)));
+
+            
 
             //await Console.Out.WriteLineAsync("删除key");
             //await _caching.RemoveAsync(cacheKey);

@@ -1,8 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Blog.Common.DB;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +16,13 @@ namespace Blog.Common
         public string ConnectionString { get; set; }
         public string InstanceName { get; set; }
     }
+
+    public class DBS
+    {
+        public List<MutiDBOperate> DBOperates { get; set; }
+    }
+
+
 
     /// <summary>
     /// appsettings.json 注入单例模式
@@ -57,5 +66,33 @@ namespace Blog.Common
             }
         }
 
+        public static string GetMainDB()
+        {
+            try
+            {
+                string mainDb = Configuration["MainDB"];
+                return mainDb;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public static List<MutiDBOperate> GetDbSettings()
+        {
+            try
+            {
+                //var dbSettings = new DBS();
+                //Configuration.GetSection("DBS").Bind(dbSettings);
+                List<MutiDBOperate> dbSettingsList = new List<MutiDBOperate>();
+                Configuration.GetSection("DBS").Bind(dbSettingsList);
+                return dbSettingsList;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

@@ -35,6 +35,9 @@ builder.Services.AddSingleton(new AppSettings(builder.Configuration));
 // »º´æ
 builder.Services.AddCacheSetup();
 
+// ORM
+builder.Services.AddSqlSugarSetup();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

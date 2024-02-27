@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Blog.Common;
+using Blog.Common.DB;
+using Microsoft.Extensions.DependencyInjection;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +14,64 @@ namespace Blog.Extension
     /// <summary>
     /// SqlSugar 启动服务
     /// </summary>
-    public class SqlSugarSetup
+    public static class SqlSugarSetup
     {
-        public static void AddSqlSugarSetup(IServiceCollection services)
+        public static void AddSqlSugarSetup(this IServiceCollection services)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
+            if (!string.IsNullOrEmpty(AppSettings.GetMainDB()))
+            {
+                MainDb.CurrentDbConnId = AppSettings.GetMainDB();
+            }
 
+            BaseDBConfig.MutiConnectionString.allDbs.ForEach(m =>
+            {
+                var config = new ConnectionConfig()
+                {
+                    ConfigId = m.ConnId.ObjToString(),
+                    ConnectionString = m.Connection,
+                    DbType = (DbType)m.DbType,
+                    IsAutoCloseConnection = true,
+                    MoreSettings = new ConnMoreSettings()
+                    {
+                        IsAutoRemoveDataCache = true,
+                        SqlServerCodeFirstNvarchar = true,
+                    },
+                    InitKeyType = InitKeyType.Attribute
+                };
+                if (SqlSugarConst.LogConfigId.ToLower().Equals(m.ConnId.ToLower()))
+                {
+                    BaseDBConfig.LogConfig = config;
+                }
+                else
+                {
+                    BaseDBConfig.ValidConfig.Add(config);
+                }
+
+                BaseDBConfig.AllConfigs.Add(config);
+
+            });
+
+            if (BaseDBConfig.LogConfig is null)
+            {
+                throw new ApplicationException("未配置Log库连接");
+            }
+
+            // SqlSugarScope是线程安全，可使用单例注入
+            // 参考：https://www.donet5.com/Home/Doc?typeId=1181
+            services.AddSingleton<ISqlSugarClient>(o =>
+            {
+                //return new SqlSugarScope(BaseDBConfig.AllConfigs, db =>
+                //{
+                //    BaseDBConfig.ValidConfig.ForEach(config =>
+                //    {
+                //        var dbProvider = db.GetConnectionScope((string)config.ConfigId);
+                //    });
+                //});
+
+                return new SqlSugarScope(BaseDBConfig.AllConfigs);
+            });
         }
 
     }

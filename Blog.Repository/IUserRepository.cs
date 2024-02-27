@@ -10,6 +10,6 @@ namespace Blog.Repository
 {
     public interface IUserRepository : IBaseRepository<User>
     {
-        Task<List<User>> Query();
+        //Task<List<User>> Query();
     }
 }

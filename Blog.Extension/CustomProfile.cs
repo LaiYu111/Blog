@@ -8,9 +8,9 @@ namespace Blog.Extension
         public CustomProfile()
         {
             CreateMap<Role, RoleVo>()
-                .ForMember(roleVo => roleVo.RoleName, origin => origin.MapFrom(role => role.UserRole));
+                .ForMember(roleVo => roleVo.RoleName, origin => origin.MapFrom(role => role.Name));
             CreateMap<RoleVo, Role>()
-                .ForMember(role => role.UserRole, origin => origin.MapFrom(roleVo => roleVo.RoleName));
+                .ForMember(role => role.Name, origin => origin.MapFrom(roleVo => roleVo.RoleName));
 
             CreateMap<User, UserVo>()
                 .ForMember(userVo => userVo.UserName, origin => origin.MapFrom(user => user.Name))
