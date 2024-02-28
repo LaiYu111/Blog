@@ -25,5 +25,11 @@ namespace Blog.Service
             var result = await _baseRepository.Query();
             return _mapper.Map<List<TVo>>(result);
         }
+
+        public async Task<long> Add(TEntity entity)
+        {
+            var result = await _baseRepository.Add(entity);
+            return result;
+        }
     }
 }

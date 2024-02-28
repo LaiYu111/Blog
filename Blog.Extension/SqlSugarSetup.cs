@@ -1,5 +1,6 @@
 ﻿using Blog.Common;
 using Blog.Common.DB;
+using Blog.Model;
 using Microsoft.Extensions.DependencyInjection;
 using SqlSugar;
 using System;
@@ -69,9 +70,20 @@ namespace Blog.Extension
                 //        var dbProvider = db.GetConnectionScope((string)config.ConfigId);
                 //    });
                 //});
-
                 return new SqlSugarScope(BaseDBConfig.AllConfigs);
             });
+
+
+            var serviceProvider =  services.BuildServiceProvider();
+
+            // Code First
+            var Db = serviceProvider.GetService<ISqlSugarClient>();
+
+            if (Db != null)
+            {
+                Db.DbMaintenance.CreateDatabase();
+                Db.CodeFirst.InitTables(typeof(User), typeof(Role));
+            }
         }
 
     }

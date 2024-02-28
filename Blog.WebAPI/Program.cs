@@ -38,6 +38,9 @@ builder.Services.AddCacheSetup();
 // ORM
 builder.Services.AddSqlSugarSetup();
 
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -26,6 +26,8 @@ namespace Blog.WebAPI.Controllers
         [HttpGet]
         public async Task<List<UserVo>> Get()
         {
+
+            await _userService.Add(new User { Email="aa", Name="xx" });
             var result = await _userService.Query();
             //var result1 = AppSettings.GetValue("Redis:ConnectionString");
 

@@ -26,5 +26,11 @@ namespace Blog.Repository.Base
             return await _dbBase.Queryable<TEntity>().ToListAsync();
 
         }
+
+        public async Task<long> Add(TEntity entity)
+        {
+            var insert = _dbBase.Insertable(entity);
+            return await insert.ExecuteReturnSnowflakeIdAsync();
+        }
     }
 }

@@ -3,6 +3,7 @@ using SqlSugar;
 
 namespace Blog.Model
 {
+    [SugarTable("Role")]
     public class Role: RootEntityTkey<long>
     {
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SqlSugar;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Blog.Model
 {
+    [SugarTable("User")]
     public class User: RootEntityTkey<long>
     {
-        public string Name { get; set; } = "abc";
-        public string Email { get; set; } = "abc";
+        public string Name { get; set; } = "";
+        public string Email { get; set; } = "";
     }
 }

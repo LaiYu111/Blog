@@ -10,5 +10,7 @@ namespace Blog.IService
     public interface IBaseService<TEntity, TVo> where TEntity : class
     {
         Task<List<TVo>> Query();
+
+        Task<long> Add(TEntity entity);
     }
 }
