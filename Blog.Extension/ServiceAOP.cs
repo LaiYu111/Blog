@@ -18,11 +18,7 @@ namespace Blog.Extension
         /// <param name="invocation">包含被拦截方法的信息</param>
         public void Intercept(IInvocation invocation)
         {
-            Console.WriteLine("Before");
-
             invocation.Proceed();
-
-            Console.WriteLine("After");
         }
     }
 }

@@ -4,6 +4,7 @@ using Blog.Common.Caches;
 using Blog.Extension;
 using Blog.IService;
 using Blog.Model;
+using Blog.Repository.UnitOfWorks;
 using Blog.Service;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -16,13 +17,17 @@ namespace Blog.WebAPI.Controllers
     {
         private readonly IBaseService<User, UserVo> _userService;
         private readonly ICaching _caching;
+        private readonly IUnitOfWorkManage _unitOfWork;
 
         public UserController(IBaseService<User, UserVo> userService,
-            ICaching caching)
+            ICaching caching, IUnitOfWorkManage unitOfWork)
         {
             _userService = userService;
             _caching = caching;
+            _unitOfWork = unitOfWork;
         }
+
+
         [HttpGet]
         public async Task<List<UserVo>> Get()
         {
@@ -47,6 +52,41 @@ namespace Blog.WebAPI.Controllers
             //await Console.Out.WriteLineAsync("全部keys -->" + JsonConvert.SerializeObject(await _caching.GetAllCacheKeysAsync()));
 
             return result;
+        }
+
+        [HttpGet("/sss")]
+        public async Task<int> GetTrans()
+        {
+            try
+            {
+                using var now = _unitOfWork.CreateUnitOfWork();
+                
+                await _userService.Add(new User { Email = "1", Name = "x" });
+
+                var result = await _userService.Query();
+
+                Console.WriteLine(result.Count());
+
+                await _userService.Add(new User { Email = "1", Name = "xh" });
+
+                var result1 = await _userService.Query();
+
+                Console.WriteLine(result1.Count());
+
+                int ex = 0;
+                Console.WriteLine($"There's an exception!!");
+                Console.WriteLine($" ");
+                int throwEx = 1 / ex;
+
+                now.Commit();
+                
+            }
+            catch (Exception ex)
+            {
+                var result = await _userService.Query();
+                Console.WriteLine(result.Count());
+            }
+            return 11;
         }
     }
 }
