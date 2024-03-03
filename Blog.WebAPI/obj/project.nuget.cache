@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ijdrbT6mjt+fFpvT/GVQfDfreE7wAQEgZ4SJHcUa90oeOrjisu1UD+LnY5RHQjYIznhVpgUM7jUT7jRBqrbKbQ==",
+  "dgSpecHash": "scwDaE1w6dih9MYQ/Np95kFvtN+ZaXWxRf5K8V+W32XhrNc8GD7u7l4pMkmf3mPcHCRsskgGiWpNIgff9aaeww==",
   "success": true,
   "projectFilePath": "E:\\Workspace\\Code\\Blog\\Blog.WebAPI\\Blog.WebAPI.csproj",
   "expectedPackageFiles": [
@@ -69,10 +69,10 @@
     "C:\\Users\\LaiyuPei\\.nuget\\packages\\sqlsugarcore.dm\\1.3.0\\sqlsugarcore.dm.1.3.0.nupkg.sha512",
     "C:\\Users\\LaiyuPei\\.nuget\\packages\\sqlsugarcore.kdbndp\\7.4.0\\sqlsugarcore.kdbndp.7.4.0.nupkg.sha512",
     "C:\\Users\\LaiyuPei\\.nuget\\packages\\stackexchange.redis\\2.7.20\\stackexchange.redis.2.7.20.nupkg.sha512",
-    "C:\\Users\\LaiyuPei\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
-    "C:\\Users\\LaiyuPei\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
-    "C:\\Users\\LaiyuPei\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
-    "C:\\Users\\LaiyuPei\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
+    "C:\\Users\\LaiyuPei\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\LaiyuPei\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\LaiyuPei\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\LaiyuPei\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
     "C:\\Users\\LaiyuPei\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\LaiyuPei\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.0\\system.configuration.configurationmanager.6.0.0.nupkg.sha512",
     "C:\\Users\\LaiyuPei\\.nuget\\packages\\system.data.common\\4.3.0\\system.data.common.4.3.0.nupkg.sha512",

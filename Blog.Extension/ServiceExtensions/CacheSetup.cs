@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Extension
+namespace Blog.Extension.ServiceExtensions
 {
     public static class CacheSetup
     {
@@ -17,10 +17,10 @@ namespace Blog.Extension
         /// 注册缓存 - 没有redis 则使用内存缓存
         /// </summary>
         /// <param name="services"></param>
-        public static void  AddCacheSetup(this IServiceCollection services)
+        public static void AddCacheSetup(this IServiceCollection services)
         {
             var redisSettings = AppSettings.GetRedisSettings();
-            
+
             if (redisSettings.Enable)
             {
                 // https://www.bilibili.com/video/BV13g4y1Z7in?p=13&spm_id_from=pageDriver&vd_source=087397ebe4934518c1f214b92fed4ccb
@@ -31,7 +31,7 @@ namespace Blog.Extension
                     configuration.ResolveDns = true;
                     return ConnectionMultiplexer.Connect(configuration);
                 });
-                services.AddSingleton<ConnectionMultiplexer>(p => p.GetService<IConnectionMultiplexer>() as ConnectionMultiplexer);
+                services.AddSingleton(p => p.GetService<IConnectionMultiplexer>() as ConnectionMultiplexer);
 
                 // 使用 Redis
                 services.AddStackExchangeRedisCache(options =>

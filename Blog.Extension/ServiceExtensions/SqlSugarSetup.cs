@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Extension
+namespace Blog.Extension.ServiceExtensions
 {
     /// <summary>
     /// SqlSugar 启动服务
@@ -74,7 +74,7 @@ namespace Blog.Extension
             });
 
 
-            var serviceProvider =  services.BuildServiceProvider();
+            var serviceProvider = services.BuildServiceProvider();
 
             // Code First
             var Db = serviceProvider.GetService<ISqlSugarClient>();

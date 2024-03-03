@@ -9,8 +9,12 @@ using Blog.Service;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
+
 namespace Blog.WebAPI.Controllers
 {
+    /// <summary>
+    /// User Controller
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class UserController: ControllerBase
@@ -19,6 +23,12 @@ namespace Blog.WebAPI.Controllers
         private readonly ICaching _caching;
         private readonly IUnitOfWorkManage _unitOfWork;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="userService"></param>
+        /// <param name="caching"></param>
+        /// <param name="unitOfWork"></param>
         public UserController(IBaseService<User, UserVo> userService,
             ICaching caching, IUnitOfWorkManage unitOfWork)
         {
@@ -27,7 +37,10 @@ namespace Blog.WebAPI.Controllers
             _unitOfWork = unitOfWork;
         }
 
-
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<List<UserVo>> Get()
         {
@@ -54,6 +67,10 @@ namespace Blog.WebAPI.Controllers
             return result;
         }
 
+        /// <summary>
+        /// 测试
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("/sss")]
         public async Task<int> GetTrans()
         {

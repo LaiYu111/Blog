@@ -127,3 +127,7 @@ E:\Workspace\Code\Blog\Blog.Extension\bin\Debug\net8.0\Serilog.Sinks.Console.dll
 E:\Workspace\Code\Blog\Blog.Extension\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
 E:\Workspace\Code\Blog\Blog.Extension\bin\Debug\net8.0\Serilog.Sinks.File.dll
 E:\Workspace\Code\Blog\Blog.Extension\bin\Debug\net8.0\StackExchange.Redis.dll
+E:\Workspace\Code\Blog\Blog.Extension\bin\Debug\net8.0\Microsoft.OpenApi.dll
+E:\Workspace\Code\Blog\Blog.Extension\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\Workspace\Code\Blog\Blog.Extension\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\Workspace\Code\Blog\Blog.Extension\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll

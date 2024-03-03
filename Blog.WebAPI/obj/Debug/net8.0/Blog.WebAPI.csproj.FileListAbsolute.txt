@@ -148,3 +148,4 @@ E:\Workspace\Code\Blog\Blog.WebAPI\bin\Debug\net8.0\Serilog.Sinks.Console.dll
 E:\Workspace\Code\Blog\Blog.WebAPI\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
 E:\Workspace\Code\Blog\Blog.WebAPI\bin\Debug\net8.0\Serilog.Sinks.File.dll
 E:\Workspace\Code\Blog\Blog.WebAPI\bin\Debug\net8.0\StackExchange.Redis.dll
+E:\Workspace\Code\Blog\Blog.WebAPI\bin\Debug\net8.0\WebAPI.xml

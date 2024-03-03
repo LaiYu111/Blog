@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Blog.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:Blog.WebAPI.Controllers.UserController">
+            <summary>
+            User Controller
+            </summary>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.UserController.#ctor(Blog.IService.IBaseService{Blog.Model.User,Blog.Model.UserVo},Blog.Common.Caches.ICaching,Blog.Repository.UnitOfWorks.IUnitOfWorkManage)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="userService"></param>
+            <param name="caching"></param>
+            <param name="unitOfWork"></param>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.UserController.Get">
+            <summary>
+            Tests
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.UserController.GetTrans">
+            <summary>
+            测试
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
