@@ -1,14 +1,40 @@
+import style from "./index.module.scss"
 import {FC} from "react";
+
+// @ts-ignore
+import MyEditor from "../../components/MyEditor/index.jsx";
 
 interface Props {
 
 }
 
-const ArticlePage: FC<Props> = () =>{
+const Article : FC = () => {
 	return (
-		<>
-			article
-		</>
+		<div>
+			sss
+		</div>
+	)
+}
+
+const Review : FC = () => {
+	return (
+		<div>
+			Reviews
+		</div>
+	)
+}
+
+
+
+
+const ArticlePage: FC<Props> = () =>{
+
+	return (
+		<div className={style.root}>
+			<Article />
+			<MyEditor />
+			<Review />
+		</div>
 	)
 }
 

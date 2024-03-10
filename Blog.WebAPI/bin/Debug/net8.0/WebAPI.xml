@@ -4,12 +4,30 @@
         <name>Blog.WebAPI</name>
     </assembly>
     <members>
+        <member name="T:Blog.WebAPI.Controllers.ArticleController">
+            <summary>
+            Article Controller
+            </summary>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.ArticleController.#ctor(Blog.IService.IArticleService,Blog.Repository.UnitOfWorks.IUnitOfWorkManage)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="articleService"></param>
+            <param name="unitOfWork"></param>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.ArticleController.SaveImages(Microsoft.AspNetCore.Http.IFormFile[])">
+            <summary>
+            保存图片到服务器，返回路径
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Blog.WebAPI.Controllers.UserController">
             <summary>
             User Controller
             </summary>
         </member>
-        <member name="M:Blog.WebAPI.Controllers.UserController.#ctor(Blog.IService.IBaseService{Blog.Model.User,Blog.Model.UserVo},Blog.Common.Caches.ICaching,Blog.Repository.UnitOfWorks.IUnitOfWorkManage)">
+        <member name="M:Blog.WebAPI.Controllers.UserController.#ctor(Blog.IService.IBaseService{Blog.Model.User,Blog.Model.Views.UserVo},Blog.Common.Caches.ICaching,Blog.Repository.UnitOfWorks.IUnitOfWorkManage)">
             <summary>
             Constructor
             </summary>

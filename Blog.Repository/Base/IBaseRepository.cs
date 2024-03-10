@@ -14,7 +14,6 @@ namespace Blog.Repository.Base
         /// </summary>
         ISqlSugarClient Db { get; }
         Task<List<TEntity>> Query();
-
         Task<long> Add(TEntity entity);
     }
 }

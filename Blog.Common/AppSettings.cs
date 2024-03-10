@@ -25,7 +25,7 @@ namespace Blog.Common
 
 
     /// <summary>
-    /// appsettings.json 注入单例模式
+    /// appsettings.json 注入单例模式/appsettigns.json 入口
     /// </summary>
     public class AppSettings
     {
@@ -93,6 +93,14 @@ namespace Blog.Common
             {
                 return null;
             }
+        }
+        /// <summary>
+        /// 获取图片存放路径
+        /// </summary>
+        /// <returns></returns>
+        public static string GetImageStoragePath()
+        {
+            return Configuration["ImageStoragePath"];
         }
     }
 }

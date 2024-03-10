@@ -12,7 +12,8 @@
           "Blog.Extension": "1.0.0",
           "Blog.IService": "1.0.0",
           "Blog.Model": "1.0.0",
-          "Blog.Repository": "1.0.0"
+          "Blog.Repository": "1.0.0",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.19.5"
         },
         "runtime": {
           "Blog.WebAPI.dll": {}
@@ -85,6 +86,12 @@
             "assemblyVersion": "5.0.0.0",
             "fileVersion": "5.1.1.0"
           }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Features/5.0.17": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "8.0.0",
+          "System.IO.Pipelines": "5.0.2"
         }
       },
       "Microsoft.CSharp/4.7.0": {},
@@ -378,6 +385,7 @@
           }
         }
       },
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.19.5": {},
       "Microsoft.Win32.Registry/4.7.0": {
         "dependencies": {
           "System.Security.AccessControl": "6.0.0",
@@ -442,7 +450,7 @@
       },
       "Pipelines.Sockets.Unofficial/2.2.8": {
         "dependencies": {
-          "System.IO.Pipelines": "5.0.1"
+          "System.IO.Pipelines": "5.0.2"
         },
         "runtime": {
           "lib/net5.0/Pipelines.Sockets.Unofficial.dll": {
@@ -943,7 +951,7 @@
           "System.Threading.Tasks": "4.3.0"
         }
       },
-      "System.IO.Pipelines/5.0.1": {},
+      "System.IO.Pipelines/5.0.2": {},
       "System.Memory/4.5.3": {},
       "System.Reflection/4.3.0": {
         "dependencies": {
@@ -1141,6 +1149,7 @@
       },
       "Blog.Model/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "SqlSugarCore": "5.1.4.142"
         },
         "runtime": {
@@ -1214,6 +1223,13 @@
       "sha512": "sha512-rpYtIczkzGpf+EkZgDr9CClTdemhsrwA/W5hMoPjLkRFnXzH44zDLoovXeKtmxb1ykXK9aJVODSpiJml8CTw2g==",
       "path": "castle.core/5.1.1",
       "hashPath": "castle.core.5.1.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Features/5.0.17": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3jG2xS+dx8DDCGV/F+STdPTg89lX3ao3dF/VEPvJaz3wzBIjuadipTtYNEXDIVuOPZwb6jdmhrX9jkzOIBm5cw==",
+      "path": "microsoft.aspnetcore.http.features/5.0.17",
+      "hashPath": "microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512"
     },
     "Microsoft.CSharp/4.7.0": {
       "type": "package",
@@ -1459,6 +1475,13 @@
       "sha512": "sha512-Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw==",
       "path": "microsoft.openapi/1.2.3",
       "hashPath": "microsoft.openapi.1.2.3.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.19.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Kaa1rBZdJFq5A0qgAcl6Bmk/UqLXTq9acEqxUlPEBA8oscmakLfkvuSXfG7Wa9t1/keaT85EuuDNgOo+Z9VYOQ==",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.19.5",
+      "hashPath": "microsoft.visualstudio.azure.containers.tools.targets.1.19.5.nupkg.sha512"
     },
     "Microsoft.Win32.Registry/4.7.0": {
       "type": "package",
@@ -1740,12 +1763,12 @@
       "path": "system.io/4.3.0",
       "hashPath": "system.io.4.3.0.nupkg.sha512"
     },
-    "System.IO.Pipelines/5.0.1": {
+    "System.IO.Pipelines/5.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-qEePWsaq9LoEEIqhbGe6D5J8c9IqQOUuTzzV6wn1POlfdLkJliZY3OlB0j0f17uMWlqZYjH7txj+2YbyrIA8Yg==",
-      "path": "system.io.pipelines/5.0.1",
-      "hashPath": "system.io.pipelines.5.0.1.nupkg.sha512"
+      "sha512": "sha512-Iew+dfa6FFiyvWBdRmXApixRY1db+beyutpIck4SOSe0NLM8FD/7AD54MscqVLhvfSMLHO7KadjTRT7fqxOGTA==",
+      "path": "system.io.pipelines/5.0.2",
+      "hashPath": "system.io.pipelines.5.0.2.nupkg.sha512"
     },
     "System.Memory/4.5.3": {
       "type": "package",

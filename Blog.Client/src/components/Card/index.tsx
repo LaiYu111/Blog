@@ -8,13 +8,13 @@ interface Props {
 	caption: string
 }
 
-const Card : FC<Props> = ({ img, title}) => {
+const Card : FC<Props> = (props: Props) => {
 	return (
 		<Panel>
 			<div className={style.root}>
-				<img src={img}/>
+				<img src={props.img}/>
 				<div className={style.title}>
-					{title}xxxxxx
+					{props.title}
 				</div>
 			</div>
 		</Panel>

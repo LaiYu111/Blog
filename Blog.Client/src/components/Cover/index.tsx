@@ -4,6 +4,8 @@ import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import ChromeReaderModeOutlinedIcon from '@mui/icons-material/ChromeReaderModeOutlined';
 import img from '../../assets/aaa.jpg'
+import useNav from "../../hooks/useNav.ts";
+
 
 
 interface Props{
@@ -16,6 +18,12 @@ interface Props{
 }
 
 const Cover:FC<Props> = ({image, articleID}) => {
+	const navigate = useNav()
+
+	const handleNav = () => {
+		navigate('/article/xxx')
+	}
+
 	return (
 	<>
 		<div
@@ -23,10 +31,16 @@ const Cover:FC<Props> = ({image, articleID}) => {
 		>
 			{/* text */}
 			<div className={style.text}>
-				<div className={style.title}>
+				<div
+					className={style.title}
+					onClick={handleNav}
+				>
 					{articleID} 你好示例中，我们创建了一个 container 容器，里面包含asdfsdf我们希望有间隔的ner 容器，里面包含了两个项目（
 				</div>
-				<div className={style.article}>
+				<div
+					className={style.article}
+					onClick={handleNav}
+				>
 					哈哈dfgsdfg在这个示例中，我们创建了一个 container 容器，里面包含了两个项目（item），它们是我们希望有间隔的两个
 					div。我们添加了一个额外的 div 元素（class 为 gap），通过设置其宽度来创建间隔。
 
@@ -38,7 +52,7 @@ const Cover:FC<Props> = ({image, articleID}) => {
 				</div>
 
 				<div className={style.others}>
-					<ThumbUpOffAltIcon fontSize={"small"}/>
+					<ThumbUpOffAltIcon fontSize={"small"}  />
 					<ChatBubbleOutlineIcon fontSize={'small'}/>
 					<ChromeReaderModeOutlinedIcon fontSize={'small'}/>
 				</div>

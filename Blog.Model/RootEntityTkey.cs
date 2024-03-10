@@ -15,5 +15,10 @@ namespace Blog.Model
         /// </summary>
         [SugarColumn(IsNullable = false, IsPrimaryKey = true)]
         public Tkey Id { get; set; }
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        [SugarColumn(IsNullable =false)]
+        public DateTime CreateTime { get; set; } = DateTime.UtcNow;
     }
 }

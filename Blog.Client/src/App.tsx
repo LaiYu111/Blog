@@ -8,7 +8,12 @@ import {AppState} from "./redux/interfaces.ts";
 import {useMediaQuery} from "@mui/material";
 import {setDevice} from "./redux/actions/deviceAction.ts";
 import {Device} from "./util.ts";
-import Article from "./pages/ArticlePage";
+import ArticlePage from "./pages/ArticlePage";
+import style from './App.module.scss';
+import Panel from "./components/Panel";
+import {setPopup} from "./redux/actions/popupAction.ts";
+import Profile from "./components/Profile";
+
 
 interface WheelEvent extends MouseEvent {
   deltaY: number
@@ -20,6 +25,22 @@ function App() {
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const dispatch = useDispatch()
   const hidden = useSelector((state: AppState) => state.componentReducers.nav.hidden)
+
+  const device = useSelector((state: AppState) => state.systemReducers.media.device )
+
+
+
+  const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+    const key = e.key;
+
+    switch (key) {
+      case 'Escape':
+        dispatch(setPopup(false))
+        break;
+      default:
+        break;
+    }
+  }
 
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
@@ -58,12 +79,31 @@ function App() {
   return (
       <BrowserRouter>
         <Nav/>
-        <hr />
+        <div
+          className={`${style.root} ${device === Device.tablet && style.rootTablet} ${device === Device.mobile && style.rootMobile}`}
+          onKeyDown={handleKeyDown}
+          tabIndex={0}
+        >
+          <div className={`${style.articleNev}`}>
+            <Panel>
+              ss
+            </Panel>
+          </div>
+          {/*<hr/>*/}
 
-        <Routes>
-          <Route path={'/'} element={<HomePage />} />
-          <Route path={'/article/{id}'} element={<Article />} />
-        </Routes>
+          <div className={style.content}>
+            <Routes>
+              <Route path={'/'} element={<HomePage/>}/>
+              <Route path={'/article/:id'} element={<ArticlePage/>}/>
+            </Routes>
+          </div>
+
+          <div className={`${style.profile}`}>
+            <Panel>
+              <Profile/>
+            </Panel>
+          </div>
+        </div>
       </BrowserRouter>
   )
 }

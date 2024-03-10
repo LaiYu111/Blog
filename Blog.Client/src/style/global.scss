@@ -13,11 +13,11 @@ body,
 }
 
 img{
-  -webkit-user-drag: none;
+  //-webkit-user-drag: none;
   border-radius: inherit;
 
-  width: inherit;
-  height: inherit;
+  //width: inherit;
+  //height: inherit;
 }
 
 a{
@@ -52,26 +52,3 @@ hr{
   background:  $grey500; /* 滑块悬停时的背景色 */
 }
 
-button{
-  border-radius: $smRadius;
-  padding: 2px;
-  margin: 2px;
-
-  min-width: 30px;
-  min-height: 20px;
-
-  position: absolute;
-  background: inherit;
-  border: solid $info500;
-  text-align: center;
-  color: $info500;
-}
-button:hover{
-  cursor: pointer;
-  color: $info100;
-  border: solid $info100;
-  transform: scale(1.02);
-}
-button:active{
-  transform: scale(0.95);
-}

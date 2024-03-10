@@ -1,5 +1,4 @@
-﻿
-namespace Blog.Model
+﻿namespace Blog.Model.Views
 {
     public class RoleVo
     {

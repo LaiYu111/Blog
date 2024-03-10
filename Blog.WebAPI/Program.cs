@@ -6,6 +6,7 @@ using Autofac.Extensions.DependencyInjection;
 using Autofac;
 using Blog.Common;
 using Blog.Extension.ServiceExtensions;
+using Blog.Extension.AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 

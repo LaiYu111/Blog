@@ -1,6 +1,7 @@
 ﻿using Blog.Common;
 using Blog.Common.DB;
 using Blog.Model;
+using Blog.Model.Entities;
 using Microsoft.Extensions.DependencyInjection;
 using SqlSugar;
 using System;
@@ -82,7 +83,7 @@ namespace Blog.Extension.ServiceExtensions
             if (Db != null)
             {
                 Db.DbMaintenance.CreateDatabase();
-                Db.CodeFirst.InitTables(typeof(User), typeof(Role));
+                Db.CodeFirst.InitTables(typeof(User), typeof(Role), typeof(Article));
             }
         }
 

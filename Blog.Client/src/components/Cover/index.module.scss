@@ -10,7 +10,7 @@
   width: inherit;
   height: 170px;
 
-  cursor: pointer;
+  //cursor: pointer;
 }
 
 .root:hover{
@@ -57,12 +57,18 @@
     color: #333; /* 字体颜色 */
     margin-bottom: 5px; /* 底部边距 */
   }
+  .title:hover{
+    cursor: pointer;
+  }
+
   .article{
     flex-grow: 1;
     //height: 50px;
     overflow: hidden;
     text-overflow: ellipsis;
-
+  }
+  .article:hover{
+    cursor: pointer;
   }
   .others{
     flex-grow: 0;

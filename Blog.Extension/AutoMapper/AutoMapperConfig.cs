@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Blog.Extension
+namespace Blog.Extension.AutoMapper
 {
     public class AutoMapperConfig
     {

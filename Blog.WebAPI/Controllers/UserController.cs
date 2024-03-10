@@ -4,6 +4,7 @@ using Blog.Common.Caches;
 using Blog.Extension;
 using Blog.IService;
 using Blog.Model;
+using Blog.Model.Views;
 using Blog.Repository.UnitOfWorks;
 using Blog.Service;
 using Microsoft.AspNetCore.Mvc;
