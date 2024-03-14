@@ -22,7 +22,7 @@ namespace Blog.Extension.AutoMapper
                 .ForMember(articleVo => articleVo.ArticleId, origin => origin.MapFrom(article => article.Id))
                 .ForMember(articleVo => articleVo.ArticleTitle, origin => origin.MapFrom(article => article.Title))
                 .ForMember(articleVo => articleVo.ArticleContent, origin => origin.MapFrom(article => article.Content))
-                .ForMember(articleVo => articleVo.ArticleAuthor, origin => origin.MapFrom(article => article.Author))
+                .ForMember(articleVo => articleVo.ArticleAuthor, origin => origin.MapFrom(article => article.AuthorId))
                 .ForMember(articleVo => articleVo.ArticleCreateTime, origin => origin.MapFrom(article => article.CreateTime));
         }
     }

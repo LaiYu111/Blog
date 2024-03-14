@@ -1,6 +1,8 @@
 ﻿using Blog.Common;
 using Blog.IService;
+using Blog.Model.Entities;
 using Blog.Model.RequestModel;
+using Blog.Model.Views;
 using Blog.Repository.UnitOfWorks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,23 +19,28 @@ namespace Blog.WebAPI.Controllers
     {
         private readonly IArticleService _articleService;
         private readonly IUnitOfWorkManage _unitOfWork;
+        private readonly IBaseService<Article, ArticleVo> _baseService;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="articleService"></param>
         /// <param name="unitOfWork"></param>
-        public ArticleController(IArticleService articleService, IUnitOfWorkManage unitOfWork)
+        /// <param name="baseService"></param>
+        public ArticleController(IArticleService articleService, 
+            IUnitOfWorkManage unitOfWork, 
+            IBaseService<Article, ArticleVo> baseService)
         {
             _articleService = articleService;
             _unitOfWork = unitOfWork;
+            _baseService = baseService;
         }
 
         /// <summary>
         /// 保存图片到服务器，返回路径
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("Image")]
         public async Task<ActionResult> SaveImages([FromForm] IFormFile[] images)
         {
             if (images == null || images.Length == 0) return BadRequest("Empty Files");
@@ -44,7 +51,7 @@ namespace Blog.WebAPI.Controllers
             }
 
 
-            var urls = new List<string>();
+            var imageIds = new List<string>();
             foreach (var image in images)
             {
                 if (image.Length > 0)
@@ -60,15 +67,23 @@ namespace Blog.WebAPI.Controllers
                     {
                         await image.CopyToAsync(stream);
                     }
-
-                    // 生成文件的URL（假设 "images" 文件夹已配置为静态文件）
-                    var url = $"{Request.Scheme}://{Request.Host}/images/{fileName}";
-                    urls.Add(url);
+                    imageIds.Add(fileName);
                 }
             }
+            return Ok(imageIds);
+        }
 
 
-            return Ok(urls);
+        /// <summary>
+        /// 创建新的article
+        /// </summary>
+        /// <param name="article"></param>
+        /// <returns></returns>
+        [HttpPost("Create")]
+        public async Task<ActionResult> CreateArticle([FromBody] Article article)
+        {
+            await Task.CompletedTask;
+            return Ok(1);
         }
     }
 }

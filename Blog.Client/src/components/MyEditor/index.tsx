@@ -1,23 +1,29 @@
 import React, {useEffect, useRef, useState} from 'react';
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {IMAGE_URL} from "../../config.js";
+// @ts-ignore
+import {BACKEND_URL, IMAGE_URL} from "../../config.js";
+// @ts-ignore
 import ImageResize from 'quill-image-resize-module-react';
+import usePost from "../../hooks/usePost.js";
 
 Quill.register('modules/imageResize', ImageResize);
 
 function MyEditor () {
   const [value, setValue] = useState('');
   const reactQuillRef = useRef(null);
+  const { postData, data, loading, error} = usePost()
 
   useEffect(() => {
     console.log(value)
   }, [value]);
 
-  const uploadImage = async () => {
+  const uploadImage = async (files) => {
     const formData = new FormData()
+    for (const file of files){ formData.append('images', file)}
     try{
-      return IMAGE_URL+"/5.png"
+      const response = await postData(`${BACKEND_URL}/api/Article`, formData, 'images')
+      return response.data
     }catch (e){
       console.log("Error", e)
       return null
@@ -32,15 +38,19 @@ function MyEditor () {
     input.click();
     input.onchange = async () => {
       const files = input.files;
-      for (const file of Array.from(files)) {
-        const imgUrl = await uploadImage(file); // 假设uploadImage正确实现了上传逻辑并返回图片URL
+      const imgIds = await uploadImage(files);
 
-        if (imgUrl) {
+      for (const id of Array.from(imgIds)) {
+        const url = IMAGE_URL + `/${id}`
+        if (id) {
           const editor = reactQuillRef.current.getEditor(); // 获取Quill实例
           const range = editor.getSelection();
           if (range) {
-            editor.insertEmbed(range.index, 'image', imgUrl);
+            editor.insertEmbed(range.index, 'image', url);
           }
+        }
+        else {
+          console.error("Cannot find: "+url)
         }
       }
     };

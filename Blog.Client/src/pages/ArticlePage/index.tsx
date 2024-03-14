@@ -2,7 +2,7 @@ import style from "./index.module.scss"
 import {FC} from "react";
 
 // @ts-ignore
-import MyEditor from "../../components/MyEditor/index.jsx";
+import MyEditor from "../../components/MyEditor";
 
 interface Props {
 

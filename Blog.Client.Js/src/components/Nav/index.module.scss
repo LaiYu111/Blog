@@ -1,0 +1,63 @@
+@import "src/style/base.scss";
+
+.root{
+  background-color: $grey100;
+  width: inherit;
+  height: $navigatorHeight;
+  box-shadow: $box-shadow;
+
+  position: fixed;
+  top: 0;
+  opacity: 95%;
+  z-index: 1;
+
+  transition: $transitionMotion;
+}
+
+.hidden {
+  transition: $transitionMotion;
+  top: -$navigatorHeight - 2;
+}
+
+.layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.navigator {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+
+  padding-left: 30px;
+}
+
+.item {
+  cursor: pointer;
+}
+.onSelect{
+  color: #1d63f6;
+}
+
+.others{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  padding-right: 30px;
+  div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  input{
+
+  }
+}
+
+@media screen and (max-width: 640px) {
+
+}
