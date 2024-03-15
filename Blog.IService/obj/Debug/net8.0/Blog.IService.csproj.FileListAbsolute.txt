@@ -1,0 +1,14 @@
+E:\Workspace\Tutorial\Blog\Blog.IService\bin\Debug\net8.0\Blog.IService.exe
+E:\Workspace\Tutorial\Blog\Blog.IService\bin\Debug\net8.0\Blog.IService.deps.json
+E:\Workspace\Tutorial\Blog\Blog.IService\bin\Debug\net8.0\Blog.IService.runtimeconfig.json
+E:\Workspace\Tutorial\Blog\Blog.IService\bin\Debug\net8.0\Blog.IService.dll
+E:\Workspace\Tutorial\Blog\Blog.IService\bin\Debug\net8.0\Blog.IService.pdb
+E:\Workspace\Tutorial\Blog\Blog.IService\obj\Debug\net8.0\Blog.IService.GeneratedMSBuildEditorConfig.editorconfig
+E:\Workspace\Tutorial\Blog\Blog.IService\obj\Debug\net8.0\Blog.IService.AssemblyInfoInputs.cache
+E:\Workspace\Tutorial\Blog\Blog.IService\obj\Debug\net8.0\Blog.IService.AssemblyInfo.cs
+E:\Workspace\Tutorial\Blog\Blog.IService\obj\Debug\net8.0\Blog.IService.csproj.CoreCompileInputs.cache
+E:\Workspace\Tutorial\Blog\Blog.IService\obj\Debug\net8.0\Blog.IService.dll
+E:\Workspace\Tutorial\Blog\Blog.IService\obj\Debug\net8.0\refint\Blog.IService.dll
+E:\Workspace\Tutorial\Blog\Blog.IService\obj\Debug\net8.0\Blog.IService.pdb
+E:\Workspace\Tutorial\Blog\Blog.IService\obj\Debug\net8.0\Blog.IService.genruntimeconfig.cache
+E:\Workspace\Tutorial\Blog\Blog.IService\obj\Debug\net8.0\ref\Blog.IService.dll
