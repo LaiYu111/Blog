@@ -4776,11 +4776,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Workspace\\Tutorial\\Blog\\Blog.WebAPI\\Blog.WebAPI.csproj",
+      "projectUniqueName": "E:\\Workspace\\Code\\Blog\\Blog.WebAPI\\Blog.WebAPI.csproj",
       "projectName": "Blog.WebAPI",
-      "projectPath": "E:\\Workspace\\Tutorial\\Blog\\Blog.WebAPI\\Blog.WebAPI.csproj",
+      "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.WebAPI\\Blog.WebAPI.csproj",
       "packagesPath": "C:\\Users\\LaiyuPei\\.nuget\\packages\\",
-      "outputPath": "E:\\Workspace\\Tutorial\\Blog\\Blog.WebAPI\\obj\\",
+      "outputPath": "E:\\Workspace\\Code\\Blog\\Blog.WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4802,23 +4802,23 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\Workspace\\Tutorial\\Blog\\Blog.Common\\Blog.Common.csproj": {
-              "projectPath": "E:\\Workspace\\Tutorial\\Blog\\Blog.Common\\Blog.Common.csproj"
+            "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj": {
+              "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj"
             },
-            "E:\\Workspace\\Tutorial\\Blog\\Blog.Extensions\\Blog.Extensions.csproj": {
-              "projectPath": "E:\\Workspace\\Tutorial\\Blog\\Blog.Extensions\\Blog.Extensions.csproj"
+            "E:\\Workspace\\Code\\Blog\\Blog.Extensions\\Blog.Extensions.csproj": {
+              "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Extensions\\Blog.Extensions.csproj"
             },
-            "E:\\Workspace\\Tutorial\\Blog\\Blog.IService\\Blog.IService.csproj": {
-              "projectPath": "E:\\Workspace\\Tutorial\\Blog\\Blog.IService\\Blog.IService.csproj"
+            "E:\\Workspace\\Code\\Blog\\Blog.IService\\Blog.IService.csproj": {
+              "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.IService\\Blog.IService.csproj"
             },
-            "E:\\Workspace\\Tutorial\\Blog\\Blog.Model\\Blog.Model.csproj": {
-              "projectPath": "E:\\Workspace\\Tutorial\\Blog\\Blog.Model\\Blog.Model.csproj"
+            "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj": {
+              "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj"
             },
-            "E:\\Workspace\\Tutorial\\Blog\\Blog.Repository\\Blog.Repository.csproj": {
-              "projectPath": "E:\\Workspace\\Tutorial\\Blog\\Blog.Repository\\Blog.Repository.csproj"
+            "E:\\Workspace\\Code\\Blog\\Blog.Repository\\Blog.Repository.csproj": {
+              "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Repository\\Blog.Repository.csproj"
             },
-            "E:\\Workspace\\Tutorial\\Blog\\Blog.Service\\Blog.Service.csproj": {
-              "projectPath": "E:\\Workspace\\Tutorial\\Blog\\Blog.Service\\Blog.Service.csproj"
+            "E:\\Workspace\\Code\\Blog\\Blog.Service\\Blog.Service.csproj": {
+              "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Service\\Blog.Service.csproj"
             }
           }
         }

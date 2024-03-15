@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jQ3OP/jR1Mi4gteLNjpGdvcSA/arJa37UmZPdclbpqGC7iVYZ8ikk4hdDAxCiXApV42s2Vub5QkLtqE8KOVxDQ==",
+  "dgSpecHash": "qslOH8pghwAdlf72DrW7lRMONIKjpmnTVYLwXij4aLXDrYgfCeTWC2UrUQQVoGOpXwXA6ecpxRL7OPB7A9VEIw==",
   "success": true,
-  "projectFilePath": "E:\\Workspace\\Tutorial\\Blog\\Blog.Service\\Blog.Service.csproj",
+  "projectFilePath": "E:\\Workspace\\Code\\Blog\\Blog.Service\\Blog.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LaiyuPei\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\LaiyuPei\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",

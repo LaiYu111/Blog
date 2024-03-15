@@ -3342,11 +3342,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Workspace\\Tutorial\\Blog\\Blog.Extensions\\Blog.Extensions.csproj",
+      "projectUniqueName": "E:\\Workspace\\Code\\Blog\\Blog.Extensions\\Blog.Extensions.csproj",
       "projectName": "Blog.Extensions",
-      "projectPath": "E:\\Workspace\\Tutorial\\Blog\\Blog.Extensions\\Blog.Extensions.csproj",
+      "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Extensions\\Blog.Extensions.csproj",
       "packagesPath": "C:\\Users\\LaiyuPei\\.nuget\\packages\\",
-      "outputPath": "E:\\Workspace\\Tutorial\\Blog\\Blog.Extensions\\obj\\",
+      "outputPath": "E:\\Workspace\\Code\\Blog\\Blog.Extensions\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3368,8 +3368,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\Workspace\\Tutorial\\Blog\\Blog.Common\\Blog.Common.csproj": {
-              "projectPath": "E:\\Workspace\\Tutorial\\Blog\\Blog.Common\\Blog.Common.csproj"
+            "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj": {
+              "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj"
             }
           }
         }

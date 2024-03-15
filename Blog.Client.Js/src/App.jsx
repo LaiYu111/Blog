@@ -65,6 +65,13 @@ function App() {
           tabIndex={0}
         >
           <div className={`${style.articleNev}`}>
+            { (device === Device.tablet || device === Device.mobile)  && (
+              <div className={`${style.profile}`}>
+                <Panel>
+                  <Profile/>
+                </Panel>
+              </div>
+            )}
             <Panel>
               ss
             </Panel>

@@ -1,13 +1,20 @@
 import style from './index.module.scss'
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import useNav from "../../hooks/useNav.js";
+import {MANAGEMENT_SYSTEM_URL} from "../../config.js";
 
 const Nav = () => {
 	const hide = useSelector((state) => state.componentReducers.nav.hidden)
 	const navigator = useNavigate()
+	const {pageRouter} = useNav()
 
 	const handleNav =(path)=>{
 		navigator(path)
+	}
+
+	const pageRoute = (url) => {
+		pageRouter(url)
 	}
 
 	return (
@@ -25,7 +32,7 @@ const Nav = () => {
 						<input placeholder={'搜索'}/>
 					</div>
 					<div >
-						<p className={style.item}>登录</p>
+						<p className={style.item} onClick={()=> pageRoute(MANAGEMENT_SYSTEM_URL)}>后台</p>
 					</div>
 				</div>
 			</div>

@@ -8,7 +8,11 @@ const useNav = () => {
 		window.open(window.location.origin + url, '_blank');
 	}, []); // 依赖项为空，因为 navigate 函数不依赖于外部变量
 
-	return navigate;
+	const pageRouter = useCallback((url) => {
+		window.open(url, '_blank')
+	}, [])
+
+	return {navigate, pageRouter};
 }
 
 export default useNav;

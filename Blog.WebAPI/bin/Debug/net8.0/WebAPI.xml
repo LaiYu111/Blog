@@ -95,5 +95,53 @@
         <member name="M:Blog.WebAPI.Migrations.UserModel.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Blog.WebAPI.Migrations.UserModel_add_features">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.UserModel_add_features.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.UserModel_add_features.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.UserModel_add_features.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Blog.WebAPI.Migrations.UserModel_add_feature_2">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.UserModel_add_feature_2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.UserModel_add_feature_2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.UserModel_add_feature_2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Blog.WebAPI.Migrations.TagModel">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.TagModel.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.TagModel.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.TagModel.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Blog.WebAPI.Migrations.ArticleTage_many2many">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.ArticleTage_many2many.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.ArticleTage_many2many.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.ArticleTage_many2many.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

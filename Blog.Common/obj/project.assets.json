@@ -3326,11 +3326,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Workspace\\Tutorial\\Blog\\Blog.Common\\Blog.Common.csproj",
+      "projectUniqueName": "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj",
       "projectName": "Blog.Common",
-      "projectPath": "E:\\Workspace\\Tutorial\\Blog\\Blog.Common\\Blog.Common.csproj",
+      "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj",
       "packagesPath": "C:\\Users\\LaiyuPei\\.nuget\\packages\\",
-      "outputPath": "E:\\Workspace\\Tutorial\\Blog\\Blog.Common\\obj\\",
+      "outputPath": "E:\\Workspace\\Code\\Blog\\Blog.Common\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3352,8 +3352,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\Workspace\\Tutorial\\Blog\\Blog.Model\\Blog.Model.csproj": {
-              "projectPath": "E:\\Workspace\\Tutorial\\Blog\\Blog.Model\\Blog.Model.csproj"
+            "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj": {
+              "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj"
             }
           }
         }

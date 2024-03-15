@@ -15,5 +15,6 @@ namespace Blog.Model.Entities
         public string Description { get; set; } = string.Empty;
         public string Content { get; set; } = string.Empty;
 
+        public ICollection<Tag> Tags { get; set; }
     }
 }

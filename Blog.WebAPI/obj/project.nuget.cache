@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3sIwOxDFUJZKmYLvXTu9XG1krCx9pnoj334rleuVf+2VBWb0ExwjjyO3c4MKRBDGIe3sZzuJwNY9ysGN/WmxDA==",
+  "dgSpecHash": "Rr8I9PGaUa7zH5r1eAR2OYWCD2qnroikx/RYeOSFipEPUzoHA/j6UBi73YcGqES/oM9mThBZV/7GAcP+jydarg==",
   "success": true,
-  "projectFilePath": "E:\\Workspace\\Tutorial\\Blog\\Blog.WebAPI\\Blog.WebAPI.csproj",
+  "projectFilePath": "E:\\Workspace\\Code\\Blog\\Blog.WebAPI\\Blog.WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LaiyuPei\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\LaiyuPei\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",

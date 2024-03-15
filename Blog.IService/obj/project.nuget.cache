@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ASFq4qmK2TPqc4HEmHNoBsy8kQud3fPnHlRyNBGwFJMtqe9dCciROcs5OcQMdH8RBIg3/yrKBKqFg3yLNI39Mg==",
+  "dgSpecHash": "VUe6wICbVLR4EuQiSfdDbUynR9vixuf7x1IFU4d66dz81Y/JkZ5UaFcbbAQXAtD+9OjHqiK4DL0Au3bDyjCpJw==",
   "success": true,
-  "projectFilePath": "E:\\Workspace\\Tutorial\\Blog\\Blog.IService\\Blog.IService.csproj",
+  "projectFilePath": "E:\\Workspace\\Code\\Blog\\Blog.IService\\Blog.IService.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

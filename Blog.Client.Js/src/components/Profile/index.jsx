@@ -1,6 +1,6 @@
 import style from './index.module.scss'
 import  image from '../../assets/aaa.jpg'
-import Avatar from "../../Avatar/index.jsx";
+import Avatar from "../Avatar/index.jsx";
 
 
 
