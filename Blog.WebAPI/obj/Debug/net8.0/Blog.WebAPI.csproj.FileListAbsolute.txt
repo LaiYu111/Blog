@@ -339,3 +339,4 @@ E:\Workspace\Code\Blog\Blog.WebAPI\obj\Debug\net8.0\refint\Blog.WebAPI.dll
 E:\Workspace\Code\Blog\Blog.WebAPI\obj\Debug\net8.0\Blog.WebAPI.pdb
 E:\Workspace\Code\Blog\Blog.WebAPI\obj\Debug\net8.0\Blog.WebAPI.genruntimeconfig.cache
 E:\Workspace\Code\Blog\Blog.WebAPI\obj\Debug\net8.0\ref\Blog.WebAPI.dll
+E:\Workspace\Code\Blog\Blog.WebAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

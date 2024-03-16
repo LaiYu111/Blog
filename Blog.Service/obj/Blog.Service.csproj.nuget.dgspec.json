@@ -32,11 +32,7 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {
-              "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj": {
-                "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -52,6 +48,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[13.0.1, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -121,6 +121,9 @@
             "projectReferences": {
               "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj": {
                 "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj"
+              },
+              "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj": {
+                "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj"
               }
             }
           }
@@ -134,6 +137,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -182,7 +191,14 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj": {
+                "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj"
+              },
+              "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj": {
+                "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -242,7 +258,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj": {
+                "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -321,6 +341,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj": {
+                "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj"
+              },
               "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj": {
                 "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj"
               }
@@ -385,11 +408,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj": {
+                "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Common\\Blog.Common.csproj"
+              },
               "E:\\Workspace\\Code\\Blog\\Blog.Extensions\\Blog.Extensions.csproj": {
                 "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Extensions\\Blog.Extensions.csproj"
               },
               "E:\\Workspace\\Code\\Blog\\Blog.IService\\Blog.IService.csproj": {
                 "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.IService\\Blog.IService.csproj"
+              },
+              "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj": {
+                "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Model\\Blog.Model.csproj"
               },
               "E:\\Workspace\\Code\\Blog\\Blog.Repository\\Blog.Repository.csproj": {
                 "projectPath": "E:\\Workspace\\Code\\Blog\\Blog.Repository\\Blog.Repository.csproj"

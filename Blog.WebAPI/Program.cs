@@ -5,6 +5,8 @@ using Blog.Repository.Base;
 using Blog.Service;
 using Microsoft.EntityFrameworkCore;
 using Blog.Extensions.ServiceExtensions;
+using Blog.Common;
+using Blog.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,10 +17,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// ÃÌº”swaggerŒƒµµ≈‰÷√
+// Swagger Configurations 
 builder.Services.AddCustomSwagger();
 
-// database
+//CORS
+builder.Services.AddCustomCors();
+
+builder.Services.AddAuth();
+
+builder.Services.AddAuthor();
+
+// Database
 builder.Services.AddDbContext<BlogDBContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection"),
@@ -30,10 +39,15 @@ AutoMapperConfig.RegisterMappings();
 
 // Services
 builder.Services.AddScoped(typeof(IBaseService<,>), typeof(BaseService<,>));
-// Repository
+builder.Services.AddScoped(typeof(IArticleService), typeof(ArticleService));
+builder.Services.AddScoped(typeof(IUserService), typeof(UserService));
+// Repositories
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+builder.Services.AddScoped(typeof(IArticleRepository), typeof(ArticleRepository));
+builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 
-
+// AppSettings
+builder.Services.AddSingleton(new AppSettings(builder.Configuration));
 
 
 var app = builder.Build();
@@ -45,9 +59,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors();
+app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -9,12 +9,34 @@ namespace Blog.IService
 {
     public interface IBaseService<TEntity, TVo> where TEntity : class
     {
-        Task<TVo> Add(TEntity entity);
-        Task<List<TVo>> QueryAll();
-        Task<List<TVo>> Query(Expression<Func<TEntity, bool>> predicate);
-        Task<TVo> Update(TEntity entity);
-        Task Delete(TEntity entity);
-        Task Delete(Expression<Func<TEntity, bool>> predicate);
-        Task<TVo> FindById(object id);
+        #region Create
+
+        Task<TVo> AddAsync(TEntity entity);
+
+        #endregion
+
+        #region Read
+
+        Task<List<TVo>> QueryAllAsync();
+
+        Task<List<TVo>> QueryAsync(Expression<Func<TEntity, bool>> predicate);
+
+        Task<TVo> FindByIdAsync(object id);
+
+        #endregion
+
+        #region Update
+
+        Task<TVo> UpdateAsync(TEntity entity);
+
+        #endregion
+
+        #region Delete
+
+        Task DeleteAsync(TEntity entity);
+
+        Task DeleteAsync(Expression<Func<TEntity, bool>> predicate);
+
+        #endregion
     }
 }

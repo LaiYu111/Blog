@@ -14,7 +14,7 @@ namespace Blog.Extensions.ServiceExtensions
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
-                builder => builder.WithOrigins("http://localhost:3000") // 指定前端应用的 URL
+                builder => builder.WithOrigins("http://localhost:3000", "http://localhost:3050") // 指定前端应用的 URL
                                   .AllowAnyMethod()
                                   .AllowAnyHeader()
                                   .AllowCredentials());

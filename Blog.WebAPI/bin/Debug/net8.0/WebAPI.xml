@@ -9,11 +9,12 @@
             Article
             </summary>
         </member>
-        <member name="M:Blog.WebAPI.Controllers.ArticleController.#ctor(Blog.IService.IBaseService{Blog.Model.Entities.Article,Blog.Model.Views.ArticleVo},AutoMapper.IMapper)">
+        <member name="M:Blog.WebAPI.Controllers.ArticleController.#ctor(Blog.IService.IBaseService{Blog.Model.Entities.Article,Blog.Model.Views.ArticleVo},Blog.IService.IArticleService,AutoMapper.IMapper)">
             <summary>
             Construcutor
             </summary>
             <param name="baseService"></param>
+            <param name="articleService"></param>
             <param name="mapper"></param>
         </member>
         <member name="M:Blog.WebAPI.Controllers.ArticleController.AllArticles">
@@ -29,10 +30,57 @@
             <param name="article"></param>
             <returns></returns>
         </member>
+        <member name="M:Blog.WebAPI.Controllers.ArticleController.SaveImages(Microsoft.AspNetCore.Http.IFormFile[])">
+            <summary>
+            Save image to ../imageFiles
+            </summary>
+            <param name="images"></param>
+            <returns></returns>
+        </member>
         <member name="M:Blog.WebAPI.Controllers.ArticleController.DeleteArticle(System.Collections.Generic.List{System.Int64})">
             <summary>
             删除
             </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Blog.WebAPI.Controllers.SystemController">
+            <summary>
+            System
+            </summary>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.SystemController.#ctor">
+            <summary>
+            Constructure
+            </summary>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.SystemController.Version">
+            <summary>
+            Version
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Blog.WebAPI.Controllers.UserController">
+            <summary>
+            User Controller
+            </summary>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.UserController.#ctor(AutoMapper.IMapper,Blog.Service.IUserService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.UserController.Register(Blog.Model.RequestModels.UserRequest)">
+            <summary>
+            Resigter an account
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.UserController.Login(Blog.Model.RequestModels.UserRequest)">
+            <summary>
+            Login 
+            </summary>
+            <param name="user"></param>
             <returns></returns>
         </member>
         <member name="T:Blog.WebAPI.Migrations.Init">
@@ -47,100 +95,40 @@
         <member name="M:Blog.WebAPI.Migrations.Init.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:Blog.WebAPI.Migrations.Init_2">
+        <member name="T:Blog.WebAPI.Migrations.init_2">
             <inheritdoc />
         </member>
-        <member name="M:Blog.WebAPI.Migrations.Init_2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Blog.WebAPI.Migrations.init_2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Blog.WebAPI.Migrations.Init_2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Blog.WebAPI.Migrations.init_2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Blog.WebAPI.Migrations.Init_2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:Blog.WebAPI.Migrations.init_2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:Blog.WebAPI.Migrations.Init_3">
+        <member name="T:Blog.WebAPI.Migrations.init_3">
             <inheritdoc />
         </member>
-        <member name="M:Blog.WebAPI.Migrations.Init_3.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Blog.WebAPI.Migrations.init_3.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Blog.WebAPI.Migrations.Init_3.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Blog.WebAPI.Migrations.init_3.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Blog.WebAPI.Migrations.Init_3.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:Blog.WebAPI.Migrations.init_3.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:Blog.WebAPI.Migrations.Init_4">
+        <member name="T:Blog.WebAPI.Migrations.init_4">
             <inheritdoc />
         </member>
-        <member name="M:Blog.WebAPI.Migrations.Init_4.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Blog.WebAPI.Migrations.init_4.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Blog.WebAPI.Migrations.Init_4.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Blog.WebAPI.Migrations.init_4.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Blog.WebAPI.Migrations.Init_4.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:Blog.WebAPI.Migrations.UserModel">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.UserModel.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.UserModel.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.UserModel.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:Blog.WebAPI.Migrations.UserModel_add_features">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.UserModel_add_features.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.UserModel_add_features.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.UserModel_add_features.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:Blog.WebAPI.Migrations.UserModel_add_feature_2">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.UserModel_add_feature_2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.UserModel_add_feature_2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.UserModel_add_feature_2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:Blog.WebAPI.Migrations.TagModel">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.TagModel.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.TagModel.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.TagModel.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:Blog.WebAPI.Migrations.ArticleTage_many2many">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.ArticleTage_many2many.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.ArticleTage_many2many.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Blog.WebAPI.Migrations.ArticleTage_many2many.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:Blog.WebAPI.Migrations.init_4.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

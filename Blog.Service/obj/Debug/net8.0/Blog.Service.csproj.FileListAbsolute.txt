@@ -169,3 +169,4 @@ E:\Workspace\Code\Blog\Blog.Service\obj\Debug\net8.0\refint\Blog.Service.dll
 E:\Workspace\Code\Blog\Blog.Service\obj\Debug\net8.0\Blog.Service.pdb
 E:\Workspace\Code\Blog\Blog.Service\obj\Debug\net8.0\Blog.Service.genruntimeconfig.cache
 E:\Workspace\Code\Blog\Blog.Service\obj\Debug\net8.0\ref\Blog.Service.dll
+E:\Workspace\Code\Blog\Blog.Service\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

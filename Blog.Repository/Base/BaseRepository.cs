@@ -11,56 +11,74 @@ namespace Blog.Repository.Base
 {
     public class BaseRepository<TEntity>: IBaseRepository<TEntity> where TEntity : class, new()
     {
-        private readonly BlogDBContext _dbContext;
+        protected readonly BlogDBContext _dbContext;
         public BaseRepository(BlogDBContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<TEntity> Add(TEntity entity)
+        #region Create
+
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
             _dbContext.Set<TEntity>().Add(entity);
             await _dbContext.SaveChangesAsync();
             return entity;
         }
 
-        public async Task<List<TEntity>> QueryAll()
+        #endregion
+
+        #region Read
+
+        public async Task<List<TEntity>> QueryAllAsync()
         {
             return await _dbContext.Set<TEntity>().ToListAsync();
         }
 
         // 根据条件查询
-        public async Task<List<TEntity>> Query(Expression<Func<TEntity, bool>> predicate)
+        public async Task<List<TEntity>> QueryAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return await _dbContext.Set<TEntity>().Where(predicate).ToListAsync();
         }
 
+        // 根据主键查询单个实体
+        public async Task<TEntity?> FindByIdAsync(object id)
+        {
+            return await _dbContext.Set<TEntity>().FindAsync(id);
+        }
 
-        // 更新
-        public async Task<TEntity> Update(TEntity entity)
+        public async Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await _dbContext.Set<TEntity>().Where(predicate).FirstOrDefaultAsync();
+        }
+
+        #endregion
+
+        #region Update
+
+        public async Task<TEntity> UpdateAsync(TEntity entity)
         {
             var trackedEntity = _dbContext.Set<TEntity>().Update(entity);
             await _dbContext.SaveChangesAsync();
             return trackedEntity.Entity;
         }
 
-        // 删除
-        public async Task Delete(TEntity entity)
+        #endregion
+
+        #region Delete
+
+        public async Task DeleteAsync(TEntity entity)
         {
             _dbContext.Set<TEntity>().Remove(entity);
             await _dbContext.SaveChangesAsync();
         }
-        
-        public async Task Delete(Expression<Func<TEntity, bool>> predicate)
+
+        public async Task DeleteAsync(Expression<Func<TEntity, bool>> predicate)
         {
             await _dbContext.Set<TEntity>().Where(predicate).ExecuteDeleteAsync();
             await _dbContext.SaveChangesAsync();
         }
 
-        // 根据主键查询单个实体
-        public async Task<TEntity> FindById(object id)
-        {
-            return await _dbContext.Set<TEntity>().FindAsync(id);
-        }
+        #endregion
     }
 }

@@ -9,12 +9,45 @@ namespace Blog.Repository.Base
 {
     public interface  IBaseRepository<TEntity> where TEntity : class
     {
-        Task<TEntity> Add(TEntity entity);
-        Task<List<TEntity>> QueryAll();
-        Task<List<TEntity>> Query(Expression<Func<TEntity, bool>> predicate);
-        Task<TEntity> Update(TEntity entity);
-        Task Delete(TEntity entity);
-        Task Delete(Expression<Func<TEntity, bool>> predicate);
-        Task<TEntity> FindById(object id);
+        //Task<TEntity> Add(TEntity entity);
+        //Task<List<TEntity>> QueryAll();
+        //Task<List<TEntity>> Query(Expression<Func<TEntity, bool>> predicate);
+        //Task<TEntity> Update(TEntity entity);
+        //Task Delete(TEntity entity);
+        //Task Delete(Expression<Func<TEntity, bool>> predicate);
+        //Task<TEntity> FindById(object id);
+
+        
+
+        #region Create
+
+        Task<TEntity> AddAsync(TEntity entity);
+
+        #endregion
+
+        #region Read
+
+        Task<List<TEntity>> QueryAllAsync();
+
+        Task<List<TEntity>> QueryAsync(Expression<Func<TEntity, bool>> predicate);
+
+        Task<TEntity?> FindByIdAsync(object id);
+
+        Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate);
+        #endregion
+
+        #region Update
+
+        Task<TEntity> UpdateAsync(TEntity entity);
+
+        #endregion
+
+        #region Delete
+
+        Task DeleteAsync(TEntity entity);
+
+        Task DeleteAsync(Expression<Func<TEntity, bool>> predicate);
+
+        #endregion
     }
 }

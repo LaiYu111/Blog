@@ -12,8 +12,8 @@ namespace Blog.Service
 {
     public class BaseService<TEntity, TVo> : IBaseService<TEntity, TVo> where TEntity : class, new()
     {
-        private readonly IMapper _mapper;
-        private readonly IBaseRepository<TEntity> _baseRepository;
+        protected readonly IMapper _mapper;
+        protected readonly IBaseRepository<TEntity> _baseRepository;
 
         public BaseService(IMapper mapper, IBaseRepository<TEntity> baseRepository)
         {
@@ -21,49 +21,64 @@ namespace Blog.Service
             _baseRepository = baseRepository;
         }
 
-        public async Task<TVo> Add(TEntity entity)
+
+        #region Create
+        public async Task<TVo> AddAsync(TEntity entity)
         {
-            var result = await _baseRepository.Add(entity);
+            var result = await _baseRepository.AddAsync(entity);
+            return _mapper.Map<TVo>(result);
+        }
+        #endregion
+
+        #region Delete
+
+        public async Task DeleteAsync(TEntity entity)
+        {
+            await _baseRepository.DeleteAsync(entity);
+        }
+        
+        public async Task DeleteAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            await _baseRepository.DeleteAsync(predicate);
+        }
+
+        public async Task DeleteByIdAsync(object id)
+        {
+            var entity = await _baseRepository.FindByIdAsync(id);
+            if (entity != null)
+            {
+                await _baseRepository.DeleteAsync(entity);
+            }
+        }
+        #endregion
+
+        #region Read
+        public async Task<TVo> FindByIdAsync(object id)
+        {
+            var result = await _baseRepository.FindByIdAsync(id);
             return _mapper.Map<TVo>(result);
         }
 
-        public async Task Delete(TEntity entity)
+        public async Task<List<TVo>> QueryAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            await _baseRepository.Delete(entity);
-        }
-
-        public async Task Delete(Expression<Func<TEntity, bool>> predicate)
-        {
-            await _baseRepository.Delete(predicate);
-        }
-
-        public async Task DeleteById(object id)
-        {
-
-        }
-
-        public async Task<TVo> FindById(object id)
-        {
-            var result = await _baseRepository.FindById(id);
-            return _mapper.Map<TVo>(result);
-        }
-
-        public async Task<List<TVo>> Query(Expression<Func<TEntity, bool>> predicate)
-        {
-            var entities = await _baseRepository.Query(predicate);
+            var entities = await _baseRepository.QueryAsync(predicate);
             return _mapper.Map<List<TVo>>(entities);
         }
 
-        public async Task<List<TVo>> QueryAll()
+        public async Task<List<TVo>> QueryAllAsync()
         {
-            var entities = await _baseRepository.QueryAll();
+            var entities = await _baseRepository.QueryAllAsync();
             return _mapper.Map<List<TVo>>(entities);
         }
+        #endregion
 
-        public async Task<TVo> Update(TEntity entity)
+        #region Update
+
+        public async Task<TVo> UpdateAsync(TEntity entity)
         {
-            var updatedEntity = await _baseRepository.Update(entity);
+            var updatedEntity = await _baseRepository.UpdateAsync(entity);
             return _mapper.Map<TVo>(updatedEntity);
         }
+        #endregion
     }
 }

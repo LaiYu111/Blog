@@ -16,6 +16,7 @@ namespace Blog.Model
         public DbSet<User> Users { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,9 +31,16 @@ namespace Blog.Model
                 e.ToTable("Users");
                 e.Property(e => e.Email).HasMaxLength(50);
                 e.Property(e =>e.Name).HasMaxLength(50);
-                e.Property(e => e.GitHub).HasMaxLength(50);
-                e.Property(e => e.OtherContacts).HasMaxLength(500);
-                e.Property(e => e.LinkedIn).HasMaxLength(50);
+                e.Property(e=>e.PasswordHash).HasMaxLength(50);
+
+                e.HasOne(e => e.UserDetail)
+                .WithOne(e => e.User)
+                .HasForeignKey<User>(e => e.UserDetailId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+                e.HasOne(e => e.Role)
+                .WithMany(e => e.Users)
+                .HasForeignKey(e => e.RoleId);
             });
 
             modelBuilder.Entity<Article>(e =>
@@ -47,6 +55,13 @@ namespace Blog.Model
             {
                 e.ToTable("Tags");
                 e.Property(t => t.TagName).HasMaxLength(50);
+                e.Property(e => e.Color).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Role>(e =>
+            {
+                e.ToTable("Roles");
+                e.Property(r => r.RoleName).HasMaxLength(50);
             });
 
             base.OnModelCreating(modelBuilder);
