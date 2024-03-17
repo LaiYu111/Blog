@@ -56,28 +56,29 @@ function App() {
     dispatch(UserLogout())
   }
 
+
   return (
+    <>
       <Layout style={{ height: "inherit"}}>
         <Sider trigger={null} collapsible collapsed={collapsed} breakpoint={"md"}>
           <div className="demo-logo-vertical" />
           <Menu
             theme="dark"
             mode="inline"
-            // defaultSelectedKeys={['1']}
+
             items={[
               {
                 key: "1",
-                label: <Link to="/" >Your Component</Link>,
+                label: <Link to="/" >Home</Link>,
                 icon:<HomeOutlined />,
               },
               {
                 key: "2",
-                label: <Link to="/publish">Publish</Link>,
+                label: <Link to="/publish" >Publish</Link>,
                 icon:<BookOutlined />,
-              }
+              },
             ]}
           >
-
           </Menu>
         </Sider>
         <Layout>
@@ -129,6 +130,7 @@ function App() {
           </Content>
         </Layout>
       </Layout>
+    </>
   )
 }
 

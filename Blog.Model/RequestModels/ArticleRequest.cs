@@ -11,5 +11,6 @@ namespace Blog.Model.RequestModels
         public required string Title { get; set; }
         public required string Content { get; set; }
         public required string Description {  get; set; }
+        public string CoverImage {  get; set; } = string.Empty;
     }
 }

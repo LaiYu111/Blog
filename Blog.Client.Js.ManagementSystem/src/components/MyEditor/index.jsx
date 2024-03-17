@@ -1,28 +1,33 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useRef} from 'react';
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {BACKEND_URL, IMAGE_URL} from "../../config.js";
 import ImageResize from 'quill-image-resize-module-react';
 import usePost from "../../hooks/usePost.js";
+import {useDispatch, useSelector} from "react-redux";
+import {SetEditorContent, SetEditorPlainText} from "../../redux/actions/editorAction.js";
+import {message} from "antd";
 
 Quill.register('modules/imageResize', ImageResize);
 
 function MyEditor () {
-  const [value, setValue] = useState('');
+  const dispatch = useDispatch()
+  const articleContent = useSelector(state => state.componentReducers.editor.content)
+  const [messageApi, contextHolder] = message.useMessage();
   const reactQuillRef = useRef(null);
   const { postData} = usePost()
 
-  useEffect(() => {
-    console.log(value)
-  }, [value]);
 
   const uploadImage = async (files) => {
     const formData = new FormData()
     for (const file of files){ formData.append('images', file)}
     try{
-      return  await postData(`${BACKEND_URL}/api/Article/Image`, formData, 'images')
+      return  await postData(`${BACKEND_URL}/api/Article/SaveImages`, formData, 'images')
     }catch (e){
-      console.log("Error", e)
+      messageApi.open({
+        type:"error",
+        content: e
+      })
       return null
     }
   }
@@ -95,14 +100,19 @@ function MyEditor () {
     },
   }), []);
 
+  const handleOnChange =(content, delta, source, editor) =>{
+    dispatch(SetEditorContent(content))
+    dispatch(SetEditorPlainText(editor.getText()))
+  }
 
   return (
     <div  className="text-editor">
+      {contextHolder}
       <ReactQuill
         ref={reactQuillRef}
         theme="snow"
-        value={value}
-        onChange={setValue}
+        value={articleContent}
+        onChange={handleOnChange}
         modules={modules}
       />
     </div>

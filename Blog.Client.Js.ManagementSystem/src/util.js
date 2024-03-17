@@ -21,3 +21,13 @@ export const getRequestConfig = ({ token, contentType = 'json' }) => {
 
 	return { headers };
 };
+
+export function getFirstImage(article){
+	const imgSrcRegex = /<img.*?src=["'](.*?)["']/;
+	const matches = article.match(imgSrcRegex);
+	if (matches && matches[1]) {
+		return matches[1]
+	} else {
+		return ''
+	}
+}

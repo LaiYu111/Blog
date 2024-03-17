@@ -131,5 +131,17 @@
         <member name="M:Blog.WebAPI.Migrations.init_4.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Blog.WebAPI.Migrations.article_coverimage">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.article_coverimage.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.article_coverimage.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.article_coverimage.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

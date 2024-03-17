@@ -46,6 +46,9 @@ namespace Blog.Model
             modelBuilder.Entity<Article>(e =>
             {
                 e.ToTable("Articles");
+                e.Property(e => e.Title).HasMaxLength(100);
+                e.Property(e => e.Description).HasMaxLength(500);
+                e.Property(e=>e.CoverImage).HasMaxLength(200);
                 e.HasMany(a => a.Tags)
                 .WithMany(a => a.Articles)
                 .UsingEntity(a => a.ToTable("ArticleTags"));

@@ -2,3 +2,12 @@
 export const USER_LOGOUT = "USER_LOGOUT";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const USER_LOGIN = "USER_LOGIN";
+
+// Editor
+export const SET_EDITOR_CONTENT = "SET_EDITOR_CONTENT"
+export const SET_EDITOR_PLAINTEXT = "SET_EDITOR_PLAINTEXT"
+export const CLEAR_EDITOR = "CLEAR_EDITOR"
+export const SET_EDITOR_COVER_IMAGE = "SET_EDITOR_COVER_IMAGE"
+
+// Modal
+export const SET_MODAL = "SET_MODAL"

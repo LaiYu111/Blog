@@ -1,0 +1,11 @@
+p{
+    margin: 5px;
+}
+
+.cover-image img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* 这将保持图片的比例 */
+    display: flex;
+    justify-content: center;
+}

@@ -19,6 +19,7 @@ namespace Blog.Extensions.AutoMapper
             CreateMap<ArticleRequest, Article>()
                  .ForMember(article => article.Content, origin => origin.MapFrom(articleReq => articleReq.Content))
                  .ForMember(article => article.Title, origin => origin.MapFrom(articleReq => articleReq.Title))
+                 .ForMember(article => article.CoverImage, origin => origin.MapFrom(articleReq => articleReq.CoverImage))
                  .ForMember(article => article.Description, origin => origin.MapFrom(articleReq => articleReq.Description));
 
             CreateMap<Article, ArticleVo>()
