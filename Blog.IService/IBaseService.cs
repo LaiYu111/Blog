@@ -38,5 +38,10 @@ namespace Blog.IService
         Task DeleteAsync(Expression<Func<TEntity, bool>> predicate);
 
         #endregion
+
+        #region statistic
+        Task<List<TVo>> PaginatorAsync(int pageSize, int pageIndex);
+        Task<int> CountAsync();
+        #endregion
     }
 }

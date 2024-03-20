@@ -12,7 +12,7 @@ namespace Blog.WebAPI.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class ArticleController: ControllerBase
+    public class ArticleController : ControllerBase
     {
         private readonly IBaseService<Article, ArticleVo> _baseService;
         private readonly IArticleService _articleService;
@@ -25,10 +25,10 @@ namespace Blog.WebAPI.Controllers
         /// <param name="articleService"></param>
         /// <param name="mapper"></param>
         public ArticleController(
-            IBaseService<Article, ArticleVo> baseService, 
+            IBaseService<Article, ArticleVo> baseService,
             IArticleService articleService,
             IMapper mapper)
-        { 
+        {
             _baseService = baseService;
             _articleService = articleService;
             _mapper = mapper;
@@ -81,6 +81,42 @@ namespace Blog.WebAPI.Controllers
         {
             await _baseService.DeleteAsync(x => ids.Contains(x.Id));
             return Ok();
+        }
+
+        /// <summary>
+        /// 获取 Article
+        /// </summary>
+        /// <param name="pageSize">每页的数量</param>
+        /// <param name="pageIndex">当前页数</param>
+        /// <returns></returns>
+        [HttpGet("{pageSize}/{pageIndex}")]
+        public async Task<ActionResult> GetArticles(int pageSize, int pageIndex)
+        {
+            var result = await _articleService.PaginatorAsync(pageSize, pageIndex);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// 计算多少articles
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ActionResult> CountArticles()
+        {
+            var result = await _articleService.CountAsync();
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// 根据id获取article
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetArticle(long id)
+        {
+            var result = await _articleService.FindByIdAsync(id);
+            return Ok(result);
         }
     }
 }

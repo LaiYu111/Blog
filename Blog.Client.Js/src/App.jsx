@@ -65,6 +65,9 @@ function App() {
           tabIndex={0}
         >
           <div className={`${style.articleNev}`}>
+            <Panel>
+              ss
+            </Panel>
             { (device === Device.tablet || device === Device.mobile)  && (
               <div className={`${style.profile}`}>
                 <Panel>
@@ -72,9 +75,6 @@ function App() {
                 </Panel>
               </div>
             )}
-            <Panel>
-              ss
-            </Panel>
           </div>
           {/*<hr/>*/}
 

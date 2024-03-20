@@ -80,5 +80,19 @@ namespace Blog.Service
             return _mapper.Map<TVo>(updatedEntity);
         }
         #endregion
+
+        #region Statistic
+        public async Task<List<TVo>> PaginatorAsync(int pageSize, int pageIndex)
+        {
+            List<TEntity> result = await _baseRepository.PaginatorAsync(pageSize, pageIndex);
+            List<TVo> resultVo = _mapper.Map<List<TVo>>(result);
+            return resultVo;
+        }
+
+        public async Task<int> CountAsync()
+        {
+            return await _baseRepository.CountAsync();
+        }
+        #endregion
     }
 }

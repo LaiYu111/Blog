@@ -43,6 +43,20 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Blog.WebAPI.Controllers.ArticleController.GetArticles(System.Int32,System.Int32)">
+            <summary>
+            获取 Article
+            </summary>
+            <param name="pageSize">每页的数量</param>
+            <param name="pageIndex">当前页数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.ArticleController.CountArticles">
+            <summary>
+            计算多少articles
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Blog.WebAPI.Controllers.SystemController">
             <summary>
             System

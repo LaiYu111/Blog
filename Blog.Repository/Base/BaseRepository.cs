@@ -80,5 +80,20 @@ namespace Blog.Repository.Base
         }
 
         #endregion
+
+        #region Statistic
+        public async Task<List<TEntity>> PaginatorAsync(int pageSize, int pageIndex)
+        {
+            return await _dbContext.Set<TEntity>()
+                .Skip((pageIndex -1 ) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+        }
+
+        public async Task<int> CountAsync()
+        {
+            return await _dbContext.Set<TEntity>().CountAsync();
+        }
+        #endregion
     }
 }

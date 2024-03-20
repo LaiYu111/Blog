@@ -9,5 +9,11 @@ namespace Blog.Model.Views
     public class ArticleVo
     {
         public long ArticleId {  get; set; }
+        public int ArticleLikes { get; set; } 
+        public string ArticleDescription { get; set; }
+        public string ArticleContent { get; set; } 
+        public string ArticleCoverImage { get; set; } 
+        public string ArticleTitle { get; set; }
+        public DateTime ArticleCreateTime { get; set; }
     }
 }

@@ -23,7 +23,13 @@ namespace Blog.Extensions.AutoMapper
                  .ForMember(article => article.Description, origin => origin.MapFrom(articleReq => articleReq.Description));
 
             CreateMap<Article, ArticleVo>()
-                 .ForMember(articleVo => articleVo.ArticleId, origin => origin.MapFrom(article => article.Id));
+                 .ForMember(articleVo => articleVo.ArticleId, origin => origin.MapFrom(article => article.Id))
+                 .ForMember(articleVo => articleVo.ArticleTitle, origin => origin.MapFrom(article => article.Title))
+                 .ForMember(articleVo => articleVo.ArticleLikes, origin => origin.MapFrom(article => article.Likes))
+                 .ForMember(articleVo => articleVo.ArticleCoverImage, origin => origin.MapFrom(article => article.CoverImage))
+                 .ForMember(articleVo => articleVo.ArticleDescription, origin => origin.MapFrom(article => article.Description))
+                 .ForMember(articleVo => articleVo.ArticleCreateTime, origin => origin.MapFrom(article => article.CreateTime))
+                 .ForMember(articleVo => articleVo.ArticleContent, origin => origin.MapFrom(article => article.Content));
 
             CreateMap<User, UserVo>()
                 .ForMember(userVo => userVo.UserName, origin => origin.MapFrom(user => user.Name));

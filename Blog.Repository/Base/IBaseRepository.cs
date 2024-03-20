@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -48,6 +49,11 @@ namespace Blog.Repository.Base
 
         Task DeleteAsync(Expression<Func<TEntity, bool>> predicate);
 
+        #endregion
+
+        #region Statistic
+        Task<List<TEntity>> PaginatorAsync(int pageSize, int pageIndex);
+        Task<int> CountAsync();
         #endregion
     }
 }
