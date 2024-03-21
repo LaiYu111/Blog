@@ -1,29 +1,56 @@
-
 import Panel from "../../components/Panel";
 import image from '../../assets/aaa.jpg'
-import {Card, Skeleton} from "@mui/material";
+import {Card, IconButton, Skeleton} from "@mui/material";
 import Cover from "../../components/Cover/index.jsx";
 import useGet from "../../hooks/useGet.js";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {BACKEND_URL} from "../../config.js";
 import {useDispatch, useSelector} from "react-redux";
 import {setArticleCount, setArticles} from "../../redux/actions/requestActions/articleAction.js";
-
+import {useNavigate, useParams} from "react-router-dom";
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 function HomePage () {
 	const { getData } = useGet()
+	const { page } = useParams()
 	const dispatch = useDispatch()
 	const articles = useSelector(state => state.requestReducers.article.articles)
+	const totalArticles = useSelector(state => state.requestReducers.article.total)
+	const navigator = useNavigate()
+	const [disabledNext, setDisabledNext] = useState(false)
+	const [disabledPrev, setDisabledPrev] = useState(false)
 
 	useEffect(  () => {
+		let pageSize = 2
+
+		if ( Math.ceil(totalArticles/pageSize) === Number(page)){
+			setDisabledNext(true)
+		}else{
+			setDisabledNext(false)
+		}
+
+		if ( Number(page) === 1){
+			setDisabledPrev(true)
+		}else{
+			setDisabledPrev(false)
+		}
+
 		async function fetchData (){
 			const count = await getData(`${BACKEND_URL}/api/Article/CountArticles`)
 			dispatch(setArticleCount(count))
-			const articles = await getData(`${BACKEND_URL}/api/Article/GetArticles/${10}/${1}`)
+			const articles = await getData(`${BACKEND_URL}/api/Article/GetArticles/${pageSize}/${page}`)
 			dispatch(setArticles(articles))
 		}
 		fetchData()
-	}, []);
 
+	}, [page]);
+
+	const handleNextPage = () => {
+		navigator(`/${Number(page) + 1}`)
+	}
+	const handlePreviousPage = () => {
+		navigator(`/${Number(page) - 1 }`)
+	}
 
 	return (
 		<div>
@@ -56,6 +83,10 @@ function HomePage () {
 				<Skeleton animation={"pulse"} />
 			)}
 
+			<div>
+				<IconButton disabled={disabledPrev} onClick={handlePreviousPage}><NavigateBeforeIcon /></IconButton>
+				<IconButton disabled={disabledNext} onClick={handleNextPage}><NavigateNextIcon /></IconButton>
+			</div>
 		</div>
 	)
 }

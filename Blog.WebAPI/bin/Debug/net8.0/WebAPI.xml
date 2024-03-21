@@ -57,6 +57,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Blog.WebAPI.Controllers.ArticleController.GetArticle(System.Int64)">
+            <summary>
+            根据id获取article
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Blog.WebAPI.Controllers.SystemController">
             <summary>
             System

@@ -1,5 +1,5 @@
 import MyEditor from "../../components/MyEditor/index.jsx";
-import {Button, Flex, message} from "antd";
+import {Button, Flex, Image, message} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import usePost from "../../hooks/usePost.js";
 import {BACKEND_URL} from "../../config.js";
@@ -75,9 +75,9 @@ function PublishPage(){
           </div>
 
           <p>Cover Image</p>
-            <div
-              dangerouslySetInnerHTML={{__html: articleContent}}
-              className={'cover-image'}
+            <Image
+              width={200}
+              src={coverImage}
             />
           <p>Preview</p>
           <div

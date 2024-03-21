@@ -81,6 +81,7 @@ function App() {
           <div className={style.content}>
             <Routes>
               <Route path={'/'} element={<HomePage/>}/>
+              <Route path={'/:page'} index={true} element={<HomePage/>}/>
               <Route path={'/article/:id'} element={<ArticlePage/>}/>
             </Routes>
           </div>
