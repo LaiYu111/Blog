@@ -11,7 +11,7 @@ function AuthPage(){
   const navigator = useNavigate()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const { postData, data, loading, error } = usePost()
+  const { postData, data } = usePost()
 
   useEffect(() => {
     if (data){

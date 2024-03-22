@@ -4,7 +4,9 @@ import {
   MenuUnfoldOutlined,
   BookOutlined,
   HomeOutlined,
-  LogoutOutlined
+  LogoutOutlined,
+  UserOutlined,
+  UnorderedListOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme } from 'antd';
 import { Routes, Route, Link, useNavigate} from 'react-router-dom';
@@ -13,6 +15,7 @@ import PublishPage from "./pages/PublishPage/index.jsx";
 import AuthPage from "./pages/AuthPage/index.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {SetUserDetail, UserLogout} from "./redux/actions/userAction.js";
+import DataManagementPage from "./pages/DataManagementPage/index.jsx";
 const { Header, Sider, Content } = Layout;
 
 
@@ -56,6 +59,9 @@ function App() {
     dispatch(UserLogout())
   }
 
+  const handleLogin = () => {
+    navigator('/auth')
+  }
 
   return (
     <>
@@ -65,7 +71,6 @@ function App() {
           <Menu
             theme="dark"
             mode="inline"
-
             items={[
               {
                 key: "1",
@@ -77,6 +82,11 @@ function App() {
                 label: <Link to="/publish" >Publish</Link>,
                 icon:<BookOutlined />,
               },
+              {
+                key: "3",
+                label: <Link to="/data" >Data Management</Link>,
+                icon: <UnorderedListOutlined />
+              }
             ]}
           >
           </Menu>
@@ -96,12 +106,25 @@ function App() {
               />
             </div>
             {
-              userToken !== "" && (
+              userToken !== "" ? (
                 <div>
                   <Button
                     type="text"
                     icon={<LogoutOutlined/>}
                     onClick={handleLogout}
+                    style={{
+                      fontSize: '16px',
+                      width: 64,
+                      height: 64,
+                    }}
+                  />
+                </div>
+              ):(
+                <div>
+                  <Button
+                    type="text"
+                    icon={<UserOutlined />}
+                    onClick={handleLogin}
                     style={{
                       fontSize: '16px',
                       width: 64,
@@ -126,6 +149,7 @@ function App() {
             <Route path={'/'} element={<HomePage/>}/>
               <Route path={'/publish'} element={<PublishPage/>}/>
               <Route path={'/auth'} element={<AuthPage />} />
+              <Route path={'/data'} element={<DataManagementPage/>}/>
             </Routes>
           </Content>
         </Layout>

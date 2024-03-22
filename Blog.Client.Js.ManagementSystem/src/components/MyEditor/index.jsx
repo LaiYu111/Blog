@@ -1,4 +1,6 @@
 import React, { useRef} from 'react';
+import 'highlight.js/styles/github.css'; // 这里以 GitHub 样式为例
+import hljs from 'highlight.js';
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {BACKEND_URL, IMAGE_URL} from "../../config.js";
@@ -7,8 +9,15 @@ import usePost from "../../hooks/usePost.js";
 import {useDispatch, useSelector} from "react-redux";
 import {SetEditorContent, SetEditorPlainText} from "../../redux/actions/editorAction.js";
 import {message} from "antd";
+import './index.css'
+
+
+hljs.configure({
+  languages: ['python', 'javascript', 'csharp']
+})
 
 Quill.register('modules/imageResize', ImageResize);
+
 
 function MyEditor () {
   const dispatch = useDispatch()
@@ -64,7 +73,7 @@ function MyEditor () {
 
     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
     ['blockquote', 'code-block'],
-    ['link', 'image', 'formula'],
+    ['link', 'image'],
 
     [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
     [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
@@ -85,19 +94,16 @@ function MyEditor () {
     imageResize: {
       displaySize: true,
       parchment: Quill.import('parchment'),
-      // handleStyles: {
-      //   backgroundColor: 'white',
-      //   border: 'none',
-      //   color: 'white'
-      // },
-      // modules: ['Resize', 'DisplaySize', 'Toolbar']
     },
     toolbar: {
       container: toolbarOptions,
       handlers:{
         image: imageHandler
-      },
+      }
     },
+    syntax: {
+      highlight: text => hljs.highlightAuto(text).value
+    }
   }), []);
 
   const handleOnChange =(content, delta, source, editor) =>{

@@ -77,7 +77,7 @@ namespace Blog.WebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpDelete]
-        public async Task<ActionResult> DeleteArticle(List<long> ids)
+        public async Task<ActionResult> DeleteArticle([FromQuery] List<long> ids)
         {
             await _baseService.DeleteAsync(x => ids.Contains(x.Id));
             return Ok();
@@ -93,7 +93,7 @@ namespace Blog.WebAPI.Controllers
         public async Task<ActionResult> GetArticles(int pageSize, int pageIndex)
         {
             var result = await _articleService.PaginatorAsync(pageSize, pageIndex);
-            return Ok(result);
+            return Ok(result.OrderByDescending(x => x.ArticleCreateTime).ToList());
         }
 
         /// <summary>

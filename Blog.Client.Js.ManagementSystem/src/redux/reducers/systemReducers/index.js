@@ -1,10 +1,12 @@
 import {combineReducers} from "redux";
 import user from "./user.js";
+import pagination from "./pagination.js";
 
 
 
 const systemReducers = combineReducers({
-  user
+  user,
+  pagination,
 })
 
 export default systemReducers
