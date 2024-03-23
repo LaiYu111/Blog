@@ -175,17 +175,20 @@ namespace Blog.WebAPI.Migrations
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<string>("GitHub")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LinkedIn")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OtherContacts")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Others")
                         .IsRequired()
@@ -193,7 +196,7 @@ namespace Blog.WebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserDetail");
+                    b.ToTable("UserDetail", (string)null);
                 });
 
             modelBuilder.Entity("ArticleTag", b =>

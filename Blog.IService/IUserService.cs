@@ -13,5 +13,6 @@ namespace Blog.Service
     {
         Task<string?> Login(string username, string password);
         Task<UserVo> Register(User user);
+        Task<UserVo> GetAllUserInfo(long id);
     }
 }

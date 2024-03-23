@@ -44,8 +44,11 @@ namespace Blog.Repository.Base
         // 根据主键查询单个实体
         public async Task<TEntity?> FindByIdAsync(object id)
         {
-            return await _dbContext.Set<TEntity>().FindAsync(id);
+            return await _dbContext.Set<TEntity>()
+                .FindAsync(id);
         }
+
+
 
         public async Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate)
         {

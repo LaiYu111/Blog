@@ -1,4 +1,5 @@
-
+import messages_en from './i18n/messages_en.json';
+import messages_zh from './i18n/messages_zh.json';
 export class Device {
 	static mobile = "mobile"
 	static tablet = 'tablet'
@@ -10,6 +11,16 @@ export class ContentType {
 	static json = "json"
 	static images = "images"
 }
+
+export class Languages{
+	static EN = "en" // English
+	static ZH = "zh" // Chinese
+}
+
+export const messages = {
+	en: messages_en,
+	zh: messages_zh,
+};
 
 export const getRequestConfig = ({ token, contentType = 'json' }) => {
 	const headers = {

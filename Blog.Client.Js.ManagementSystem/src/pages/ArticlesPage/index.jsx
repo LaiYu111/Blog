@@ -63,7 +63,7 @@ Items.propTypes = {
 }
 
 
-function DataManagementPage(){
+function ArticlesPage(){
   const { getData } = useGet()
   const dispatch = useDispatch()
   const pageIndex = useSelector(state => state.systemReducers.pagination.pageIndex)
@@ -95,4 +95,4 @@ function DataManagementPage(){
   )
 }
 
-export default DataManagementPage
+export default ArticlesPage

@@ -43,6 +43,14 @@ namespace Blog.Model
                 .HasForeignKey(e => e.RoleId);
             });
 
+            modelBuilder.Entity<UserDetail>(e =>
+            {
+                e.ToTable("UserDetail");
+                e.Property(e => e.Description).HasMaxLength(200);
+                e.Property(e => e.GitHub).HasMaxLength(50);
+                e.Property(e => e.LinkedIn).HasMaxLength(50);
+            });
+
             modelBuilder.Entity<Article>(e =>
             {
                 e.ToTable("Articles");

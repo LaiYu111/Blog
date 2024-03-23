@@ -5,12 +5,13 @@ import {useMediaQuery} from "@mui/material";
 import style from './App.module.scss';
 import {setNav} from "./redux/actions/navAction.js";
 import {setDevice} from "./redux/actions/deviceAction.js";
-import {Device} from "./util.js";
+import {Device, messages} from "./util.js";
 import Nav from "./components/Nav/index.jsx";
 import Panel from "./components/Panel/index.jsx";
 import Profile from "./components/Profile/index.jsx";
 import HomePage from "./pages/HomePage/index.jsx";
 import ArticlePage from "./pages/ArticlePage/index.jsx";
+import {IntlProvider} from "react-intl";
 
 function App() {
   const isMobile = useMediaQuery(`(max-width: 640px)`);
@@ -18,8 +19,8 @@ function App() {
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const dispatch = useDispatch()
   const hidden = useSelector((state) => state.componentReducers.nav.hidden)
-
   const device = useSelector((state) => state.systemReducers.media.device )
+  const locale = useSelector(state => state.systemReducers.language.currentLang)
 
 
 
@@ -58,6 +59,7 @@ function App() {
   }, [isMobile, isDesktop, isTablet]);
 
   return (
+    <IntlProvider locale={locale} messages={messages[locale]}>
       <BrowserRouter>
         <Nav/>
         <div
@@ -93,6 +95,7 @@ function App() {
           </div>
         </div>
       </BrowserRouter>
+    </IntlProvider >
   )
 }
 

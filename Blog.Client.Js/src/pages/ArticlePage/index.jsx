@@ -10,11 +10,24 @@ import {useEffect} from "react";
 import {BACKEND_URL} from "../../config.js";
 import { setCurrentArticle} from "../../redux/actions/requestActions/articleAction.js";
 import Panel from "../../components/Panel/index.jsx";
+import PropTypes from "prop-types";
+import Cover from "../../components/Cover/index.jsx";
 
-
+function Header({title}){
+	return (
+		<div>
+			<div className={`${style.title}`}>
+				{title}
+			</div>
+			<div>
+				xxx
+			</div>
+		</div>
+	)
+}
 
 const Article = ({articleId}) => {
-	const { getData } = useGet()
+	const {getData} = useGet()
 	const dispatch = useDispatch()
 	const currentArticle = useSelector(state => state.requestReducers.article.currentArticle)
 
@@ -28,23 +41,29 @@ const Article = ({articleId}) => {
 	return (
 		<Panel>
 			<div className={`${style.article}`}>
+				{/* Header */}
+				<Header title={currentArticle.articleTitle} />
+				<hr />
+
+				{/* Content */}
 				<div
 					dangerouslySetInnerHTML={{__html: currentArticle.articleContent}}
 					className={`${style.coverImage}`}
 				/>
+
 			</div>
 		</Panel>
 	)
 }
 
-const Review = () => {
-	return (
-		<div>
-			Reviews
-		</div>
-	)
+Header.propTypes = {
+	title: PropTypes.string
 }
 
+Article.propTypes = {
+	articleId : PropTypes.string,
+
+}
 
 const ArticlePage = () => {
 	const {id: articleId} = useParams()
@@ -52,8 +71,6 @@ const ArticlePage = () => {
 	return (
 		<div className={style.root}>
 			<Article articleId={articleId}/>
-			<MyEditor />
-			<Review />
 		</div>
 	)
 }

@@ -1,56 +1,145 @@
 import style from './index.module.scss'
-import  image from '../../assets/aaa.jpg'
+import image from '../../assets/aaa.jpg'
 import Avatar from "../Avatar/index.jsx";
+import {useDispatch} from "react-redux";
+import GitHubIcon from '@mui/icons-material/GitHub';
+import {useEffect} from "react";
+import useGet from "../../hooks/useGet.js";
+import {BACKEND_URL} from "../../config.js";
+import {setAuthor} from "../../redux/actions/requestActions/authorAction.js";
+import PropTypes from "prop-types";
+import {Skeleton} from "@mui/material";
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import useNav from "../../hooks/useNav.js";
+import {useIntl} from "react-intl";
+function Links({authorInfo}){
+	const {pageRouter} =useNav()
 
+	const handlePageRoute = (url) => {
+		pageRouter(url)
+	}
 
+	return (
+		<div  >
+			<div className={style.linkLayout}>
+				<div>
+					<GitHubIcon/>
+				</div>
+				<div className={style.link}  onClick={() => handlePageRoute(authorInfo.userDetail.gitHub)}>
+					{authorInfo.userDetail.gitHub}
+				</div>
+			</div>
+			<div className={style.linkLayout}>
+				<div>
+					<LinkedInIcon/>
+				</div>
+				<div className={style.link} onClick={() => handlePageRoute(authorInfo.userDetail.linkedIn)}>
+					{authorInfo.userDetail.linkedIn}
+				</div>
+			</div>
+		</div>
+	)
+}
 
-const Profile= () => {
+Links.propTypes = {
+	authorInfo : PropTypes.object
+}
+
+function Others(){
+	const intl = useIntl()
+	return (
+		<div className={style.others}>
+			<div>
+				<div>
+					{intl.formatMessage({id: 'profile.likes'})}
+				</div>
+				<div>
+					xxx
+				</div>
+			</div>
+			<div>
+				<div>
+					{intl.formatMessage({id: 'profile.views'})}
+				</div>
+				<div>
+					xxx
+				</div>
+			</div>
+			<div>
+				<div>
+					{intl.formatMessage({id: 'profile.comments'})}
+				</div>
+				<div>
+					xxx
+				</div>
+			</div>
+		</div>
+	)
+}
+
+function Description({data}) {
+	const intl = useIntl()
 	return (
 		<>
-		<div className={style.background}>
-			<img src={image} />
-		</div>
-		<div className={style.rootProfile}>
-			<div className={style.avatar}>
-				<Avatar image={image} />
+			{/* Links */}
+			<div>
+				{data ? <Links authorInfo={data} />: <Skeleton />}
 			</div>
 
-			<div className={style.authorName}>
-				Name
-			</div>
-			<div className={style.description}>
-				iv 元素（class 为 gap），通过设置其宽度来创建间隔。 你可以根据需要调整间隔的宽度和样式。这种方法可以在 flex 布局中很方便地添加间
+			{/* Introduction */}
+			<div>
+				{intl.formatMessage({id: 'profile.introduction'})}
 			</div>
 
-
-			<div className={style.others}>
-				<div>
-					<div>
-						阅读量
-					</div>
-					<div>
-						xxx
-					</div>
-				</div>
-				<div>
-					<div>
-						阅读量
-					</div>
-					<div>
-						xxx
-					</div>
-				</div>
-				<div>
-					<div>
-						阅读量
-					</div>
-					<div>
-						xxx
-					</div>
-				</div>
+			{/* About me */}
+			<div>
+				{data ? <>{data.userDetail.description}</>: <Skeleton />}
 			</div>
-		</div>
 		</>
+	)
+}
+
+Description.propTypes = {
+	data: PropTypes.object
+}
+
+const Profile = () => {
+	const dispatch = useDispatch()
+	const {getData, data} = useGet()
+
+
+	useEffect(() => {
+		getData(`${BACKEND_URL}/api/User/GetUserInfo/${4}`)
+	}, []);
+
+	useEffect(() => {
+		if (data){
+			dispatch(setAuthor(data))
+		}
+	}, [data]);
+
+	return (
+		<div>
+			<div className={style.background}>
+				<img src={image}/>
+			</div>
+			<div className={style.rootProfile}>
+				<div className={style.avatar}>
+					<Avatar image={image}/>
+				</div>
+
+				<div className={style.authorName}>
+					{data ? <>{data.userName}</>: <Skeleton />}
+				</div>
+
+				<div className={style.description}>
+					<Description data={data} />
+				</div>
+
+			<Others />
+
+			</div>
+		</div>
 )
 }
 

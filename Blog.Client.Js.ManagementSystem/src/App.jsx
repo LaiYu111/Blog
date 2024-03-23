@@ -6,7 +6,8 @@ import {
   HomeOutlined,
   LogoutOutlined,
   UserOutlined,
-  UnorderedListOutlined
+  UnorderedListOutlined,
+  TagsOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme } from 'antd';
 import { Routes, Route, Link, useNavigate} from 'react-router-dom';
@@ -15,7 +16,8 @@ import PublishPage from "./pages/PublishPage/index.jsx";
 import AuthPage from "./pages/AuthPage/index.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {SetUserDetail, UserLogout} from "./redux/actions/userAction.js";
-import DataManagementPage from "./pages/DataManagementPage/index.jsx";
+import ArticlesPage from "./pages/ArticlesPage/index.jsx";
+import TagPage from "./pages/TagPage/index.jsx";
 const { Header, Sider, Content } = Layout;
 
 
@@ -84,8 +86,13 @@ function App() {
               },
               {
                 key: "3",
-                label: <Link to="/data" >Data Management</Link>,
+                label: <Link to="/articles" >Articles</Link>,
                 icon: <UnorderedListOutlined />
+              },
+              {
+                key: "4",
+                label: <Link to="/tags" >Tags</Link>,
+                icon: <TagsOutlined />
               }
             ]}
           >
@@ -149,7 +156,8 @@ function App() {
             <Route path={'/'} element={<HomePage/>}/>
               <Route path={'/publish'} element={<PublishPage/>}/>
               <Route path={'/auth'} element={<AuthPage />} />
-              <Route path={'/data'} element={<DataManagementPage/>}/>
+              <Route path={'/articles'} element={<ArticlesPage/>}/>
+              <Route path={'/tag'} element={<TagPage />} />
             </Routes>
           </Content>
         </Layout>

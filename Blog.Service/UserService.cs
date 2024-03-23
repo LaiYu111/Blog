@@ -22,13 +22,19 @@ namespace Blog.Service
     public class UserService : BaseService<User, UserVo>, IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IBaseRepository<UserDetail> _userDetailRepository;
+        private readonly IBaseRepository<Role> _roleRepository;
 
         public UserService(IMapper mapper, 
             IBaseRepository<User> baseRepository,
+            IBaseRepository<UserDetail> userDetailRepository,
+            IBaseRepository<Role> roleRepository,
             IUserRepository userRepository
             ) : base(mapper, baseRepository)
         {
             _userRepository = userRepository;
+            _userDetailRepository = userDetailRepository;
+            _roleRepository = roleRepository;
         }
 
         /// <summary>
@@ -86,6 +92,18 @@ namespace Blog.Service
         {
             var result = await _userRepository.Register(user);
             return _mapper.Map<UserVo>(result);
+        }
+
+        public async Task<UserVo> GetAllUserInfo(long id)
+        {
+            var user = await _baseRepository.FindByIdAsync(id);
+            var role = await _roleRepository.FindByIdAsync(user.RoleId);
+            var userDetail = await _userDetailRepository.FindByIdAsync(user.UserDetailId);
+
+            user.UserDetail = userDetail;
+            user.Role = role;
+
+            return _mapper.Map<UserVo>(user);
         }
     }
 }

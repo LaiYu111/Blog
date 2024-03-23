@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Blog.Model.Entities;
 using Blog.Model.RequestModels;
+using Blog.Model.Views;
 using Blog.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -51,5 +52,16 @@ namespace Blog.WebAPI.Controllers
             return Ok(token);
         }
 
+        /// <summary>
+        /// Return all user information
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetUserInfo(long id)
+        {
+            var user = await _userService.GetAllUserInfo(id);
+            return Ok(user);
+        }
     }
 }

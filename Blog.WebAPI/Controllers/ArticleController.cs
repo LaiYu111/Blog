@@ -93,7 +93,7 @@ namespace Blog.WebAPI.Controllers
         public async Task<ActionResult> GetArticles(int pageSize, int pageIndex)
         {
             var result = await _articleService.PaginatorAsync(pageSize, pageIndex);
-            return Ok(result.OrderByDescending(x => x.ArticleCreateTime).ToList());
+            return Ok(result);
         }
 
         /// <summary>

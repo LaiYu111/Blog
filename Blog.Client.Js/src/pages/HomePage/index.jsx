@@ -21,11 +21,12 @@ function HomePage () {
 	const [disabledPrev, setDisabledPrev] = useState(false)
 
 	useEffect(  () => {
-		let pageSize = 2
+		let pageSize = 8
 
 		if ( Math.ceil(totalArticles/pageSize) === Number(page)){
 			setDisabledNext(true)
-		}else{
+		}
+		else{
 			setDisabledNext(false)
 		}
 

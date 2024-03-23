@@ -41,11 +41,11 @@ const Cover = ({image, articleID, title, description}) => {
 					</div>
 
 
-			<div className={style.others}>
-					<ThumbUpOffAltIcon fontSize={"small"}  />
-					<ChatBubbleOutlineIcon fontSize={'small'}/>
-					<ChromeReaderModeOutlinedIcon fontSize={'small'}/>
-				</div>
+			{/*<div className={style.others}>*/}
+			{/*		<ThumbUpOffAltIcon fontSize={"small"}  />*/}
+			{/*		<ChatBubbleOutlineIcon fontSize={'small'}/>*/}
+			{/*		<ChromeReaderModeOutlinedIcon fontSize={'small'}/>*/}
+			{/*	</div>*/}
 			</div>
 
 

@@ -10,6 +10,7 @@ body,
   padding: 0;
   overflow-x: hidden;
 
+  font-family: 'Roboto', sans-serif;
 }
 
 img{
@@ -52,3 +53,20 @@ hr{
   background:  $grey500; /* 滑块悬停时的背景色 */
 }
 
+// Article Title
+.title{
+  width: 100%;
+
+  white-space: nowrap;
+  text-overflow: ellipsis; /* 添加这一行 */
+
+  font-size: 24px; /* 字体大小 */
+  font-weight: bold; /* 字体粗细 */
+  color: #333; /* 字体颜色 */
+  margin-bottom: 5px; /* 底部边距 */
+}
+
+.link{
+  cursor: pointer;
+  overflow: hidden;
+}

@@ -104,6 +104,13 @@
             <param name="user"></param>
             <returns></returns>
         </member>
+        <member name="M:Blog.WebAPI.Controllers.UserController.GetUserInfo(System.Int64)">
+            <summary>
+            Return all user information
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Blog.WebAPI.Migrations.Init">
             <inheritdoc />
         </member>
@@ -162,6 +169,18 @@
             <inheritdoc />
         </member>
         <member name="M:Blog.WebAPI.Migrations.article_coverimage.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Blog.WebAPI.Migrations.UserDetail_Description">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.UserDetail_Description.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.UserDetail_Description.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Blog.WebAPI.Migrations.UserDetail_Description.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>
