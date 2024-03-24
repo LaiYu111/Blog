@@ -53,5 +53,11 @@ namespace Blog.Service
             }
             return fileIds;
         }
+
+        public async Task<List<ArticleVo>> RecommendedArticles(int size)
+        {
+            var result = await _articleRepository.RamdomArticles(size);
+            return _mapper.Map<List<ArticleVo>>(result);
+        }
     }
 }

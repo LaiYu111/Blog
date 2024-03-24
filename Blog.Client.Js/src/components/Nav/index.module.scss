@@ -8,10 +8,11 @@
 
   position: fixed;
   top: 0;
-  opacity: 95%;
+  //opacity: 95%;
   z-index: 1;
 
   transition: $transitionMotion;
+  opacity: 85%;
 }
 
 .hidden {
@@ -40,7 +41,7 @@
   cursor: pointer;
 }
 .onSelect{
-  color: #1d63f6;
+  color: $info200;
 }
 
 .others{

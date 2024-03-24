@@ -12,5 +12,6 @@ namespace Blog.Repository
     public interface IArticleRepository:IBaseRepository<Article>
     {
         Task SaveFilesAsync(string savePath, IFormFile file);
+        Task<List<Article>> RamdomArticles(int size);
     }
 }

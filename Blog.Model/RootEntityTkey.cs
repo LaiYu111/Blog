@@ -7,7 +7,7 @@ namespace Blog.Model
     {
         [Key]
         public Tkey Id { get; set; }
-        public DateTime CreateTime { get; set; } = DateTime.UtcNow;
+        public DateTime CreateTime { get; set; } = DateTime.Now;
     }
 
    

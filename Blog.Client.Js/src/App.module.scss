@@ -10,10 +10,12 @@
   width: inherit;
 
   outline: none;
+
+  opacity: 85%;
 }
 
 .rootTablet{
-  grid-template-columns: 27% 70%;
+  grid-template-columns: 30% 70%;
 }
 .rootTablet > :last-child {
   display: none;
@@ -36,7 +38,7 @@
   //height: 900px;
 }
 .articleNev{
-  //background-color: white;
+  height: auto;
 }
 
 

@@ -1,6 +1,5 @@
 import Panel from "../../components/Panel";
-import image from '../../assets/aaa.jpg'
-import {Card, IconButton, Skeleton} from "@mui/material";
+import { IconButton, Skeleton} from "@mui/material";
 import Cover from "../../components/Cover/index.jsx";
 import useGet from "../../hooks/useGet.js";
 import {useEffect, useState} from "react";
@@ -55,16 +54,6 @@ function HomePage () {
 
 	return (
 		<div>
-			<div style={{ display: "grid", width: "100%", gridTemplateColumns:"70% 29% "}}>
-				<div>
-					<Card img={image } title={'1'} caption={'1'} />
-				</div>
-				<div style={{ display: "grid", width: "100%", gridGap:"10px", gridTemplateRows:"48% 48%", alignItems:"center"}}>
-					<Card img={image} title={'1'} caption={'1'}/>
-					<Card img={image} title={'1'} caption={'1'}/>
-				</div>
-			</div>
-
 			{articles? (
 				<Panel>
 					{articles.map((value, key) => (

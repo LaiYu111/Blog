@@ -12,18 +12,25 @@ import { setCurrentArticle} from "../../redux/actions/requestActions/articleActi
 import Panel from "../../components/Panel/index.jsx";
 import PropTypes from "prop-types";
 import Cover from "../../components/Cover/index.jsx";
+import {useIntl} from "react-intl";
 
-function Header({title}){
+function Header({data}){
+	const intl = useIntl()
+
 	return (
 		<div>
 			<div className={`${style.title}`}>
-				{title}
+				{data.articleTitle}
 			</div>
-			<div>
-				xxx
+			<div className={style.caption}>
+				{intl.formatMessage({id:'common.lastEdited'})}: {data.articleUpdateTime}
 			</div>
 		</div>
 	)
+}
+
+Header.propTypes = {
+	data : PropTypes.object
 }
 
 const Article = ({articleId}) => {
@@ -42,7 +49,7 @@ const Article = ({articleId}) => {
 		<Panel>
 			<div className={`${style.article}`}>
 				{/* Header */}
-				<Header title={currentArticle.articleTitle} />
+				<Header data={currentArticle}/>
 				<hr />
 
 				{/* Content */}
@@ -54,10 +61,6 @@ const Article = ({articleId}) => {
 			</div>
 		</Panel>
 	)
-}
-
-Header.propTypes = {
-	title: PropTypes.string
 }
 
 Article.propTypes = {

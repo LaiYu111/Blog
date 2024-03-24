@@ -1,11 +1,12 @@
 import style from './index.module.scss'
-import image from '../../assets/aaa.jpg'
+import avatar from '../../assets/avatar.jpeg'
+import backgroundImg from '../../assets/background.jpg'
 import Avatar from "../Avatar/index.jsx";
 import {useDispatch} from "react-redux";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import {useEffect} from "react";
 import useGet from "../../hooks/useGet.js";
-import {BACKEND_URL} from "../../config.js";
+import {ADMIN_ID, BACKEND_URL} from "../../config.js";
 import {setAuthor} from "../../redux/actions/requestActions/authorAction.js";
 import PropTypes from "prop-types";
 import {Skeleton} from "@mui/material";
@@ -109,7 +110,7 @@ const Profile = () => {
 
 
 	useEffect(() => {
-		getData(`${BACKEND_URL}/api/User/GetUserInfo/${4}`)
+		getData(`${BACKEND_URL}/api/User/GetUserInfo/${ADMIN_ID}`)
 	}, []);
 
 	useEffect(() => {
@@ -121,18 +122,18 @@ const Profile = () => {
 	return (
 		<div>
 			<div className={style.background}>
-				<img src={image}/>
+				<img src={backgroundImg}/>
 			</div>
 			<div className={style.rootProfile}>
 				<div className={style.avatar}>
-					<Avatar image={image}/>
+					<Avatar image={avatar}/>
 				</div>
 
 				<div className={style.authorName}>
 					{data ? <>{data.userName}</>: <Skeleton />}
 				</div>
 
-				<div className={style.description}>
+				<div className={`${style.caption} ${style.description}`}>
 					<Description data={data} />
 				</div>
 

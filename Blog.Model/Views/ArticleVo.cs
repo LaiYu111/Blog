@@ -15,5 +15,6 @@ namespace Blog.Model.Views
         public string ArticleCoverImage { get; set; } 
         public string ArticleTitle { get; set; }
         public DateTime ArticleCreateTime { get; set; }
+        public DateTime ArticleUpdateTime { get; set; }
     }
 }

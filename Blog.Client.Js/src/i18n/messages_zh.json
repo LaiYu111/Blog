@@ -2,8 +2,13 @@
   "nav.home": "首页",
   "nav.backend": "后台管理",
 
+  "articleNav.newest": "最新",
+  "articleNav.random": "随机",
+
   "profile.likes": "点赞数",
   "profile.views": "查看数",
   "profile.comments": "评论数",
-  "profile.introduction": "欢迎来到我的博客。这个网站的技术栈采用.Net Core Web API 为后端，JavaScript+React为前端。目前这个网站还在持续迭代中，后续会添加其他功能。如果对代码感兴趣可以查看我的GitHub，同时欢迎添加我的领英(LinkedIn)。"
+  "profile.introduction": "欢迎来到我的博客。这个网站的技术栈采用.Net Core Web API 为后端，JavaScript+React为前端。目前这个网站还在持续迭代中，后续会添加其他功能。如果对代码感兴趣可以查看我的GitHub，同时欢迎添加我的领英(LinkedIn)。",
+
+  "common.lastEdited": "编辑于"
 }

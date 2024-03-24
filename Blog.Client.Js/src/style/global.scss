@@ -11,6 +11,11 @@ body,
   overflow-x: hidden;
 
   font-family: 'Roboto', sans-serif;
+
+  //background-image: url("../../src/assets/background_hangzhou.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 img{
@@ -69,4 +74,9 @@ hr{
 .link{
   cursor: pointer;
   overflow: hidden;
+}
+
+.caption{
+  font-size: 14px;
+  color: $grey500;
 }

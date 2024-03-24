@@ -30,6 +30,7 @@ namespace Blog.Extensions.AutoMapper
                  .ForMember(articleVo => articleVo.ArticleCoverImage, origin => origin.MapFrom(article => article.CoverImage))
                  .ForMember(articleVo => articleVo.ArticleDescription, origin => origin.MapFrom(article => article.Description))
                  .ForMember(articleVo => articleVo.ArticleCreateTime, origin => origin.MapFrom(article => article.CreateTime))
+                 .ForMember(articleVo => articleVo.ArticleUpdateTime, origin => origin.MapFrom(article => article.UpdateTime))
                  .ForMember(articleVo => articleVo.ArticleContent, origin => origin.MapFrom(article => article.Content));
 
             // UserDetail <--> UserDetailVo

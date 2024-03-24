@@ -118,5 +118,17 @@ namespace Blog.WebAPI.Controllers
             var result = await _articleService.FindByIdAsync(id);
             return Ok(result);
         }
+
+        /// <summary>
+        /// 随机推荐文章
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        [HttpGet("{size}")]
+        public async Task<ActionResult> RecommendedArticles(int size)
+        {
+            var result = await _articleService.RecommendedArticles(size);
+            return Ok(result);
+        }
     }
 }

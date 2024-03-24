@@ -45,3 +45,8 @@ export const getRequestConfig = ({ token, contentType = 'json' }) => {
 
 	return { headers };
 };
+
+export class SelectedType{
+	static random = 'random'
+	static newest = 'newest'
+}

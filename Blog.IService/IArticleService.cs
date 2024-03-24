@@ -12,5 +12,6 @@ namespace Blog.IService
     public interface IArticleService : IBaseService<Article, ArticleVo>
     {
         Task<List<string>> SaveFilesAsync(IFormFile[] files);
+        Task<List<ArticleVo>> RecommendedArticles(int size);
     }
 }

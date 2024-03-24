@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useMediaQuery} from "@mui/material";
@@ -12,15 +12,38 @@ import Profile from "./components/Profile/index.jsx";
 import HomePage from "./pages/HomePage/index.jsx";
 import ArticlePage from "./pages/ArticlePage/index.jsx";
 import {IntlProvider} from "react-intl";
+import ArticleNav from "./components/ArticleNav/index.jsx";
+
+
+const backgrounds = [
+  'url(/src/assets/background_auckland.jpg)',
+  'url(/src/assets/background_chongqing.jpg)',
+  'url(/src/assets/background_hangzhou.jpg)',
+  'url(/src/assets/background_jiangying.jpg)',
+  'url(/src/assets/background_yunnan.jpg)',
+]
 
 function App() {
-  const isMobile = useMediaQuery(`(max-width: 640px)`);
-  const isTablet = useMediaQuery('(min-width: 641px) and (max-width: 1240px)');
+  const isMobile = useMediaQuery(`(max-width: 700px)`);
+  const isTablet = useMediaQuery('(min-width: 701px) and (max-width: 1240px)');
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const dispatch = useDispatch()
   const hidden = useSelector((state) => state.componentReducers.nav.hidden)
   const device = useSelector((state) => state.systemReducers.media.device )
   const locale = useSelector(state => state.systemReducers.language.currentLang)
+
+
+
+
+
+  useEffect(() => {
+    document.getElementById('root').style.backgroundImage =  backgrounds[Math.floor(Math.random() * backgrounds.length)];
+
+    return () => {
+      document.getElementById('root').style.backgroundImage = ''
+
+    }
+  }, []);
 
 
 
@@ -38,7 +61,6 @@ function App() {
 
     return () => {
       window.removeEventListener('wheel', handleScroll);
-
     };
   }, [hidden]);
 
@@ -67,9 +89,8 @@ function App() {
           tabIndex={0}
         >
           <div className={`${style.articleNev}`}>
-            <Panel>
-              ss
-            </Panel>
+           <ArticleNav />
+
             { (device === Device.tablet || device === Device.mobile)  && (
               <div className={`${style.profile}`}>
                 <Panel>
@@ -78,11 +99,10 @@ function App() {
               </div>
             )}
           </div>
-          {/*<hr/>*/}
 
           <div className={style.content}>
             <Routes>
-              <Route path={'/'} element={<HomePage/>}/>
+              <Route path={'/'} element={<Navigate to={'/1'} /> }/>
               <Route path={'/:page'} index={true} element={<HomePage/>}/>
               <Route path={'/article/:id'} element={<ArticlePage/>}/>
             </Routes>

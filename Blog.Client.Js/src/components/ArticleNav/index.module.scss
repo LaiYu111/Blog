@@ -1,0 +1,22 @@
+@import "src/style/global.scss";
+@import "src/style/base.scss";
+.root{
+  padding: $padding;
+}
+
+.type{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.selected{
+  color:  $info200;
+}
+
+.link:hover{
+  color: #5c90f8;
+}
