@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Blog.Common;
 using Blog.IService;
 using Blog.Model.Entities;
 using Blog.Model.RequestModels;
 using Blog.Model.Views;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.WebAPI.Controllers
@@ -46,10 +48,11 @@ namespace Blog.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Create Article
+        /// Create Article - Admin only
         /// </summary>
         /// <param name="article"></param>
         /// <returns></returns>
+        [Authorize(Roles = $"{PolicyNames.Admin}")]
         [HttpPost]
         public async Task<ActionResult> CreateArticle([FromBody] ArticleRequest article)
         {
@@ -73,14 +76,15 @@ namespace Blog.WebAPI.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// 删除 - Admin only
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = $"{PolicyNames.Admin}")]
         [HttpDelete]
         public async Task<ActionResult> DeleteArticle([FromQuery] List<long> ids)
         {
             await _baseService.DeleteAsync(x => ids.Contains(x.Id));
-            return Ok();
+            return Ok(true);
         }
 
         /// <summary>

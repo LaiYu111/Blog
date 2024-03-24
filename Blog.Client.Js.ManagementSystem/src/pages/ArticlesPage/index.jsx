@@ -1,4 +1,4 @@
-import {Button, Divider, Input, List} from "antd";
+import {Button, Divider, List} from "antd";
 import './index.css'
 import MyPagination from "../../components/MyPagination/index.jsx";
 import {useEffect} from "react";
@@ -25,12 +25,20 @@ function Header(){
 }
 
 function Items( {item} ) {
-  const { deleteData} = useDelete()
+  const { deleteData, data } = useDelete()
   const dispatch = useDispatch()
+  const token = useSelector(state => state.systemReducers.user.token)
   const handleDelete = () => {
-    deleteData(`${BACKEND_URL}/api/Article/DeleteArticle`, [item.articleId])
-    dispatch(deleteArticles([item.articleId]))
+    deleteData(`${BACKEND_URL}/api/Article/DeleteArticle`, [item.articleId],token)
+
   }
+
+  useEffect(() => {
+    if (data === true){
+      dispatch(deleteArticles([item.articleId]))
+    }
+  }, [data]);
+
 
   return (
     <List.Item>

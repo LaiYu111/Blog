@@ -84,7 +84,12 @@ namespace Blog.Service
             }
 
             if (user == null) { return null; }
-            if (user.PasswordHash == encriptedPwd) { return CreateToken(user); }
+            if (user.PasswordHash == encriptedPwd) 
+            { 
+                var role = await _roleRepository.FindByIdAsync(user.RoleId);
+                user.Role = role;
+                return CreateToken(user); 
+            }
             return null;
         }
 

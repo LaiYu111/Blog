@@ -1,4 +1,5 @@
-﻿using Blog.Model;
+﻿using Blog.Common;
+using Blog.Model;
 using Blog.Model.Entities;
 using Blog.Repository.Base;
 using Microsoft.EntityFrameworkCore;
@@ -18,10 +19,9 @@ namespace Blog.Repository
 
         public async Task<User> Register(User user)
         {
-            var guest = await _dbContext.Roles.FirstOrDefaultAsync(x => x.RoleName == "Guest");
+            var guest = await _dbContext.Roles.FirstOrDefaultAsync(x => x.RoleName == PolicyNames.Guest);
             if (guest != null)
-            {
-                
+            {   
                 user.Role = guest;
             }
             return await base.AddAsync(user);

@@ -9,7 +9,7 @@ namespace Blog.WebAPI.Controllers
     /// <summary>
     /// System
     /// </summary>
-    [Authorize(Policy = PolicyNames.Guest)]
+    [Authorize(Roles = $"{PolicyNames.Guest},{PolicyNames.Admin}")]
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class SystemController : ControllerBase
@@ -27,6 +27,8 @@ namespace Blog.WebAPI.Controllers
         public async Task<ActionResult> Version()
         {
             await Task.CompletedTask;
+            Console.WriteLine(PolicyNames.Admin);
+            Console.WriteLine(PolicyNames.Guest);
             return Ok(1);
         }
     }

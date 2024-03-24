@@ -14,7 +14,7 @@ namespace Blog.Model.Entities
         public long UserDetailId { set; get; }
         
         public UserDetail UserDetail { get; set; } = new UserDetail();
-        public Role Role { get; set; } = new Role() { RoleName = RoleEnum.Guest.ToString() };
+        public Role Role { get; set; }
     }
 
 }

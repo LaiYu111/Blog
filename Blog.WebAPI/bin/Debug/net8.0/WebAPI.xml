@@ -25,7 +25,7 @@
         </member>
         <member name="M:Blog.WebAPI.Controllers.ArticleController.CreateArticle(Blog.Model.RequestModels.ArticleRequest)">
             <summary>
-            Create Article
+            Create Article - Admin only
             </summary>
             <param name="article"></param>
             <returns></returns>
@@ -39,7 +39,7 @@
         </member>
         <member name="M:Blog.WebAPI.Controllers.ArticleController.DeleteArticle(System.Collections.Generic.List{System.Int64})">
             <summary>
-            删除
+            删除 - Admin only
             </summary>
             <returns></returns>
         </member>

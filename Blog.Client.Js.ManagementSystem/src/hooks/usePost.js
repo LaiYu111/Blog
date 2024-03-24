@@ -7,7 +7,7 @@ const usePost = () => {
 	const [error, setError] = useState('');
 	const [data, setData] = useState(null); // Consider defining a more specific type based on your data
 
-	const postData = async (url, postData, contentType = 'json',token) => {
+	const postData = async (url, postData,token, contentType = 'json') => {
 		setLoading(true);
 		try {
 			const config = getRequestConfig({ token, contentType });

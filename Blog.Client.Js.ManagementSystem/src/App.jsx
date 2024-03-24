@@ -157,7 +157,7 @@ function App() {
               <Route path={'/publish'} element={<PublishPage/>}/>
               <Route path={'/auth'} element={<AuthPage />} />
               <Route path={'/articles'} element={<ArticlesPage/>}/>
-              <Route path={'/tag'} element={<TagPage />} />
+              <Route path={'/tags'} element={<TagPage />} />
             </Routes>
           </Content>
         </Layout>

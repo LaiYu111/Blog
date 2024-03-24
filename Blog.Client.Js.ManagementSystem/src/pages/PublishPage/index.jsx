@@ -7,14 +7,15 @@ import MyModal from "../../components/MyModal/index.jsx";
 import TextArea from "antd/es/input/TextArea.js";
 import {SetModal} from "../../redux/actions/modalAction.js";
 import './index.css'
-import {useState} from "react";
+import { useState} from "react";
 import {ClearEditor} from "../../redux/actions/editorAction.js";
 import {getFirstImage} from "../../util.js";
 
 function PublishPage(){
   const dispatch = useDispatch()
   const [messageApi, contextHolder] = message.useMessage()
-  const { postData, }= usePost()
+  const token = useSelector(state => state.systemReducers.user.token)
+  const { postData}= usePost()
   const articleContent = useSelector(state => state.componentReducers.editor.content)
   const articlePlainText = useSelector(state => state.componentReducers.editor.plaintext)
   const [title, setTitle] = useState("")
@@ -41,9 +42,9 @@ function PublishPage(){
       content: articleContent,
       description: description,
       coverImage: coverImage
-    })
+    }, token)
     dispatch(SetModal(false))
-
+    setTitle("")
     dispatch(ClearEditor())
   }
 

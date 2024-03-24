@@ -7,7 +7,7 @@ const useDelete = () => {
   const [error, setError] = useState('');
   const [data, setData] = useState(null); // Consider defining a more specific type based on your data
 
-  const deleteData = async (url, ids=[] ,contentType = "json", token) => {
+  const deleteData = async (url, ids=[], token ,contentType = "json") => {
     setLoading(true);
     try {
       const idsQuery = ids.map(id => `ids=${id}`).join('&');
