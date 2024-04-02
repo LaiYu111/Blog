@@ -1,8 +1,5 @@
 import style from "./index.module.scss"
-
-
-// @ts-ignore
-import MyEditor from "../../components/MyEditor/index.jsx";
+import "react-quill/dist/quill.core.css";
 import {useParams} from "react-router-dom";
 import useGet from "../../hooks/useGet.js";
 import {useDispatch, useSelector} from "react-redux";
@@ -11,7 +8,6 @@ import {BACKEND_URL} from "../../config.js";
 import { setCurrentArticle} from "../../redux/actions/requestActions/articleAction.js";
 import Panel from "../../components/Panel/index.jsx";
 import PropTypes from "prop-types";
-import Cover from "../../components/Cover/index.jsx";
 import {useIntl} from "react-intl";
 
 function Header({data}){
@@ -53,11 +49,12 @@ const Article = ({articleId}) => {
 				<hr />
 
 				{/* Content */}
-				<div
-					dangerouslySetInnerHTML={{__html: currentArticle.articleContent}}
-					className={`${style.coverImage}`}
-				/>
-
+				<div className={`${style.custom}`}>
+					<div
+						dangerouslySetInnerHTML={{__html: currentArticle.articleContent}}
+						className={`ql-editor`}
+					/>
+				</div>
 			</div>
 		</Panel>
 	)

@@ -12,11 +12,6 @@
   gap: 10px;
 }
 
-.coverImage img{
-  object-fit: cover; /* 这将保持图片的比例 */
-  display: flex;
-  justify-content: center;
-  max-width: 100%;
-
-  cursor: auto;
+.custom img{
+  cursor: default  !important;
 }

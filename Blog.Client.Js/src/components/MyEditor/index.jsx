@@ -15,12 +15,11 @@ function MyEditor () {
   useEffect(() => {
     console.log(value)
   }, [value]);
-
   const uploadImage = async (files) => {
     const formData = new FormData()
-    for (const file of files){ formData.append('images', file)}
+    for (const file of files){ formData.append('images', file) }
     try{
-      return  await postData(`${BACKEND_URL}/api/Article/Image`, formData, 'images')
+      return  await postData(`${BACKEND_URL}/api/Article/SaveImages`, formData, 'images')
     }catch (e){
       console.log("Error", e)
       return null
@@ -35,8 +34,8 @@ function MyEditor () {
     input.click();
     input.onchange = async () => {
       const files = input.files;
+      console.log(files)
       const imgIds = await uploadImage(files);
-
       for (const id of Array.from(imgIds)) {
         const url = IMAGE_URL + `/${id}`
         if (id) {

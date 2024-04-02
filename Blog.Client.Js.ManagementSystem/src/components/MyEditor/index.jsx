@@ -31,7 +31,7 @@ function MyEditor () {
     const formData = new FormData()
     for (const file of files){ formData.append('images', file)}
     try{
-      return  await postData(`${BACKEND_URL}/api/Article/SaveImages`, formData, 'images')
+      return  await postData(`${BACKEND_URL}/api/Article/SaveImages`, formData,null, 'images')
     }catch (e){
       messageApi.open({
         type:"error",
@@ -50,7 +50,6 @@ function MyEditor () {
     input.onchange = async () => {
       const files = input.files;
       const imgIds = await uploadImage(files);
-
       for (const id of Array.from(imgIds)) {
         const url = IMAGE_URL + `/${id}`
         if (id) {

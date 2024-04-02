@@ -13,15 +13,27 @@ import HomePage from "./pages/HomePage/index.jsx";
 import ArticlePage from "./pages/ArticlePage/index.jsx";
 import {IntlProvider} from "react-intl";
 import ArticleNav from "./components/ArticleNav/index.jsx";
+import backgroundAuckland from './assets/background_auckland.jpg';
+import backgroundChongqing from './assets/background_chongqing.jpg';
+import backgroundHangzhou from './assets/background_hangzhou.jpg';
+import backgroundJiangying from './assets/background_jiangying.jpg';
+import backgroundYunnan from './assets/background_yunnan.jpg';
 
+// const backgrounds = [
+//   'url(./src/assets/background_auckland.jpg)',
+//   'url(./src/assets/background_chongqing.jpg)',
+//   'url(./src/assets/background_hangzhou.jpg)',
+//   'url(./src/assets/background_jiangying.jpg)',
+//   'url(./src/assets/background_yunnan.jpg)',
+// ]
 
 const backgrounds = [
-  'url(/src/assets/background_auckland.jpg)',
-  'url(/src/assets/background_chongqing.jpg)',
-  'url(/src/assets/background_hangzhou.jpg)',
-  'url(/src/assets/background_jiangying.jpg)',
-  'url(/src/assets/background_yunnan.jpg)',
-]
+  `url(${backgroundAuckland})`,
+  `url(${backgroundChongqing})`,
+  `url(${backgroundHangzhou})`,
+  `url(${backgroundJiangying})`,
+  `url(${backgroundYunnan})`,
+];
 
 function App() {
   const isMobile = useMediaQuery(`(max-width: 700px)`);
@@ -38,10 +50,10 @@ function App() {
 
   useEffect(() => {
     document.getElementById('root').style.backgroundImage =  backgrounds[Math.floor(Math.random() * backgrounds.length)];
-
+  
     return () => {
       document.getElementById('root').style.backgroundImage = ''
-
+  
     }
   }, []);
 
