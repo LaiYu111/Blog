@@ -168,9 +168,7 @@ E:\Workspace\Tutorial\Blog\Blog.WebAPI\bin\Debug\net8.0\Blog.Repository.pdb
 E:\Workspace\Tutorial\Blog\Blog.WebAPI\bin\Debug\net8.0\Blog.Service.pdb
 E:\Workspace\Tutorial\Blog\Blog.WebAPI\bin\Debug\net8.0\Newtonsoft.Json.dll
 E:\Workspace\Tutorial\Blog\Blog.WebAPI\bin\Debug\net8.0\WebAPI.xml
-E:\Workspace\Code\Blog\Blog.WebAPI\bin\Debug\net8.0\appsettings.Development.json
 E:\Workspace\Code\Blog\Blog.WebAPI\bin\Debug\net8.0\appsettings.json
-E:\Workspace\Code\Blog\Blog.WebAPI\bin\Debug\net8.0\appsettings.Production.json
 E:\Workspace\Code\Blog\Blog.WebAPI\bin\Debug\net8.0\Blog.Common.deps.json
 E:\Workspace\Code\Blog\Blog.WebAPI\bin\Debug\net8.0\Blog.Common.runtimeconfig.json
 E:\Workspace\Code\Blog\Blog.WebAPI\bin\Debug\net8.0\Blog.Model.deps.json

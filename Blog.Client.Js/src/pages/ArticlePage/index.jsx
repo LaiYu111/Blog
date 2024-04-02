@@ -1,5 +1,5 @@
 import style from "./index.module.scss"
-import "react-quill/dist/quill.core.css";
+import "react-quill/dist/quill.snow.css";
 import {useParams} from "react-router-dom";
 import useGet from "../../hooks/useGet.js";
 import {useDispatch, useSelector} from "react-redux";
@@ -9,6 +9,7 @@ import { setCurrentArticle} from "../../redux/actions/requestActions/articleActi
 import Panel from "../../components/Panel/index.jsx";
 import PropTypes from "prop-types";
 import {useIntl} from "react-intl";
+import 'highlight.js/styles/googlecode.css'
 
 function Header({data}){
 	const intl = useIntl()
@@ -52,7 +53,7 @@ const Article = ({articleId}) => {
 				<div className={`${style.custom}`}>
 					<div
 						dangerouslySetInnerHTML={{__html: currentArticle.articleContent}}
-						className={`ql-editor`}
+						className={`ql-editor ql-preview`}
 					/>
 				</div>
 			</div>

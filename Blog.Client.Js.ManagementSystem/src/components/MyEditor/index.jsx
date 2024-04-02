@@ -8,8 +8,10 @@ import ImageResize from 'quill-image-resize-module-react';
 import usePost from "../../hooks/usePost.js";
 import {useDispatch, useSelector} from "react-redux";
 import {SetEditorContent, SetEditorPlainText} from "../../redux/actions/editorAction.js";
+import MarkdownShortcuts from 'quill-markdown-shortcuts';
 import {message} from "antd";
 import './index.css'
+
 
 
 hljs.configure({
@@ -17,6 +19,7 @@ hljs.configure({
 })
 
 Quill.register('modules/imageResize', ImageResize);
+Quill.register('modules/markdownShortcuts', MarkdownShortcuts);
 
 
 function MyEditor () {
@@ -100,6 +103,7 @@ function MyEditor () {
         image: imageHandler
       }
     },
+    markdownShortcuts: {},
     syntax: {
       highlight: text => hljs.highlightAuto(text).value
     }
