@@ -1,5 +1,7 @@
 export const SET_NAV = "SET_NAV"
 export const SET_DEVICE = "SET_DEVICE"
+export const SET_TOC = 'SET_TOC'
+
 
 export const SET_ARTICLE_COUNT = "SET_ARTICLE_COUNT"
 export const SET_CURRENT_ARTICLE= "SET_CURRENT_ARTICLE"

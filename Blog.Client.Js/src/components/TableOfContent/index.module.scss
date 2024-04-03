@@ -1,0 +1,31 @@
+@import "src/style/global.scss";
+@import "src/style/base.scss";
+.root{
+  padding: $padding;
+}
+
+.onHide{
+  display: none;
+}
+
+.title {
+  font-size: initial;
+  color: black;
+  font-family: $fontFamily;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.link:hover{
+  background-color: $grey300;
+  border-radius: $smRadius;
+}
+
+.header{
+  padding-bottom: $padding + 5;
+}

@@ -3,8 +3,8 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useMediaQuery} from "@mui/material";
 import style from './App.module.scss';
-import {setNav} from "./redux/actions/navAction.js";
-import {setDevice} from "./redux/actions/deviceAction.js";
+import {setNav} from "./redux/actions/componentAction/navAction.js";
+import {setDevice} from "./redux/actions/systemActions/deviceAction.js";
 import {Device, messages} from "./util.js";
 import Nav from "./components/Nav/index.jsx";
 import Panel from "./components/Panel/index.jsx";
@@ -18,6 +18,7 @@ import backgroundChongqing from './assets/background_chongqing.jpg';
 import backgroundHangzhou from './assets/background_hangzhou.jpg';
 import backgroundJiangying from './assets/background_jiangying.jpg';
 import backgroundYunnan from './assets/background_yunnan.jpg';
+import TableOfContent from "./components/TableOfContent/index.jsx";
 
 // const backgrounds = [
 //   'url(./src/assets/background_auckland.jpg)',
@@ -45,9 +46,6 @@ function App() {
   const locale = useSelector(state => state.systemReducers.language.currentLang)
 
 
-
-
-
   useEffect(() => {
     document.getElementById('root').style.backgroundImage =  backgrounds[Math.floor(Math.random() * backgrounds.length)];
   
@@ -69,10 +67,10 @@ function App() {
     };
 
     // desktop
-    window.addEventListener('wheel', handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('wheel', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, [hidden]);
 
@@ -100,34 +98,40 @@ function App() {
           className={`${style.root} ${device === Device.tablet && style.rootTablet} ${device === Device.mobile && style.rootMobile}`}
           tabIndex={0}
         >
-          <div className={`${style.articleNev}`}>
-           <ArticleNav />
+          <div>
+            <div className={`${style.articleNev}`}>
 
-            { (device === Device.tablet || device === Device.mobile)  && (
-              <div className={`${style.profile}`}>
-                <Panel>
-                  <Profile/>
-                </Panel>
-              </div>
-            )}
+              <ArticleNav/>
+
+              <TableOfContent/>
+
+              {(device === Device.tablet || device === Device.mobile) && (
+                <div className={`${style.profile}`}>
+                  <Panel>
+                    <Profile/>
+                  </Panel>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className={style.content}>
             <Routes>
-              <Route path={'/'} element={<Navigate to={'/1'} /> }/>
+              <Route path={'/'} element={<Navigate to={'/1'}/>}/>
               <Route path={'/:page'} index={true} element={<HomePage/>}/>
               <Route path={'/article/:id'} element={<ArticlePage/>}/>
+              <Route path={'/:language/article/:id'} element={<ArticlePage/>}/>
             </Routes>
           </div>
 
           <div className={`${style.profile}`}>
             <Panel>
-              <Profile/>
+            <Profile/>
             </Panel>
           </div>
         </div>
       </BrowserRouter>
-    </IntlProvider >
+    </IntlProvider>
   )
 }
 

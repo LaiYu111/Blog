@@ -10,5 +10,7 @@
   "profile.comments": "Comments",
   "profile.introduction": "Welcome to my blog. The tech stack for this site uses .Net Core Web API for the backand and JavaScript for the frontend. Also, this website is in continuous iteration, I will keep adding new features to this site in the future. If interested in the code check out my GitHub and feel free to connect my LinkedIn.",
 
-  "common.lastEdited": "Last Edited"
+  "common.lastEdited": "Last Edited",
+
+  "tableOfContent": "Table of Content"
 }

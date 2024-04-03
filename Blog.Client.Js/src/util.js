@@ -50,3 +50,10 @@ export class SelectedType{
 	static random = 'random'
 	static newest = 'newest'
 }
+
+export class ToCLevel{
+	static H1 = 'H1'
+	static H2 = 'H2'
+	static H3 = 'H3'
+	static H4 = 'H4'
+}

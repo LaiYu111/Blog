@@ -3,13 +3,14 @@ import "react-quill/dist/quill.snow.css";
 import {useParams} from "react-router-dom";
 import useGet from "../../hooks/useGet.js";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 import {BACKEND_URL} from "../../config.js";
 import { setCurrentArticle} from "../../redux/actions/requestActions/articleAction.js";
 import Panel from "../../components/Panel/index.jsx";
 import PropTypes from "prop-types";
 import {useIntl} from "react-intl";
 import 'highlight.js/styles/googlecode.css'
+import {setTOC} from "../../redux/actions/componentAction/tocAction.js";
 
 function Header({data}){
 	const intl = useIntl()
@@ -34,6 +35,7 @@ const Article = ({articleId}) => {
 	const {getData} = useGet()
 	const dispatch = useDispatch()
 	const currentArticle = useSelector(state => state.requestReducers.article.currentArticle)
+	const toc = useRef()
 
 	useEffect(  () => {
 		async function fetchData (){
@@ -42,6 +44,25 @@ const Article = ({articleId}) => {
 		}
 		fetchData()
 	}, []);
+
+	useEffect(()=>{
+		if (toc.current){
+			const titles = toc.current.querySelectorAll('h1, h2, h3, h4, h5');
+			const tocContent = []
+			titles.forEach((title, index) => {
+				const id = `tocAnchor${index}`
+				title.id = id
+				tocContent.push({
+					['level']: title.tagName,
+					['name']: title.textContent,
+					['anchorId']: id
+				})
+			})
+			dispatch(setTOC(tocContent))
+		}
+	}, [currentArticle])
+
+
 	return (
 		<Panel>
 			<div className={`${style.article}`}>
@@ -50,10 +71,10 @@ const Article = ({articleId}) => {
 				<hr />
 
 				{/* Content */}
-				<div className={`${style.custom}`}>
+				<div className={`${style.custom}`} ref={toc}>
 					<div
 						dangerouslySetInnerHTML={{__html: currentArticle.articleContent}}
-						className={`ql-editor ql-preview`}
+						className={`ql-editor`}
 					/>
 				</div>
 			</div>

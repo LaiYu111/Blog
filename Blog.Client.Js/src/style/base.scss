@@ -14,6 +14,15 @@ $info300: #276bff;
 $info400: #1259f6;
 $info500: #0052ff;
 
+$red100: #ffcccc;
+$red200: #ff9999;
+$red300: #ff6666;
+$red400: #ff3333;
+$red500: #ff0000;
+
+
+
+
 $warning:#E34234 ;
 
 $smRadius: 0.4em;
@@ -34,4 +43,16 @@ $tablet: 1240px;
 $transitionMotion: top 0.5s ease;
 
 // Grid Layout
-$gridGap: 10px
+$gridGap: 10px;
+
+// Indent level
+$indentLevel1:0px;
+$indentLevel2:20px;
+$indentLevel3:40px;
+$indentLevel4:60px;
+$indentLevel5:80px;
+$indentLevel6:100px;
+
+
+// Font Family
+$fontFamily: 'Roboto', sans-serif;
