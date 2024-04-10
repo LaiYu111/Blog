@@ -9,7 +9,7 @@ import {
   UnorderedListOutlined,
   TagsOutlined
 } from '@ant-design/icons';
-import { Layout, Menu, Button, theme } from 'antd';
+import {Layout, Menu, Button, theme, Breadcrumb} from 'antd';
 import { Routes, Route, Link, useNavigate} from 'react-router-dom';
 import HomePage from "./pages/HomePage/index.jsx";
 import PublishPage from "./pages/PublishPage/index.jsx";
@@ -18,6 +18,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {SetUserDetail, UserLogout} from "./redux/actions/userAction.js";
 import ArticlesPage from "./pages/ArticlesPage/index.jsx";
 import TagPage from "./pages/TagPage/index.jsx";
+import EditArticlePage from "./pages/ArticlesPage/EditArticlePage/index.jsx";
 const { Header, Sider, Content } = Layout;
 
 
@@ -150,6 +151,7 @@ function App() {
               height: "inherit",
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
+              overflow: "auto"
             }}
           >
             <Routes>
@@ -157,6 +159,7 @@ function App() {
               <Route path={'/publish'} element={<PublishPage/>}/>
               <Route path={'/auth'} element={<AuthPage />} />
               <Route path={'/articles'} element={<ArticlesPage/>}/>
+              <Route path={'/articles/:id'} element={<EditArticlePage/>}/>
               <Route path={'/tags'} element={<TagPage />} />
             </Routes>
           </Content>

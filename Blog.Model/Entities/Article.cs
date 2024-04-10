@@ -14,7 +14,7 @@ namespace Blog.Model.Entities
         public int Likes { get; set; } = 0;
         public string Description { get; set; } = string.Empty;
         public string Content { get; set; } = string.Empty;
-        public string CoverImage {  get; set; } = string.Empty;
+        public string CoverImage { get; set; } = string.Empty;
         public DateTime UpdateTime { get; set; } = DateTime.Now;
 
         public ICollection<Tag> Tags { get; set; }

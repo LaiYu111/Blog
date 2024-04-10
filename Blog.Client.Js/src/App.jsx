@@ -44,7 +44,7 @@ function App() {
   const hidden = useSelector((state) => state.componentReducers.nav.hidden)
   const device = useSelector((state) => state.systemReducers.media.device )
   const locale = useSelector(state => state.systemReducers.language.currentLang)
-
+  const toc = useSelector(status => status.componentReducers.toc.tableOfContent)
 
   useEffect(() => {
     document.getElementById('root').style.backgroundImage =  backgrounds[Math.floor(Math.random() * backgrounds.length)];
@@ -103,7 +103,7 @@ function App() {
 
               <ArticleNav/>
 
-              <TableOfContent/>
+              { toc.length > 0 && <TableOfContent/> }
 
               {(device === Device.tablet || device === Device.mobile) && (
                 <div className={`${style.profile}`}>
@@ -120,7 +120,6 @@ function App() {
               <Route path={'/'} element={<Navigate to={'/1'}/>}/>
               <Route path={'/:page'} index={true} element={<HomePage/>}/>
               <Route path={'/article/:id'} element={<ArticlePage/>}/>
-              <Route path={'/:language/article/:id'} element={<ArticlePage/>}/>
             </Routes>
           </div>
 

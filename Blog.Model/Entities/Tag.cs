@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Blog.Model.Entities
 {
-    public class Tag:RootEntityTkey<long>
+    public class Tag : RootEntityTkey<long>
     {
-        public string TagName {  get; set; }
+        public string TagName { get; set; }
         public string Color { get; set; }
 
         public ICollection<Article> Articles { get; set; }

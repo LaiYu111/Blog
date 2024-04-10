@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  webapi:
+    container_name: blog_webapi
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8080"
+      - "5001:8081"
+
+  client:
+    container_name: blog_client
+    build: 
+      context: ./Blog.Client.Js
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_BACKEND_URL=http://webapi:5000
+      - VITE_API_IMAGE_URL=http://blog-file-repository:32770/images
+      - VITE_API_MANAGEMENT_SYSTEM_URL=http://backend:3050
+      - VITE_API_ADMIN_ID=1
+  
+  backend:
+    container_name: blog_backend
+    build: 
+      context: ./Blog.Client.Js.ManagementSystem
+      dockerfile: Dockerfile
+    ports:
+      - "3050:80"
+    environment:
+      - VITE_API_BACKEND_URL=http://webapi:5000
+      - VITE_API_IMAGE_URL=http://blog-file-repository:32770/images
+      - VITE_API_MANAGEMENT_SYSTEM_URL=http://backend:3050

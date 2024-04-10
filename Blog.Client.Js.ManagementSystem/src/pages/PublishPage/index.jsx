@@ -93,7 +93,7 @@ function PublishPage(){
           />
         </Flex>
       </MyModal>
-      <div style={{display: 'flex', flexDirection: "row", height: "100%"}}>
+      <div>
         <div>
           <div>
             <MyEditor/>

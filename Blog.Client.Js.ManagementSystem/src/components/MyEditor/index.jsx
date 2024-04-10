@@ -1,4 +1,4 @@
-import React, { useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import 'highlight.js/styles/github.css'; // 这里以 GitHub 样式为例
 import hljs from 'highlight.js';
 import ReactQuill, { Quill } from 'react-quill';
@@ -11,7 +11,7 @@ import {SetEditorContent, SetEditorPlainText} from "../../redux/actions/editorAc
 import MarkdownShortcuts from 'quill-markdown-shortcuts';
 import {message} from "antd";
 import './index.css'
-
+import PropTypes from "prop-types";
 
 
 hljs.configure({
@@ -21,14 +21,20 @@ hljs.configure({
 Quill.register('modules/imageResize', ImageResize);
 Quill.register('modules/markdownShortcuts', MarkdownShortcuts);
 
+MyEditor.propTypes = {
+  content: PropTypes.string
+}
 
-function MyEditor () {
+function MyEditor({ content = ""}) {
   const dispatch = useDispatch()
   const articleContent = useSelector(state => state.componentReducers.editor.content)
   const [messageApi, contextHolder] = message.useMessage();
   const reactQuillRef = useRef(null);
   const { postData} = usePost()
 
+  useEffect(() => {
+    dispatch(SetEditorContent(content))
+  }, []);
 
   const uploadImage = async (files) => {
     const formData = new FormData()

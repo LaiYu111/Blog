@@ -1,5 +1,4 @@
-import {Flex, Modal} from "antd";
-import TextArea from "antd/es/input/TextArea.js";
+import {Modal} from "antd";
 import { useSelector} from "react-redux";
 
 import PropTypes from 'prop-types';

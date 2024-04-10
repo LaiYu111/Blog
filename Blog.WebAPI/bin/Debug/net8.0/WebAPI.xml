@@ -71,6 +71,13 @@
             <param name="size"></param>
             <returns></returns>
         </member>
+        <member name="M:Blog.WebAPI.Controllers.ArticleController.UpdateArticle(Blog.Model.RequestModels.ArticleRequest)">
+            <summary>
+            修改文章
+            </summary>
+            <param name="article"></param>
+            <returns></returns>
+        </member>
         <member name="T:Blog.WebAPI.Controllers.SystemController">
             <summary>
             System

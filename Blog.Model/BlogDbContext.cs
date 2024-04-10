@@ -56,18 +56,13 @@ namespace Blog.Model
                 e.ToTable("Articles");
                 e.Property(e => e.Title).HasMaxLength(100);
                 e.Property(e => e.Description).HasMaxLength(500);
-                e.Property(e=>e.CoverImage).HasMaxLength(200);
+                e.Property(e => e.CoverImage).HasMaxLength(200);
                 e.HasMany(a => a.Tags)
                 .WithMany(a => a.Articles)
                 .UsingEntity(a => a.ToTable("ArticleTags"));
             });
 
-            modelBuilder.Entity<Tag>(e =>
-            {
-                e.ToTable("Tags");
-                e.Property(t => t.TagName).HasMaxLength(50);
-                e.Property(e => e.Color).HasMaxLength(50);
-            });
+         
 
             modelBuilder.Entity<Role>(e =>
             {

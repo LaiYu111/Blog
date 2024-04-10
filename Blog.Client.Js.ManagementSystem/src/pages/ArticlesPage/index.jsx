@@ -6,7 +6,7 @@ import useGet from "../../hooks/useGet.js";
 import {BACKEND_URL} from "../../config.js";
 import {deleteArticles, setArticleCount, setArticles} from "../../redux/actions/requestActions/articleAction.js";
 import {useDispatch, useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import PropTypes from "prop-types";
 import useDelete from "../../hooks/useDelete.js";
 
@@ -20,7 +20,7 @@ function Footer (){
 
 function Header(){
   return (
-    <div>Header</div>
+    <div>Article Management</div>
   )
 }
 
@@ -28,10 +28,7 @@ function Items( {item} ) {
   const { deleteData, data } = useDelete()
   const dispatch = useDispatch()
   const token = useSelector(state => state.systemReducers.user.token)
-  const handleDelete = () => {
-    deleteData(`${BACKEND_URL}/api/Article/DeleteArticle`, [item.articleId],token)
-
-  }
+  const navigator = useNavigate()
 
   useEffect(() => {
     if (data === true){
@@ -39,17 +36,25 @@ function Items( {item} ) {
     }
   }, [data]);
 
+  const handleDelete = () => {
+    deleteData(`${BACKEND_URL}/api/Article/DeleteArticle`, [item.articleId],token)
+  }
+
+  const handleEdit = (articleId) => {
+    navigator(`/articles/${articleId}`)
+  }
+
 
   return (
     <List.Item>
       <List.Item.Meta
-        title={<Link to={"/"}>{item.articleId} | {item.articleTitle}</Link>}
+        title={<Link to={`/articles/${item.articleId}`}>{item.articleId} | {item.articleTitle}</Link>}
         description={item.articleDescription}
       />
 
       <div style={{ display: "flex", flexDirection:"row", height: "100%"}}>
         <div>
-          <Button type={"link"} >Edit</Button>
+          <Button type={"link"} onClick={() => handleEdit(item.articleId)} >Edit</Button>
         </div>
         <div>
           <Divider type={"vertical"} style={{height:"100%"}} />
@@ -58,6 +63,7 @@ function Items( {item} ) {
           <Button danger={true} type={"text"} onClick={handleDelete}>Delete</Button>
         </div>
       </div>
+
     </List.Item>
   )
 }

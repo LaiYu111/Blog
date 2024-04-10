@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  webapi:
+    container_name: blog_webapi
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000: 8080"
+      - "5001: 8081"
+  client:
+    container_name: blog_client
+    build: 
+      context: ./Blog.Client.Js
+      dockerfile: Dockerfile
+    ports:
+      - "3000:81"

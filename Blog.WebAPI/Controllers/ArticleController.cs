@@ -134,5 +134,18 @@ namespace Blog.WebAPI.Controllers
             var result = await _articleService.RecommendedArticles(size);
             return Ok(result);
         }
+
+        /// <summary>
+        /// 修改文章
+        /// </summary>
+        /// <param name="article"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public async Task<ActionResult> UpdateArticle([FromBody] ArticleRequest article)
+        {
+            Article targetArticle = _mapper.Map<Article>(article);
+            var result = await _articleService.UpdateAsync(targetArticle);
+            return Ok(result);
+        }
     }
 }

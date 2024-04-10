@@ -7,7 +7,7 @@ const useGet = () => {
   const [error, setError] = useState('');
   const [data, setData] = useState(null); // Consider defining a more specific type based on your data
 
-  const getData = async (url,contentType = "json", token) => {
+  const getData = async (url,token,contentType = "json") => {
     setLoading(true);
     try {
       const config = getRequestConfig({ token, contentType });
