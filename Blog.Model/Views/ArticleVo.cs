@@ -16,5 +16,6 @@ namespace Blog.Model.Views
         public string ArticleTitle { get; set; }
         public DateTime ArticleCreateTime { get; set; }
         public DateTime ArticleUpdateTime { get; set; }
+        public List<TagVo> Tags { get; set; } = new List<TagVo>();
     }
 }

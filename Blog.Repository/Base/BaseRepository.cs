@@ -26,6 +26,13 @@ namespace Blog.Repository.Base
             return entity;
         }
 
+        public async Task<List<TEntity>> AddBulkAsync(List<TEntity> entities)
+        {
+            await _dbContext.Set<TEntity>().AddRangeAsync(entities);
+            await _dbContext.SaveChangesAsync();
+            return entities;
+        }
+
         #endregion
 
         #region Read
@@ -47,7 +54,6 @@ namespace Blog.Repository.Base
             return await _dbContext.Set<TEntity>()
                 .FindAsync(id);
         }
-
 
 
         public async Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate)

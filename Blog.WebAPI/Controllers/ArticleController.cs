@@ -17,6 +17,8 @@ namespace Blog.WebAPI.Controllers
     public class ArticleController : ControllerBase
     {
         private readonly IBaseService<Article, ArticleVo> _baseService;
+        private readonly IBaseService<ArticleTag, ArticleTag> _baseArticleTagService;
+        private readonly IBaseService<Tag, TagVo> _baseTagService;
         private readonly IArticleService _articleService;
         private readonly IMapper _mapper;
 
@@ -25,14 +27,20 @@ namespace Blog.WebAPI.Controllers
         /// </summary>
         /// <param name="baseService"></param>
         /// <param name="articleService"></param>
+        /// <param name="baseArticleTagService"></param>
+        /// <param name="baseTagService"></param>
         /// <param name="mapper"></param>
         public ArticleController(
             IBaseService<Article, ArticleVo> baseService,
             IArticleService articleService,
+            IBaseService<ArticleTag, ArticleTag> baseArticleTagService,
+            IBaseService<Tag, TagVo> baseTagService,
             IMapper mapper)
         {
             _baseService = baseService;
             _articleService = articleService;
+            _baseArticleTagService = baseArticleTagService;
+            _baseTagService = baseTagService;
             _mapper = mapper;
         }
 
@@ -44,6 +52,11 @@ namespace Blog.WebAPI.Controllers
         public async Task<ActionResult> AllArticles()
         {
             var result = await _baseService.QueryAllAsync();
+            for (int i = 0; i < result.Count; i++)
+            {
+                var tag = await _articleService.FindTagsAsync(result[i].ArticleId);
+                result[i].Tags = tag;
+            }
             return Ok(result);
         }
 
@@ -96,7 +109,15 @@ namespace Blog.WebAPI.Controllers
         [HttpGet("{pageSize}/{pageIndex}")]
         public async Task<ActionResult> GetArticles(int pageSize, int pageIndex)
         {
+            
             var result = await _articleService.PaginatorAsync(pageSize, pageIndex);
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                var tag = await _articleService.FindTagsAsync(result[i].ArticleId);
+                result[i].Tags = tag;
+            }
+
             return Ok(result);
         }
 
@@ -119,8 +140,11 @@ namespace Blog.WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult> GetArticle(long id)
         {
-            var result = await _articleService.FindByIdAsync(id);
-            return Ok(result);
+            var article = await _baseService.FindByIdAsync(id);
+            var tags = await _articleService.FindTagsAsync(id);
+            article.Tags = tags;
+            
+            return Ok(article);
         }
 
         /// <summary>
@@ -132,6 +156,11 @@ namespace Blog.WebAPI.Controllers
         public async Task<ActionResult> RecommendedArticles(int size)
         {
             var result = await _articleService.RecommendedArticles(size);
+            for (int i = 0; i < result.Count; i++)
+            {
+                var tag = await _articleService.FindTagsAsync(result[i].ArticleId);
+                result[i].Tags = tag;
+            }
             return Ok(result);
         }
 
@@ -145,6 +174,41 @@ namespace Blog.WebAPI.Controllers
         {
             Article targetArticle = _mapper.Map<Article>(article);
             var result = await _articleService.UpdateAsync(targetArticle);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// 通过 tag 获取 articles
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("{tagId}")]
+        public async Task<ActionResult> GetArticles(long tagId)
+        {
+            var articleTags = await _baseArticleTagService.QueryAsync( x => x.TagsId == tagId);
+            var result = new List<ArticleVo>();
+            if (articleTags != null)
+            {
+                foreach (var articleTag in articleTags)
+                {
+                    ArticleVo article = await _baseService.FindByIdAsync(articleTag.ArticlesId);
+                    List<TagVo> tag = await _articleService.FindTagsAsync(article.ArticleId);
+                    article.Tags = tag;
+                    result.Add(article);
+                }
+            }
+            return Ok(result);
+        }
+
+        /// <summary>
+        ///  贴上标签
+        /// </summary>
+        /// <param name="tagIds"></param>
+        /// <param name="articleId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult> AttachTags(List<long> tagIds, long articleId)
+        {
+            var result = await _articleService.AttachTags(tagIds, articleId);
             return Ok(result);
         }
     }

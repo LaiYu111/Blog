@@ -9,12 +9,14 @@
             Article
             </summary>
         </member>
-        <member name="M:Blog.WebAPI.Controllers.ArticleController.#ctor(Blog.IService.IBaseService{Blog.Model.Entities.Article,Blog.Model.Views.ArticleVo},Blog.IService.IArticleService,AutoMapper.IMapper)">
+        <member name="M:Blog.WebAPI.Controllers.ArticleController.#ctor(Blog.IService.IBaseService{Blog.Model.Entities.Article,Blog.Model.Views.ArticleVo},Blog.IService.IArticleService,Blog.IService.IBaseService{Blog.Model.Entities.ArticleTag,Blog.Model.Entities.ArticleTag},Blog.IService.IBaseService{Blog.Model.Entities.Tag,Blog.Model.Views.TagVo},AutoMapper.IMapper)">
             <summary>
             Construcutor
             </summary>
             <param name="baseService"></param>
             <param name="articleService"></param>
+            <param name="baseArticleTagService"></param>
+            <param name="baseTagService"></param>
             <param name="mapper"></param>
         </member>
         <member name="M:Blog.WebAPI.Controllers.ArticleController.AllArticles">
@@ -78,6 +80,20 @@
             <param name="article"></param>
             <returns></returns>
         </member>
+        <member name="M:Blog.WebAPI.Controllers.ArticleController.GetArticles(System.Int64)">
+            <summary>
+            通过 tag 获取 articles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.ArticleController.AttachTags(System.Collections.Generic.List{System.Int64},System.Int64)">
+            <summary>
+             贴上标签
+            </summary>
+            <param name="tagIds"></param>
+            <param name="articleId"></param>
+            <returns></returns>
+        </member>
         <member name="T:Blog.WebAPI.Controllers.SystemController">
             <summary>
             System
@@ -92,6 +108,46 @@
             <summary>
             Version
             </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Blog.WebAPI.Controllers.TagController">
+            <summary>
+            Tag Controller
+            </summary>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.TagController.#ctor(Blog.IService.IBaseService{Blog.Model.Entities.Tag,Blog.Model.Views.TagVo},AutoMapper.IMapper,Blog.IService.IArticleService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="baseService"></param>
+            <param name="mapper"></param>
+            <param name="articleService"></param>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.TagController.GetTagById(System.Int64)">
+            <summary>
+            获取所有的 Tag
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.TagController.AllTags">
+            <summary>
+            获取所有的 Tag
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.TagController.GetTagByName(Blog.Model.RequestModels.TagRequest)">
+            <summary>
+            通过 TagName 获取 tag
+            </summary>
+            <param name="tagRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.TagController.CreateTags(System.Collections.Generic.List{Blog.Model.RequestModels.TagRequest})">
+            <summary>
+            批量创建 Tag 
+            </summary>
+            <param name="tagRequest"></param>
             <returns></returns>
         </member>
         <member name="T:Blog.WebAPI.Controllers.UserController">

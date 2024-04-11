@@ -11,6 +11,6 @@ namespace Blog.Model.Entities
         public string TagName { get; set; }
         public string Color { get; set; }
 
-        public ICollection<Article> Articles { get; set; }
+        public List<ArticleTag> ArticleTags { get; set; }
     }
 }

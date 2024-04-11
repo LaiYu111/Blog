@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Blog.IService;
+using Blog.Model.Entities;
 using Blog.Repository.Base;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Blog.Service
     {
         protected readonly IMapper _mapper;
         protected readonly IBaseRepository<TEntity> _baseRepository;
+        
 
         public BaseService(IMapper mapper, IBaseRepository<TEntity> baseRepository)
         {
@@ -28,6 +30,13 @@ namespace Blog.Service
             var result = await _baseRepository.AddAsync(entity);
             return _mapper.Map<TVo>(result);
         }
+        
+        public async Task<List<TVo>> AddBulkAsync(List<TEntity> entities)
+        {
+            var result = await _baseRepository.AddBulkAsync(entities);
+            return _mapper.Map<List<TVo>>(result);
+        }
+
         #endregion
 
         #region Delete

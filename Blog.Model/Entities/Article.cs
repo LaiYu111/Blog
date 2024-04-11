@@ -16,7 +16,6 @@ namespace Blog.Model.Entities
         public string Content { get; set; } = string.Empty;
         public string CoverImage { get; set; } = string.Empty;
         public DateTime UpdateTime { get; set; } = DateTime.Now;
-
-        public ICollection<Tag> Tags { get; set; }
+        public List<ArticleTag> ArticleTags { get; set; }
     }
 }

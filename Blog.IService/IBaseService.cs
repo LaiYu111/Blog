@@ -12,6 +12,7 @@ namespace Blog.IService
         #region Create
 
         Task<TVo> AddAsync(TEntity entity);
+        Task<List<TVo>> AddBulkAsync(List<TEntity> entities);
 
         #endregion
 

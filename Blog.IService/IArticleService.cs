@@ -13,5 +13,7 @@ namespace Blog.IService
     {
         Task<List<string>> SaveFilesAsync(IFormFile[] files);
         Task<List<ArticleVo>> RecommendedArticles(int size);
+        Task<ArticleVo> AttachTags(List<long> tagIds, long articleId);
+        Task<List<TagVo>> FindTagsAsync(long articleId);
     }
 }

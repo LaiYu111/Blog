@@ -60,6 +60,19 @@ namespace Blog.Extensions.AutoMapper
                     // 在这里调用加密方法，并将结果赋给user.PasswordHash
                     user.PasswordHash = MD5EncriptionHelper.Encrypt(userReq.Password);
                 });
+
+            // Tag <--> TagVo
+            CreateMap<TagRequest, Tag>()
+                .ForMember(tag => tag.TagName, origin => origin.MapFrom(tagRequest => tagRequest.TagName))
+                .ForMember(tag => tag.Id, origin => origin.MapFrom(tagRequest => tagRequest.Id))
+                .ForMember(tag => tag.Color, origin => origin.MapFrom(tagRequest => tagRequest.Color));
+
+
+            CreateMap<Tag, TagVo>()
+                .ForMember(tagVo => tagVo.Id, origin => origin.MapFrom(tag => tag.Id))
+                .ForMember(tagVo => tagVo.TagName, origin => origin.MapFrom(tag => tag.TagName))
+                .ForMember(tagVo => tagVo.Color, origin => origin.MapFrom(tag => tag.Color))
+                .ForMember(tagVo => tagVo.CreateTime, origin => origin.MapFrom(tag => tag.CreateTime));
         }
     }
 }

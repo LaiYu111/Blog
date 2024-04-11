@@ -51,18 +51,27 @@ namespace Blog.Model
                 e.Property(e => e.LinkedIn).HasMaxLength(50);
             });
 
+
             modelBuilder.Entity<Article>(e =>
             {
                 e.ToTable("Articles");
                 e.Property(e => e.Title).HasMaxLength(100);
                 e.Property(e => e.Description).HasMaxLength(500);
                 e.Property(e => e.CoverImage).HasMaxLength(200);
-                e.HasMany(a => a.Tags)
-                .WithMany(a => a.Articles)
-                .UsingEntity(a => a.ToTable("ArticleTags"));
             });
 
-         
+            modelBuilder.Entity<ArticleTag>()
+                 .HasKey(at => new { at.ArticlesId, at.TagsId });
+
+            modelBuilder.Entity<ArticleTag>()
+                .HasOne(at => at.Article)
+                .WithMany(a => a.ArticleTags)
+                .HasForeignKey(at => at.ArticlesId);
+
+            modelBuilder.Entity<ArticleTag>()
+                .HasOne(at => at.Tag)
+                .WithMany(t => t.ArticleTags)
+                .HasForeignKey(at => at.TagsId);
 
             modelBuilder.Entity<Role>(e =>
             {

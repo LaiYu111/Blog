@@ -22,35 +22,7 @@ namespace Blog.WebAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Blog.Model.Entities.Articles.Article", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("articleENID")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("articleZHID")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("articleENID")
-                        .IsUnique();
-
-                    b.HasIndex("articleZHID")
-                        .IsUnique();
-
-                    b.ToTable("Articles", (string)null);
-                });
-
-            modelBuilder.Entity("Blog.Model.Entities.Articles.ArticleEN", b =>
+            modelBuilder.Entity("Blog.Model.Entities.Article", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,45 +60,22 @@ namespace Blog.WebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ArticleEN");
+                    b.ToTable("Articles", (string)null);
                 });
 
-            modelBuilder.Entity("Blog.Model.Entities.Articles.ArticleZH", b =>
+            modelBuilder.Entity("Blog.Model.Entities.ArticleTag", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<long>("ArticlesId")
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.Property<long>("TagsId")
+                        .HasColumnType("bigint");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("ArticlesId", "TagsId");
 
-                    b.Property<string>("CoverImage")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasIndex("TagsId");
 
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Likes")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ArticleZH");
+                    b.ToTable("ArticleTag");
                 });
 
             modelBuilder.Entity("Blog.Model.Entities.Role", b =>
@@ -148,6 +97,30 @@ namespace Blog.WebAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles", (string)null);
+                });
+
+            modelBuilder.Entity("Blog.Model.Entities.Tag", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TagName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("Blog.Model.Entities.User", b =>
@@ -227,23 +200,23 @@ namespace Blog.WebAPI.Migrations
                     b.ToTable("UserDetail", (string)null);
                 });
 
-            modelBuilder.Entity("Blog.Model.Entities.Articles.Article", b =>
+            modelBuilder.Entity("Blog.Model.Entities.ArticleTag", b =>
                 {
-                    b.HasOne("Blog.Model.Entities.Articles.ArticleEN", "articleEN")
-                        .WithOne("article")
-                        .HasForeignKey("Blog.Model.Entities.Articles.Article", "articleENID")
+                    b.HasOne("Blog.Model.Entities.Article", "Article")
+                        .WithMany("ArticleTags")
+                        .HasForeignKey("ArticlesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Blog.Model.Entities.Articles.ArticleZH", "articleZH")
-                        .WithOne("article")
-                        .HasForeignKey("Blog.Model.Entities.Articles.Article", "articleZHID")
+                    b.HasOne("Blog.Model.Entities.Tag", "Tag")
+                        .WithMany("ArticleTags")
+                        .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("articleEN");
+                    b.Navigation("Article");
 
-                    b.Navigation("articleZH");
+                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("Blog.Model.Entities.User", b =>
@@ -265,21 +238,19 @@ namespace Blog.WebAPI.Migrations
                     b.Navigation("UserDetail");
                 });
 
-            modelBuilder.Entity("Blog.Model.Entities.Articles.ArticleEN", b =>
+            modelBuilder.Entity("Blog.Model.Entities.Article", b =>
                 {
-                    b.Navigation("article")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Blog.Model.Entities.Articles.ArticleZH", b =>
-                {
-                    b.Navigation("article")
-                        .IsRequired();
+                    b.Navigation("ArticleTags");
                 });
 
             modelBuilder.Entity("Blog.Model.Entities.Role", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("Blog.Model.Entities.Tag", b =>
+                {
+                    b.Navigation("ArticleTags");
                 });
 
             modelBuilder.Entity("Blog.Model.Entities.UserDetail", b =>

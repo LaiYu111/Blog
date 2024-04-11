@@ -23,6 +23,7 @@ namespace Blog.Repository.Base
         #region Create
 
         Task<TEntity> AddAsync(TEntity entity);
+        Task<List<TEntity>> AddBulkAsync(List<TEntity> entities);
 
         #endregion
 
