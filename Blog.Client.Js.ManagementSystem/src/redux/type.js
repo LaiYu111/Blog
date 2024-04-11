@@ -21,3 +21,7 @@ export const SET_ARTICLE_COUNT = "SET_ARTICLE_COUNT"
 export const SET_CURRENT_ARTICLE= "SET_CURRENT_ARTICLE"
 export const SET_ARTICLES= "SET_ARTICLES"
 export const DELETE_ARTICLES = 'DELETE_ARTICLES'
+
+// requestReducers - Tag
+export const SET_TAG_COUNT = "SET_TAG_COUNT"
+export const SET_TAGS= "SET_TAGS"

@@ -2,7 +2,7 @@ import {SET_PAGE_INDEX, SET_PAGE_SIZE} from "../../type.js";
 
 
 const initState = {
-  pageSize: 5,
+  pageSize: 10,
   pageIndex: 1,
 }
 

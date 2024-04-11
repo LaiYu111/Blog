@@ -150,6 +150,20 @@
             <param name="tagRequest"></param>
             <returns></returns>
         </member>
+        <member name="M:Blog.WebAPI.Controllers.TagController.GetTags(System.Int32,System.Int32)">
+            <summary>
+            分页
+            </summary>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.WebAPI.Controllers.TagController.CountTags">
+            <summary>
+            计算数量
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Blog.WebAPI.Controllers.UserController">
             <summary>
             User Controller

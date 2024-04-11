@@ -80,6 +80,28 @@ namespace Blog.WebAPI.Controllers
             return Ok(result);
         }
 
-        
+        /// <summary>
+        /// 分页
+        /// </summary>
+        /// <param name="pageSize"></param>
+        /// <param name="pageIndex"></param>
+        /// <returns></returns>
+        [HttpGet("{pageSize}/{pageIndex}")]
+        public async Task<ActionResult> GetTags(int pageSize, int pageIndex)
+        {
+            var result = await _baseService.PaginatorAsync(pageSize, pageIndex);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// 计算数量
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ActionResult> CountTags()
+        {
+            var count = await _baseService.CountAsync();
+            return Ok(count);
+        }
     }
 }
