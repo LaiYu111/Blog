@@ -164,6 +164,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Blog.WebAPI.Controllers.TagController.UpdateTag(Blog.Model.RequestModels.TagRequest)">
+            <summary>
+            更新 Tag
+            </summary>
+            <param name="tagRequest"></param>
+            <returns></returns>
+        </member>
         <member name="T:Blog.WebAPI.Controllers.UserController">
             <summary>
             User Controller

@@ -65,7 +65,7 @@ namespace Blog.WebAPI.Controllers
         /// </summary>
         /// <param name="article"></param>
         /// <returns></returns>
-        [Authorize(Roles = $"{PolicyNames.Admin}")]
+        //[Authorize(Roles = $"{PolicyNames.Admin}")]
         [HttpPost]
         public async Task<ActionResult> CreateArticle([FromBody] ArticleRequest article)
         {

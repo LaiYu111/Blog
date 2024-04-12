@@ -35,7 +35,7 @@ namespace Blog.IService
         #region Delete
 
         Task DeleteAsync(TEntity entity);
-
+        Task DeleteAllAsync(Expression<Func<TEntity, bool>> predicate);
         Task DeleteAsync(Expression<Func<TEntity, bool>> predicate);
 
         #endregion

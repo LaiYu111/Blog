@@ -1,4 +1,4 @@
-import {Button, Divider, List} from "antd";
+import {Button, Divider, List, Tag} from "antd";
 import './index.css'
 import MyPagination from "../../components/MyPagination/index.jsx";
 import {useEffect} from "react";
@@ -9,12 +9,17 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import PropTypes from "prop-types";
 import useDelete from "../../hooks/useDelete.js";
+import {setPageIndex} from "../../redux/actions/systemActions/paginationActions.js";
 
 
 
 function Footer (){
+  const pageIndex = useSelector(state =>  state.systemReducers.pagination.pageIndex)
+  const pageSize = useSelector(state =>  state.systemReducers.pagination.pageSize)
+  const total = useSelector(state => state.requestReducers.article.total)
+
   return (
-    <MyPagination />
+    <MyPagination pageIndex={pageIndex} pageSize={pageSize} total={total} />
   )
 }
 
@@ -29,6 +34,7 @@ function Items( {item} ) {
   const dispatch = useDispatch()
   const token = useSelector(state => state.systemReducers.user.token)
   const navigator = useNavigate()
+
 
   useEffect(() => {
     if (data === true){
@@ -49,7 +55,22 @@ function Items( {item} ) {
     <List.Item>
       <List.Item.Meta
         title={<Link to={`/articles/${item.articleId}`}>{item.articleId} | {item.articleTitle}</Link>}
-        description={item.articleDescription}
+        description={
+          <>
+            <div>
+              {item.articleDescription}
+            </div>
+            <div style={{display:"flex", flexDirection:"row" }}>
+              {item.tags.map((tag) => (
+                <div key={tag.id}>
+                  <Tag color={tag.color}>
+                    {tag.tagName}
+                  </Tag>
+                </div>
+              ))}
+            </div>
+          </>
+        }
       />
 
       <div style={{ display: "flex", flexDirection:"row", height: "100%"}}>
@@ -73,6 +94,7 @@ Items.propTypes = {
     articleId: PropTypes.number,
     articleTitle: PropTypes.string,
     articleDescription: PropTypes.string,
+    tags: PropTypes.array
   }),
 }
 
@@ -83,6 +105,12 @@ function ArticlesPage(){
   const pageIndex = useSelector(state => state.systemReducers.pagination.pageIndex)
   const pageSize = useSelector(state => state.systemReducers.pagination.pageSize)
   const data = useSelector(state => state.requestReducers.article.articles)
+
+
+  useEffect(() => {
+
+    dispatch(setPageIndex(1))
+  }, []);
 
   useEffect(() => {
     async function fetchData () {

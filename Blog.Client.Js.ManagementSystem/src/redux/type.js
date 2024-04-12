@@ -25,3 +25,6 @@ export const DELETE_ARTICLES = 'DELETE_ARTICLES'
 // requestReducers - Tag
 export const SET_TAG_COUNT = "SET_TAG_COUNT"
 export const SET_TAGS= "SET_TAGS"
+export const UPDATE_TAG = "UPDATE_TAG"
+export const ADD_TAG = "ADD_TAG"
+export const DELETE_TAGS = "DELETE_TAGS"

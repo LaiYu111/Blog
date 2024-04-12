@@ -1,11 +1,10 @@
 import {Input, Pagination} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import {setPageIndex, setPageSize} from "../../redux/actions/systemActions/paginationActions.js";
+import PropTypes from "prop-types";
 
-function MyPagination(){
-  const pageIndex = useSelector(state =>  state.systemReducers.pagination.pageIndex)
-  const pageSize = useSelector(state =>  state.systemReducers.pagination.pageSize)
-  const total = useSelector(state => state.requestReducers.article.total)
+function MyPagination({pageIndex, pageSize, total}){
+
   const dispatch = useDispatch()
 
   const handleSetPage=(page, pageSize)=>{
@@ -36,6 +35,12 @@ function MyPagination(){
       </div>
     </div>
   )
+}
+
+MyPagination.propTypes = {
+  pageIndex: PropTypes.number,
+  pageSize: PropTypes.number,
+  total: PropTypes.number
 }
 
 export default MyPagination

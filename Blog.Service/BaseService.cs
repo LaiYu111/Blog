@@ -51,6 +51,11 @@ namespace Blog.Service
             await _baseRepository.DeleteAsync(predicate);
         }
 
+        public async Task DeleteAllAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            await _baseRepository.DeleteAllAsync(predicate);
+        }
+
         public async Task DeleteByIdAsync(object id)
         {
             var entity = await _baseRepository.FindByIdAsync(id);

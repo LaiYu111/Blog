@@ -103,5 +103,29 @@ namespace Blog.WebAPI.Controllers
             var count = await _baseService.CountAsync();
             return Ok(count);
         }
+
+        /// <summary>
+        /// 更新 Tag
+        /// </summary>
+        /// <param name="tagRequest"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public async Task<ActionResult> UpdateTag([FromBody] TagRequest tagRequest)
+        {
+            var result = await _baseService.UpdateAsync(_mapper.Map<Tag>(tagRequest));
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// 删除Tag
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public async Task<ActionResult> DeleteTag([FromQuery] List<long> ids)
+        {
+            await _baseService.DeleteAsync(x => ids.Contains(x.Id));
+            return Ok(true);
+        }
     }
 }

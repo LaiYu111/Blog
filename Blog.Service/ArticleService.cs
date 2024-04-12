@@ -68,6 +68,7 @@ namespace Blog.Service
 
         public async Task<ArticleVo> AttachTags(List<long> tagIds, long articleId)
         {
+            await _baseArticleTagRepository.DeleteAsync(x => x.ArticlesId == articleId);
             var article = await _baseRepository.FindByIdAsync(articleId);
             //if (article.Tags == null)
             //{

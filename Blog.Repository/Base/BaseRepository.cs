@@ -88,6 +88,12 @@ namespace Blog.Repository.Base
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task DeleteAllAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            await _dbContext.Set<TEntity>().Include(predicate).ExecuteDeleteAsync();
+            await _dbContext.SaveChangesAsync();
+        }
+
         #endregion
 
         #region Statistic

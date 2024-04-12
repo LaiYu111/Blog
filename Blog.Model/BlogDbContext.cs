@@ -66,12 +66,14 @@ namespace Blog.Model
             modelBuilder.Entity<ArticleTag>()
                 .HasOne(at => at.Article)
                 .WithMany(a => a.ArticleTags)
-                .HasForeignKey(at => at.ArticlesId);
+                .HasForeignKey(at => at.ArticlesId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<ArticleTag>()
                 .HasOne(at => at.Tag)
                 .WithMany(t => t.ArticleTags)
-                .HasForeignKey(at => at.TagsId);
+                .HasForeignKey(at => at.TagsId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Role>(e =>
             {

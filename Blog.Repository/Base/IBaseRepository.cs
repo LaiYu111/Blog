@@ -49,6 +49,7 @@ namespace Blog.Repository.Base
         Task DeleteAsync(TEntity entity);
 
         Task DeleteAsync(Expression<Func<TEntity, bool>> predicate);
+        Task DeleteAllAsync(Expression<Func<TEntity, bool>> predicate);
 
         #endregion
 

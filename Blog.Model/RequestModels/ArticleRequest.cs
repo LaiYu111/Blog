@@ -15,6 +15,6 @@ namespace Blog.Model.RequestModels
         public required string Description {  get; set; }
         public string CoverImage {  get; set; } = string.Empty;
         public DateTime UpdateTime { get; set; } = DateTime.Now;
-        
+        //public List<TagRequest> Tags { get; set; }
     }
 }
