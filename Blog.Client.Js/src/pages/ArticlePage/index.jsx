@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import {useIntl} from "react-intl";
 import 'highlight.js/styles/googlecode.css'
 import {setTOC} from "../../redux/actions/componentAction/tocAction.js";
+import Tag from "../../components/Tag/index.jsx";
 
 function Header({data}){
 	const intl = useIntl()
@@ -19,6 +20,13 @@ function Header({data}){
 		<div>
 			<div className={`${style.title}`}>
 				{data.articleTitle}
+			</div>
+			<div>
+				{data.tags.map((value, key) => (
+					<div key={key}>
+						<Tag tagName={value.tagName} color={value.color} />
+					</div>
+				))}
 			</div>
 			<div className={style.caption}>
 				{intl.formatMessage({id:'common.lastEdited'})}: {data.articleUpdateTime}

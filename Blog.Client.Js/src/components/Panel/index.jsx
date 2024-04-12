@@ -1,9 +1,9 @@
 import style from './index.module.scss'
 import PropTypes from 'prop-types';
 
-const Panel= ({children}) => {
+const Panel= ({children, className}) => {
 	return (
-		<div className={`${style.root}`}>
+		<div className={`${style.root} ${className}`}>
 			{children}
 		</div>
 	)

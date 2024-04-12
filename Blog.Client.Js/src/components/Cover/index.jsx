@@ -6,13 +6,13 @@ import ChromeReaderModeOutlinedIcon from '@mui/icons-material/ChromeReaderModeOu
 import PropTypes from "prop-types";
 import useNav from "../../hooks/useNav.js";
 import {useState} from "react";
+import Tag from "../Tag/index.jsx";
 
 
 
 
-const Cover = ({image, articleID, title, description}) => {
+const Cover = ({image, articleID, title, description, tags}) => {
 	const {navigate} = useNav()
-
 
 	const handleNav = () => {
 		navigate(`/article/${articleID}`)
@@ -31,24 +31,23 @@ const Cover = ({image, articleID, title, description}) => {
 				>
 					{articleID}: {title}
 				</div>
-
-
-					<div
-						className={style.article}
-						onClick={handleNav}
-					>
-						{description}
-					</div>
-
-
-			{/*<div className={style.others}>*/}
-			{/*		<ThumbUpOffAltIcon fontSize={"small"}  />*/}
-			{/*		<ChatBubbleOutlineIcon fontSize={'small'}/>*/}
-			{/*		<ChromeReaderModeOutlinedIcon fontSize={'small'}/>*/}
-			{/*	</div>*/}
+				<div>
+					{tags.map((tag) => (
+						<div key={tag.id}>
+							<Tag
+								tagName={tag.tagName}
+								color={tag.color}
+							/>
+						</div>
+					))}
+				</div>
+				<div
+					className={style.article}
+					onClick={handleNav}
+				>
+					{description}
+				</div>
 			</div>
-
-
 			<div className={style.gap}></div>
 			{/* image */}
 			{image && (
@@ -68,7 +67,8 @@ Cover.propTypes = {
 		PropTypes.number
 	]),
 	title: PropTypes.string,
-	description: PropTypes.string
+	description: PropTypes.string,
+	tags: PropTypes.array
 }
 
 

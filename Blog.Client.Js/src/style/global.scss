@@ -68,7 +68,7 @@ hr{
   font-size: 24px; /* 字体大小 */
   font-weight: bold; /* 字体粗细 */
   color: #333; /* 字体颜色 */
-  margin-bottom: 5px; /* 底部边距 */
+  //margin-bottom: 5px; /* 底部边距 */
 }
 
 .link{
@@ -82,4 +82,17 @@ hr{
 .caption{
   font-size: 14px;
   color: $grey500;
+}
+
+.tag{
+  padding: 3px 7px;
+  border-radius: 3px;
+  display: inline-block;
+  color: white;
+  font-size:9px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.tag:hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }

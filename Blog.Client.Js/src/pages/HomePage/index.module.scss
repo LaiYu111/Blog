@@ -1,0 +1,19 @@
+
+.tagList{
+
+  .Panel{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    padding: 5px;
+    overflow: auto;
+  }
+  .tag{
+    display: inline-block;
+  }
+}
+
+.articleList{
+  display: flex;
+  flex-direction: column;
+}

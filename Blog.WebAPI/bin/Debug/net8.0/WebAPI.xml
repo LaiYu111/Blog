@@ -171,6 +171,13 @@
             <param name="tagRequest"></param>
             <returns></returns>
         </member>
+        <member name="M:Blog.WebAPI.Controllers.TagController.DeleteTag(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            删除Tag
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
         <member name="T:Blog.WebAPI.Controllers.UserController">
             <summary>
             User Controller
