@@ -73,7 +73,11 @@
   .others{
     flex-grow: 0;
     //align-self: flex-end;
-
+  }
+  .tags{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
   }
 }
 

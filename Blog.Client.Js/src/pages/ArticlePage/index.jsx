@@ -12,31 +12,38 @@ import {useIntl} from "react-intl";
 import 'highlight.js/styles/googlecode.css'
 import {setTOC} from "../../redux/actions/componentAction/tocAction.js";
 import Tag from "../../components/Tag/index.jsx";
+import {Skeleton} from "@mui/material";
 
 function Header({data}){
 	const intl = useIntl()
 
 	return (
-		<div>
-			<div className={`${style.title}`}>
-				{data.articleTitle}
-			</div>
-			<div>
-				{data.tags.map((value, key) => (
-					<div key={key}>
-						<Tag tagName={value.tagName} color={value.color} />
-					</div>
-				))}
-			</div>
-			<div className={style.caption}>
-				{intl.formatMessage({id:'common.lastEdited'})}: {data.articleUpdateTime}
-			</div>
+		<div className={`${style.header}`}>
+				<div className={`${style.title}`}>
+					{data.articleTitle}
+				</div>
+				<div className={`${style.tags}`}>
+					{data.tags? (
+						<>
+							{data.tags.map((value, key) => (
+								<div key={key}>
+									<Tag tagName={value.tagName} color={value.color}/>
+								</div>
+							))}
+						</>
+					): (
+						<Skeleton />
+					)}
+				</div>
+				<div className={style.caption}>
+					{intl.formatMessage({id: 'common.lastEdited'})}: {data.articleUpdateTime}
+				</div>
 		</div>
 	)
 }
 
 Header.propTypes = {
-	data : PropTypes.object
+	data: PropTypes.object
 }
 
 const Article = ({articleId}) => {
@@ -45,8 +52,8 @@ const Article = ({articleId}) => {
 	const currentArticle = useSelector(state => state.requestReducers.article.currentArticle)
 	const toc = useRef()
 
-	useEffect(  () => {
-		async function fetchData (){
+	useEffect(() => {
+		async function fetchData() {
 			const currentArticle = await getData(`${BACKEND_URL}/api/Article/GetArticle/${articleId}`)
 			dispatch(setCurrentArticle(currentArticle))
 		}

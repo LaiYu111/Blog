@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Blog.Common;
 using Blog.IService;
 using Blog.Model.Entities;
 using Blog.Model.RequestModels;
 using Blog.Model.Views;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.WebAPI.Controllers
@@ -72,6 +74,7 @@ namespace Blog.WebAPI.Controllers
         /// </summary>
         /// <param name="tagRequest"></param>
         /// <returns></returns>
+        [Authorize(Roles = $"{PolicyNames.Guest},{PolicyNames.Admin}")]
         [HttpPost]
         public async Task<ActionResult> CreateTags([FromBody] List<TagRequest> tagRequest)
         {
@@ -109,6 +112,7 @@ namespace Blog.WebAPI.Controllers
         /// </summary>
         /// <param name="tagRequest"></param>
         /// <returns></returns>
+        [Authorize(Roles = $"{PolicyNames.Guest},{PolicyNames.Admin}")]
         [HttpPut]
         public async Task<ActionResult> UpdateTag([FromBody] TagRequest tagRequest)
         {
@@ -121,6 +125,7 @@ namespace Blog.WebAPI.Controllers
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
+        [Authorize(Roles = $"{PolicyNames.Guest},{PolicyNames.Admin}")]
         [HttpDelete]
         public async Task<ActionResult> DeleteTag([FromQuery] List<long> ids)
         {

@@ -40,3 +40,13 @@
 .custom hr{
   border: solid $grey500 1px;
 }
+
+.header{
+
+  .tags{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+}
+

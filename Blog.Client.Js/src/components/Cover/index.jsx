@@ -29,9 +29,9 @@ const Cover = ({image, articleID, title, description, tags}) => {
 					className={style.title}
 					onClick={handleNav}
 				>
-					{articleID}: {title}
+					{title}
 				</div>
-				<div>
+				<div className={style.tags}>
 					{tags.map((tag) => (
 						<div key={tag.id}>
 							<Tag
