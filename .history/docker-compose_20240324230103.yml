@@ -1,7 +1,0 @@
-version: '3.8'
-
-services:
-  webapi:
-    container_name: blog_webapi
-    build: 
-    context: .
