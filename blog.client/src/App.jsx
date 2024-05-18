@@ -1,17 +1,18 @@
 import { useState } from 'react'
-import './App.scss'
+import s from './App.module.scss'
 import {Route, Routes} from "react-router-dom";
-import HomePage from "./pages/HomePage/index.jsx";
-import ArticlePage from "./pages/ArticlePage/index.jsx";
-import AboutPage from "./pages/AboutPage/index.jsx";
+import HomePage from "@/pages/HomePage/index.jsx";
+import ArticlePage from "@/pages/ArticlePage/index.jsx";
+import AboutPage from "@/pages/AboutPage/index.jsx";
+import Header from "@/components/Header/index.jsx";
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div>
+    <div className={s.layout}>
       <div>
-
+        <Header />
       </div>
       <div>
         <Routes>
@@ -21,7 +22,7 @@ function App() {
         </Routes>
       </div>
       <div>
-
+        footer
       </div>
     </div>
   )

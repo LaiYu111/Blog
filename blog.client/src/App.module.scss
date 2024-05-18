@@ -1,3 +1,9 @@
 @import './style/base.module.scss';
 @import './style/global.module.scss';
 
+// App.jsx Style
+
+.layout{
+  display: flex;
+  flex-direction: column;
+}
