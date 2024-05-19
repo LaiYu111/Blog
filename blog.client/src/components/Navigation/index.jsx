@@ -1,13 +1,16 @@
 import s from './index.module.scss'
 import {useEffect, useRef, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 function Navigation(){
   const [activeIndex, setActiveIndex] = useState(0);
   const [sliderStyle, setSliderStyle] = useState({});
   const navRefs = useRef([]);
+  const nav = useNavigate()
 
-  const handleNavClick = (index) => {
+  const handleNavClick = (index, path) => {
     setActiveIndex(index);
+    nav(path)
   };
 
   useEffect(() => {
@@ -23,9 +26,9 @@ function Navigation(){
   return (
     <div className={s.navContainer}>
       <nav>
-        <a ref={(el) => (navRefs.current[0] = el)} onClick={() => handleNavClick(0)}>文xxxx章</a>
-        <a ref={(el) => (navRefs.current[1] = el)} onClick={() => handleNavClick(1)}>作者</a>
-
+        <a ref={(el) => (navRefs.current[0] = el)} onClick={() => handleNavClick(0, '/article')}>文章</a>
+        <a ref={(el) => (navRefs.current[1] = el)} onClick={() => handleNavClick(1, '/about')}>作者</a>
+        <a ref={(el) => (navRefs.current[2] = el)} onClick={() => handleNavClick(2, '/')}>其他</a>
       </nav>
       <div className={s.animation} style={sliderStyle}></div>
     </div>

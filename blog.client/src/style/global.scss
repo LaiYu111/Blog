@@ -1,0 +1,40 @@
+@import "@/style/base.scss";
+
+html {
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0 auto;
+  padding: 50px;
+  max-width: 1300px;
+}
+
+// Styles
+.caption{
+  color: $grey-400;
+  display: inline-block;
+  font-style: italic;
+}
+
+@media screen and (min-width: 941px) and (max-width:1370px){
+  h1 {
+    font-size: 64px;
+  }
+
+  .caption{
+    font-size: 15px;
+
+  }
+}
+
+@media screen and  (max-width:940px){
+  h1 {
+    font-size: 32px;
+  }
+
+  .caption{
+    font-size: 13px;
+  }
+}

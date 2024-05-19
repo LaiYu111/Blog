@@ -1,0 +1,27 @@
+@import "@/style/base.scss";
+@import '@/style/global.scss';
+
+.cover{
+  width: 400px;
+  height: 365px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cover img{
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: $border-radius-md;
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1);
+}
+
+.cover h2{
+  margin: 2px;
+}
+
+.cover .caption{
+  overflow: hidden;
+}
