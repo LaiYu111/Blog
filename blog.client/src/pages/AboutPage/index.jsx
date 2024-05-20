@@ -1,14 +1,15 @@
 import author from '@/assets/author.png'
-import author2 from '@/assets/author2.png'
 import s from './index.module.scss'
 import {useEffect, useRef} from "react";
+import Timeline from "@/components/Timeline/index.jsx";
 
 
 function AboutPage() {
   const flagsRef = useRef([])
 
+  // 选择标签放入 flagsRef 作为锚点。如果被选中的锚点被观察（IntersectionObserver）到，则添加css动画样式。卸载组件时初始化状态。
   useEffect(() => {
-    console.log(flagsRef)
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -34,7 +35,7 @@ function AboutPage() {
 
   return (
     <div className={s.aboutLayout}>
-      <section>
+      <section className={s.aboutSection}>
         <div className={`${s.imageContainer} ${s.flagLeft}`} ref={(el) => (flagsRef.current[0] = el)}>
           <img src={author}/>
         </div>
@@ -47,17 +48,11 @@ function AboutPage() {
         </div>
       </section>
 
-      <section>
-        <div className={`${s.imageContainer} ${s.flagLeft}`} ref={(el) => (flagsRef.current[2] = el)}>
-          <img src={author2}/>
-        </div>
 
-        <div className={s.flagRight} ref={(el) => (flagsRef.current[3] = el)}>
-          <h1>About2</h1>
-          <div className={s.caption}>
-            asdasdasdasdasdasdasdasdasdasdasd
-          </div>
-        </div>
+      <Timeline/>
+
+      <section>
+
       </section>
     </div>
   )

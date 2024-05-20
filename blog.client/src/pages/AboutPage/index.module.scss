@@ -4,18 +4,19 @@
 .aboutLayout{
 }
 
+// 被定位的实体初始位置 or 状态
 .flagRight {
   opacity: 0;
   transition: all 1.5s;
   transform: translateX(100%);
 }
-
+// 被定位的实体初始位置 or 状态
 .flagLeft{
   opacity: 0;
   transition: all 1.5s;
   transform: translateX(-100%);
 }
-
+// 被定位的实体的结束 or 激活状态
 .active {
   opacity: 1;
   transform: translateX(0);
@@ -38,7 +39,7 @@
 }
 
 .aboutLayout img{
-  height: 700px;
+  height: 70vh;
   width: 440px;
   object-fit: cover;
   border-radius: $border-radius-md;
@@ -52,14 +53,14 @@
 
 
 @media screen and (max-width: 940px) {
-  .aboutLayout section{
+  .aboutLayout .aboutSection{
     grid-template-rows: 1fr 2fr;
     grid-template-columns: none;
     grid-gap: 20px;
   }
 
   .aboutLayout img{
-    height: 400px;
+    height: 40vh;
   }
 
   .aboutLayout h1{
