@@ -54,7 +54,7 @@ function Skills(){
         <Tag name={".Net Core"}/>
         <Tag name={"MongoDb"}/>
       </div>
-      <div className={`${s.skills} ${s.flagRight}`} ref={(el) => rowTwoFlags.current[1] = el}>
+      <div className={`${s.skills} ${s.flagRight}`} ref={(el) => rowOneFlags.current[1] = el}>
         <Tag name={"React.Js"}/>
         <Tag name={"JavaScript"}/>
         <Tag name={".Net Core"}/>
