@@ -1,8 +1,8 @@
 import s from './index.module.scss'
-function Tag(){
+function Tag({name}){
   return(
     <div className={s.tag}>
-      tag
+      {name}
     </div>
   )
 }

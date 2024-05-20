@@ -52,20 +52,26 @@ function Timeline() {
   return (
     <div className={s.mask} ref={(el) => (maskRef.current = el)}>
       <div className={s.content}>
-        <h1 className={s.header}> Timeline </h1>
+        <h1 className={s.header}> Experiences </h1>
         {event.map((value, key) => (
           <section key={key} className={s.timelineSection}>
             <div className={`${s.flagUp}`} ref={(el) => (timeFlagRef.current[key] = el)}>
               {value.time}
             </div>
             <div className={s.iconWrapper}>
-              {/*<SchoolRoundedIcon fontSize={'large'} className={s.icon}/>*/}
-              <WorkHistoryRoundedIcon fontSize={'large'} className={s.icon} />
+
+              {value.type === 'school' ? (
+                <SchoolRoundedIcon fontSize={'large'} className={s.icon}/>
+              ) : (
+                <WorkHistoryRoundedIcon fontSize={'large'} className={s.icon} />
+              )}
               <hr/>
             </div>
 
-            <div className={`${s.flagRight}`} ref={(el) => (contentFlagRef.current[key] = el)}>
-              {value.event}
+            <div className={`${s.flagRight} ${s.information}`} ref={(el) => (contentFlagRef.current[key] = el)}>
+              <h2>{value.title}</h2>
+              <div className={s.caption}> {value.subtitle}</div>
+              <div>{value.event}</div>
             </div>
           </section>
         ))}

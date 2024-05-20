@@ -1,14 +1,23 @@
 [
   {
-    "time": "2021.1",
-    "event": "作者：机者的目标保持一致，而不是做出不可预测的行为并伤害人类。另据《连线》等媒体报道，随着最近两位高管离职，OpenAI 的超级对齐团队已被解散。本周五，Jan Leike 在 X 发布了一系列帖子，怒斥 OpenAI 及其领导层忽视「安全」而偏爱「光鲜亮丽的产品」。发生了什么事？实际上，自去年 11 月那场「董事会风波」以来，社交媒体上一直流传着一个梗 ——Ilya 看到了什么。人们猜测：「OpenAI 秘密地取得了巨大的技术突破，而 Ilya 之所以离开，是因为他看到了一些可怕的事情，比如可能毁灭人类的人工智能系统。」当然，这只是一种粗暴的猜测。OpenAI 频繁失去安全团队成员可能与奥特曼的领导有很大关系。据消息人士透露，注重 AI 系统安全的员工已经对奥特曼的领导失去了信心。据外媒 Vox 报道，一位不愿透露姓名的公司内部人士表示：「这是一个信任一点一点崩溃的过程，就像多米诺骨牌一张一张倒下一样。」很少有员工愿意公开谈论此事。部分原因是 OpenAI 让员工在离职时签署带有非贬低条款的离职协议。如果你拒绝签署，你就放弃了你在该公司的股权，这意味着你可能会损失数百万美元。然而，总有例外。OpenAI 前员工 Daniel Kokotajlo 拒绝签署离职协议，以便他可以自由地批评该公司。Daniel Kokotajlo 于 2022 年加入 OpenAI，主要负责安全部署人工智能系统，并曾在治理团队工作，直到上个月辞职。据 Vox 报道，Daniel Kokotajlo 称：「OpenAI 正在训练更加强大的人工智能系统，最终目标是全面超越人类智能。这可能是人类有史以来最好的事情，但也可能是最糟糕的事情。」OpenAI 一直将构建通用人工智能 (AGI) 系统作为目标。「我加入时满怀期待地希望 OpenAI 在越来越接近 AGI 时表现得更加负责任，但我们中的许多人慢慢意识到 OpenAI 没有这样做，我逐渐对 OpenAI 领导层以及他们负责任地处理 AGI 的能力失去了信任，所以我辞职了，」Daniel Kokotajlo 说道。周五，Leike 在 X 的一条帖子中解释了他辞去超级对齐团队联合领导职务的原因，并描绘了一幅非常相似的画面。他写道：「相当长一段时间以来，我一直与 OpenAI 领导层关于公司核心优先事项的观点存在分歧，直到我们最终达到了临界点。」"
+    "time": "2020 - 2022",
+    "event": "学习xxxx",
+    "title": "Bachelor of Science - Computer Science",
+    "subtitle": "University of Auckland, New Zealand",
+    "type": "school"
   },
   {
-    "time": "2022.2 - 2022.5",
-    "event": "sadasdascvzxvxcv"
+    "time": "2022 - 2023",
+    "event": "xxxx",
+    "title": "China Aerospace Science and Industry Corporation Limited",
+    "subtitle": "Backend developer - intern, Xi'An, China",
+    "type": "working"
   },
   {
-    "time": "2022.2",
-    "event": "sadasdascvzxvxcv"
+    "time": "2023 ~ ",
+    "event": "xxx",
+    "title": "Master of Information Technology",
+    "subtitle": "University of Auckland, New Zealand",
+    "type": "school"
   }
 ]

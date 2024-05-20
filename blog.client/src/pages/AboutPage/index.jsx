@@ -5,6 +5,7 @@ import {useEffect, useRef, useState} from "react";
 import Timeline from "@/components/Timeline/index.jsx";
 import TypingAnimation from "@/components/TypingAnimation/index.jsx";
 import useTypeWritter from "react-typewriter-hook";
+import Skills from "@/components/Skills/index.jsx";
 
 const prompts = [
   "Hi, I am Laiyu Pei!",
@@ -77,10 +78,8 @@ function AboutPage() {
           </div>
         </div>
       </section>
-
-
+      <Skills />
       <Timeline/>
-
       <section>
 
       </section>
