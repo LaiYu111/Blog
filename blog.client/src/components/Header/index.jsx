@@ -5,7 +5,6 @@ function Header(){
   return (
     <div className={s.header}>
       <div className={s.logo}>
-        logo
       </div>
       <div className={s.navigation}><Navigation/></div>
     </div>

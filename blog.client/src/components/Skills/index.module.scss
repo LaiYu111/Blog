@@ -17,14 +17,22 @@
 
 .flagLeft{
   transition: all 1.5s;
-  transform: translateX(100%);
+  transform: translateX(-100%);
 }
 
 .flagRight{
   transition: all 2s;
-  transform: translateX(-100%);
+  transform: translateX(100%);
 }
 
 .active{
   transform: translateX(0);
+}
+
+.leftSkew{
+  transform: translateX(-2%);
+}
+
+.rightSkew{
+  transform: translateX(2%);
 }

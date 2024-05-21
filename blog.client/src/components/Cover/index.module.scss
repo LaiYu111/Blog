@@ -25,3 +25,11 @@
 .cover .caption{
   overflow: hidden;
 }
+
+
+@media screen and (max-width:940px){
+
+  .cover{
+    width: $image-weight-normal-mobile;
+  }
+}

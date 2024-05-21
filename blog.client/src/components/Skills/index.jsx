@@ -10,9 +10,22 @@ function Skills(){
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          // 增加动画
           entry.target.classList.add(s.active);
+
+          // 自定义结束动画定位
+          if (entry.target.classList.contains(s.flagRight)){
+            entry.target.classList.add(s.leftSkew)
+          }
+
+          if (entry.target.classList.contains(s.flagLeft)){
+            entry.target.classList.add(s.rightSkew)
+          }
+
         } else {
           entry.target.classList.remove(s.active);
+          entry.target.classList.remove(s.leftSkew);
+          entry.target.classList.remove(s.rightSkew);
         }
       })
     })
@@ -44,28 +57,19 @@ function Skills(){
       <div className={`${s.skills} ${s.flagRight}`} ref={(el) => rowOneFlags.current[0] = el}>
         <Tag name={"React.Js"}/>
         <Tag name={"JavaScript"}/>
-        <Tag name={".Net Core"}/>
-        <Tag name={"MongoDb"}/>
-        <Tag name={"Node.Js"}/>
+        <Tag name={"JavaScript"}/>
       </div>
       <div className={`${s.skills} ${s.flagLeft}`} ref={(el) => rowTwoFlags.current[0] = el}>
         <Tag name={"React.Js"}/>
         <Tag name={"JavaScript"}/>
-        <Tag name={".Net Core"}/>
-        <Tag name={"MongoDb"}/>
       </div>
       <div className={`${s.skills} ${s.flagRight}`} ref={(el) => rowOneFlags.current[1] = el}>
         <Tag name={"React.Js"}/>
         <Tag name={"JavaScript"}/>
-        <Tag name={".Net Core"}/>
-        <Tag name={"MongoDb"}/>
-        <Tag name={"AWS"}/>
-        <Tag name={"Docker"}/>
       </div>
       <div className={`${s.skills} ${s.flagLeft}`} ref={(el) => rowTwoFlags.current[1] = el}>
         <Tag name={"React.Js"}/>
         <Tag name={"JavaScript"}/>
-
       </div>
     </div>
   )

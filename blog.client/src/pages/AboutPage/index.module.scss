@@ -38,7 +38,7 @@
   justify-content: center;
 }
 
-.aboutLayout img{
+.aboutLayout .authorImg{
   height: 70vh;
   width: 440px;
   object-fit: cover;
@@ -74,8 +74,9 @@
     grid-gap: 20px;
   }
 
-  .aboutLayout img{
+  .aboutLayout .authorImg{
     height: 40vh;
+    width: $image-weight-normal-mobile;
   }
 
   .aboutLayout h1{

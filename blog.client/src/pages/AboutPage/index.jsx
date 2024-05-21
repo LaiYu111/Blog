@@ -63,7 +63,7 @@ function AboutPage() {
     <div className={s.aboutLayout}>
       <section className={s.aboutSection}>
         <div className={`${s.imageContainer} ${s.flagLeft}`} ref={(el) => (flagsRef.current[0] = el)}>
-          <img src={author}/>
+          <img className={s.authorImg} src={author}/>
         </div>
 
         <div className={s.flagRight} ref={(el) => (flagsRef.current[1] = el)}>
@@ -80,9 +80,7 @@ function AboutPage() {
       </section>
       <Skills />
       <Timeline/>
-      <section>
 
-      </section>
     </div>
   )
 }
