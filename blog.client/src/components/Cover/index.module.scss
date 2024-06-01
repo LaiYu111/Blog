@@ -26,6 +26,11 @@
   overflow: hidden;
 }
 
+.tags{
+  display: inline-flex;
+  gap: 5px;
+  flex-direction: row;
+}
 
 @media screen and (max-width:940px){
 
