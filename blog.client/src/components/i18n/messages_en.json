@@ -1,3 +1,10 @@
 {
+  "base.author": "Author",
+  "base.article": "Article",
 
+  "article.title": "Article",
+
+  "about": "About",
+  "about.skills": "Skills",
+  "about.experiences": "Experiences"
 }

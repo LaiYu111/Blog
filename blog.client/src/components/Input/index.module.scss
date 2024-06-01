@@ -1,0 +1,9 @@
+@import "@/style/base.scss";
+.input{
+  border: solid $grey-300 2px;
+  border-radius: $border-radius-md;
+}
+
+.input:focus{
+  outline: none;
+}

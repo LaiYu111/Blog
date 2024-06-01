@@ -23,6 +23,10 @@ body {
   display: inline-block;
 }
 
+.divider{
+  background-color: $grey-500;
+}
+
 @media screen and (min-width: 941px) and (max-width:1370px){
   h1 {
     font-size: 64px;

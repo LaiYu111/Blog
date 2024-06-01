@@ -1,1 +1,3 @@
 export const SET_NAVIGATION = "SET_NAVIGATION"
+
+export const SET_LANGUAGE = "SET_LANGUAGE"

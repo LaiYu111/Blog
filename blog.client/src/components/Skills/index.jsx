@@ -1,6 +1,7 @@
 import s from './index.module.scss'
 import Tag from "@/components/Tag/index.jsx";
 import {useEffect, useRef} from "react";
+import {FormattedMessage} from "react-intl";
 function Skills(){
   const rowOneFlags = useRef([])
   const rowTwoFlags = useRef([])
@@ -53,7 +54,7 @@ function Skills(){
 
   return (
     <div className={s.skillLayout}>
-      <h1>Skills</h1>
+      <h1><FormattedMessage id={'about.skills'} /></h1>
       <div className={`${s.skills} ${s.flagRight}`} ref={(el) => rowOneFlags.current[0] = el}>
         <Tag name={"React.Js"}/>
         <Tag name={"JavaScript"}/>

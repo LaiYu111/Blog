@@ -6,6 +6,7 @@ import Timeline from "@/components/Timeline/index.jsx";
 import TypingAnimation from "@/components/TypingAnimation/index.jsx";
 import useTypeWritter from "react-typewriter-hook";
 import Skills from "@/components/Skills/index.jsx";
+import {FormattedMessage} from "react-intl";
 
 const prompts = [
   "Hi, I am Laiyu Pei!",
@@ -67,7 +68,7 @@ function AboutPage() {
         </div>
 
         <div className={s.flagRight} ref={(el) => (flagsRef.current[1] = el)}>
-          <h1>About</h1>
+          <h1><FormattedMessage id={'about'} /></h1>
           {/*<TypingAnimation /> */}
           <h2>{prompt}<span className={s.blink}>_</span></h2>
           <div className={s.caption}>

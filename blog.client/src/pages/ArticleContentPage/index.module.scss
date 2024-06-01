@@ -1,0 +1,25 @@
+@import "@/style/global.scss";
+
+.layout{
+  display: grid;
+  grid-row-gap: 15px;
+}
+
+.article{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.navigation{
+
+}
+
+.content{
+  flex-grow: 1;
+}
+
+.divider{
+  height: 100%;
+  margin: 0;
+}

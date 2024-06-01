@@ -3,6 +3,7 @@ import {useEffect, useRef} from "react";
 import event from './event.json'
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
 import WorkHistoryRoundedIcon from '@mui/icons-material/WorkHistoryRounded';
+import {FormattedMessage} from "react-intl";
 // 嵌套动画
 // mask 滑动长度
 // content 承载内容
@@ -52,7 +53,7 @@ function Timeline() {
   return (
     <div className={s.mask} ref={(el) => (maskRef.current = el)}>
       <div className={s.content}>
-        <h1 className={s.header}> Experiences </h1>
+        <h1 className={s.header}><FormattedMessage id={'about.experiences'} /></h1>
         {event.map((value, key) => (
           <section key={key} className={s.timelineSection}>
             <div className={`${s.flagUp}`} ref={(el) => (timeFlagRef.current[key] = el)}>

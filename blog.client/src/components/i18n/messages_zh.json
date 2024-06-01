@@ -1,3 +1,10 @@
 {
+  "base.author": "作者",
+  "base.article": "文章",
 
+  "article.title": "文章",
+
+  "about": "关于",
+  "about.skills": "技能",
+  "about.experiences": "经历"
 }

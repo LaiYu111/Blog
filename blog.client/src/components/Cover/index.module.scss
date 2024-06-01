@@ -16,6 +16,20 @@
   object-fit: cover;
   border-radius: $border-radius-md;
   box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+
+  &:hover{
+    scale: 1.02;
+    transition: scale 0.1s linear;
+  }
+}
+
+.text{
+  &:hover{
+    cursor: pointer;
+    scale: 1.02;
+    transition: scale 0.1s linear;
+  }
 }
 
 .cover h2{

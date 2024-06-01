@@ -14,8 +14,8 @@ function Cover({
                }){
 
  return (
-   <div className={s.cover} onClick={onClick}>
-     <img src={image}/>
+   <div className={s.cover}>
+     <img src={image} onClick={onClick}/>
      <div className={s.tags}>
        {tags.map((tag) => (
          <div key={tag.id}>
@@ -23,11 +23,13 @@ function Cover({
          </div>
        ))}
      </div>
-     <h2>
-       {title}
-     </h2>
-     <div className={s.caption}>
-       {description}
+     <div className={s.text} onClick={onClick}>
+       <h2>
+         {title}
+       </h2>
+       <div className={s.caption}>
+         {description}
+       </div>
      </div>
    </div>
  )
