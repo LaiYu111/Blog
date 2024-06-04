@@ -39,23 +39,30 @@ function Skills(){
 
   return (
     <div className={s.skillLayout}>
-      <h1><FormattedMessage id={'about.skills'} /></h1>
+      <h1><FormattedMessage id={'about.skills'}/></h1>
       <div className={`${s.skills} ${s.flagLeft}`} ref={(el) => rowOneFlags.current[0] = el}>
-        <Tag name={"React.Js"}/>
+
         <Tag name={"JavaScript"}/>
-        <Tag name={"JavaScript"}/>
+        <Tag name={"TypeScript"}/>
+        <Tag name={"Python"}/>
+        <Tag name={"C#"}/>
       </div>
       <div className={`${s.skills} ${s.flagLeft}`} ref={(el) => rowOneFlags.current[1] = el}>
+        <Tag name={"Node.Js"}/>
         <Tag name={"React.Js"}/>
-        <Tag name={"JavaScript"}/>
+        <Tag name={"Express.Js"}/>
+        <Tag name={".Net Core"}/>
+        <Tag name={"Flask"}/>
+        <Tag name={"Django"}/>
       </div>
       <div className={`${s.skills} ${s.flagLeft}`} ref={(el) => rowOneFlags.current[2] = el}>
-        <Tag name={"React.Js"}/>
-        <Tag name={"JavaScript"}/>
+        <Tag name={"MongoDb"}/>
+        <Tag name={"MySQL"}/>
       </div>
       <div className={`${s.skills} ${s.flagLeft}`} ref={(el) => rowOneFlags.current[3] = el}>
-        <Tag name={"React.Js"}/>
-        <Tag name={"JavaScript"}/>
+        <Tag name={"Docker"}/>
+        <Tag name={"Docker-compose"}/>
+        <Tag name={"AWS"}/>
       </div>
     </div>
   )

@@ -12,17 +12,18 @@
   justify-content: center;
   margin: 5px;
   gap: 5px;
+  flex-flow: wrap;
 }
 
 .flagLeft{
-  transition: all 1.5s;
+  transition: all 1.5s  cubic-bezier(0, 1.3, 1, 0.02);
   transform: translateX(-100%);
 }
 
-.flagRight{
-  transition: all 2s;
-  transform: translateX(100%);
-}
+//.flagRight{
+//  transition: all 2s;
+//  transform: translateX(100%);
+//}
 
 .active{
   transform: translateX(0);

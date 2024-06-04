@@ -71,7 +71,12 @@ function Timeline() {
 
             <div className={`${s.flagRight} ${s.information}`} ref={(el) => (contentFlagRef.current[key] = el)}>
               <h2>{value.title}</h2>
-              <div className={s.caption}> {value.subtitle}</div>
+              <div className={s.caption}>
+                <span>{value.time}</span>
+              </div>
+              <div className={s.caption}>
+                <span>{value.subtitle}</span>
+              </div>
               <div>{value.event}</div>
             </div>
           </section>
