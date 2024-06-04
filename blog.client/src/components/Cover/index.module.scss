@@ -27,8 +27,8 @@
 .text{
   &:hover{
     cursor: pointer;
-    scale: 1.02;
-    transition: scale 0.1s linear;
+    color: $red-400;
+    transition: color 0.2s ease;
   }
 }
 

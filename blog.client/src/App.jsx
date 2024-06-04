@@ -6,7 +6,7 @@ import Header from "@/components/Header/index.jsx";
 import Settings from "@/components/Settings/index.jsx";
 import ArticleContentPage from "@/pages/ArticleContentPage/index.jsx";
 import {useSelector} from "react-redux";
-import {FormattedMessage, IntlProvider} from "react-intl";
+import {IntlProvider} from "react-intl";
 import {MESSAGES} from "@/config.js";
 
 

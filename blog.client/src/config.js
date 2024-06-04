@@ -9,9 +9,9 @@ export const MESSAGES = {
 // Localstorage key
 export const ROUTE = "ROUTE"
 
-
 // Languages
 export const LANGUAGE = {
+  _: 'language',
   EN: "en",
   ZH: "zh"
 }

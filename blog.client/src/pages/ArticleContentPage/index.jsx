@@ -1,5 +1,4 @@
 import s from './index.module.scss'
-import Input from "@/components/Input/index.jsx";
 
 function ArticleContentPage(){
   return (
@@ -15,8 +14,6 @@ function ArticleContentPage(){
           xx
         </div>
       </div>
-
-      <Input/>
     </div>
   )
 }

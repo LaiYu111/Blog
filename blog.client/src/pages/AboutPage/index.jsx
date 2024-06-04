@@ -1,12 +1,12 @@
-// import author from '@/assets/author.png'
 import author from '@/assets/author.jpg'
 import s from './index.module.scss'
 import {useEffect, useRef, useState} from "react";
-import Timeline from "@/components/Timeline/index.jsx";
+import Timeline from "@/pages/AboutPage/Timeline/index.jsx";
 import TypingAnimation from "@/components/TypingAnimation/index.jsx";
 import useTypeWritter from "react-typewriter-hook";
-import Skills from "@/components/Skills/index.jsx";
+import Skills from "@/pages/AboutPage/Skills/index.jsx";
 import {FormattedMessage} from "react-intl";
+import Projects from "@/pages/AboutPage/Projects/index.jsx";
 
 const prompts = [
   "Hi, I am Laiyu Pei!",
@@ -79,9 +79,9 @@ function AboutPage() {
           </div>
         </div>
       </section>
+      <Projects />
       <Skills />
       <Timeline/>
-
     </div>
   )
 }

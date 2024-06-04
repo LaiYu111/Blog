@@ -12,7 +12,7 @@
 }
 
 .navigation{
-
+  width: 200px;
 }
 
 .content{
@@ -22,4 +22,5 @@
 .divider{
   height: 100%;
   margin: 0;
+  border: solid $grey-400 1px;
 }

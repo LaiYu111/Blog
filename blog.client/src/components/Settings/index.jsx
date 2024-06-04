@@ -6,7 +6,6 @@ import {LANGUAGE} from "@/config.js";
 function Settings(){
   const dispatch = useDispatch()
   const language = useSelector(state => state.language._)
-
   const handleSetting = (value) => {
     dispatch(setLanguage(value))
   }

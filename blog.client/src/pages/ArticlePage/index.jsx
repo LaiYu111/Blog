@@ -20,7 +20,7 @@ function HomePage() {
             <Cover
               description={article.description}
               title={article.title}
-              imageURL={article.imageURL}
+              imageURL={article.imagePath}
               id={article.id}
               tags={article.tags}
               onClick={() => handleRouting(`/article/${article.id}`)}

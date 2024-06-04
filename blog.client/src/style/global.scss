@@ -1,14 +1,10 @@
 @import "@/style/base.scss";
 
-html {
-  min-height: 100%;
-  overflow-x: hidden;
-}
-
 body {
   margin: 0 auto;
   padding: 50px;
   max-width: 1300px;
+  overflow-x: hidden;
 }
 
 // Styles
@@ -46,4 +42,5 @@ body {
   .caption{
     font-size: 13px;
   }
+
 }

@@ -1,0 +1,63 @@
+@import "@/style/base.scss";
+@import "@/style/global.scss";
+.header{
+  text-align: center;
+}
+.root{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container{
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  color: white;
+  perspective: 2000px;
+  //border: #b71c1c solid 2px; // 视角
+}
+
+.content{
+  display: flex;
+  //border: #b71c1c solid 3px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transform: translateZ(-30vw) rotateY(0);
+}
+
+.projectImage{
+  position: absolute;
+  width: 60vw;
+  height: 40vw;
+  max-width: 400px;
+  max-height: 300px;
+  //box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5);
+  border-radius: $border-radius-md;
+  background-size: cover;
+  transition: all 1s ease;
+  //-webkit-box-reflect: below 20px -webkit-linear-gradient(transparent 70%, rgba(0,0,0,0.5));
+}
+
+
+.paginator{
+  display: flex;
+  flex-direction: row;
+  gap: 10px
+}
+
+@media screen and  (min-width:700px){
+  .projectImage{
+    -webkit-box-reflect: below 20px -webkit-linear-gradient(transparent 70%, rgba(0,0,0,0.5));
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5);
+  }
+}

@@ -3,7 +3,7 @@
     "id": 1,
     "title": "Demo1",
     "description": "xxxxx",
-    "imageURL": "xxx",
+    "imagePath": "xxx",
     "tags": [
       {
         "id": 1,
@@ -22,7 +22,7 @@
     "id": 2,
     "title": "Demo2",
     "description": "x",
-    "imageURL": "xxx",
+    "imagePath": "xxx",
     "tags": [
       {
         "id": 1,
@@ -41,7 +41,7 @@
     "id": 3,
     "title": "Demo3",
     "description": "x",
-    "imageURL": "xxx",
+    "imagePath": "xxx",
     "tags": [
       {
         "id": 1,
