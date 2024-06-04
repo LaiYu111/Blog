@@ -2,6 +2,7 @@ import s from './index.module.scss'
 import projectList from './projectList.json'
 import {useEffect, useRef, useState} from "react";
 import Button from "@/components/Button/index.jsx";
+import Tag from "@/components/Tag/index.jsx";
 
 
 function Projects(){
@@ -14,6 +15,14 @@ function Projects(){
       return currentImg === index
     }else{
       return projectList.length + currentImg === index
+    }
+  }
+
+  const pageConverter = () => {
+    if (currentImg < 0) {
+      return Math.abs(projectList.length + currentImg)
+    }else{
+      return currentImg
     }
   }
 
@@ -38,6 +47,7 @@ function Projects(){
         console.log(`[Projects]: ${currentImg} Image ${index} transform:`, img.style.transform);
       }
     });
+
   }, [currentImg]);
 
 
@@ -84,10 +94,18 @@ function Projects(){
     <div className={s.root}>
       <h1 className={s.header}>Projects</h1>
 
-      <div>
-        <h2>{projectList[currentImg].name}</h2>
-        <div className={s.caption}>{projectList[currentImg].description}</div>
+      <div className={s.information}>
+        <h2>{projectList[pageConverter()].name}</h2>
+        <div className={s.caption}>{projectList[pageConverter()].description}</div>
+        <div className={s.tags}>
+          {projectList[pageConverter()].tags.map((tag) => (
+            <div key={tag.id}>
+              <Tag name={tag.name}/>
+            </div>
+          ))}
+        </div>
       </div>
+
 
       <div
         className={s.container}

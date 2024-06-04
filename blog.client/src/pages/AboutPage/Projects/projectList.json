@@ -1,20 +1,81 @@
 [
   {
     "name": "Music Plus",
-    "description": "xxxx",
+    "description": "A music app which provides personalised recommendations based on a user's listening habits and preferences.",
     "imagePath": "https://laiyu.s3.ap-southeast-2.amazonaws.com/blog/1.png",
-    "link": "https://github.com/UOA-CS732-SE750-Students-2023/project-group-azure-aardvarks"
+    "link": "https://github.com/UOA-CS732-SE750-Students-2023/project-group-azure-aardvarks",
+    "tags": [
+      {
+        "id": 1,
+        "name": "JavaScript",
+        "bgColor": "red"
+      },
+      {
+        "id": 2,
+        "name": "React.Js",
+        "bgColor": "red"
+      },
+      {
+        "id": 3,
+        "name": "MongoDb",
+        "bgColor": "red"
+      },
+      {
+        "id": 4,
+        "name": "Node.Js",
+        "bgColor": "blue"
+      },
+      {
+        "id": 5,
+        "name": "Express.Js",
+        "bgColor": "blue"
+      }
+    ]
   },
   {
     "name": "Marker & Tutor Management System",
-    "description": "xxxx",
+    "description": "Marker & Tutor Management System (MTMS) is an web based tool for managing enrollment of the tutor and markers for the University of Auckland.",
     "imagePath": "https://laiyu.s3.ap-southeast-2.amazonaws.com/blog/2.png",
-    "link": "https://github.com/uoa-compsci399-s2-2022/team3-front-end"
+    "link": "https://github.com/uoa-compsci399-s2-2022/team3-front-end",
+    "tags": [
+      {
+        "id": 1,
+        "name": "TypeScript",
+        "bgColor": "red"
+      },
+      {
+        "id": 2,
+        "name": "Vue3.Js",
+        "bgColor": "red"
+      },
+      {
+        "id": 3,
+        "name": "Python",
+        "bgColor": "red"
+      },
+      {
+        "id": 4,
+        "name": "Flask",
+        "bgColor": "red"
+      }
+    ]
   },
   {
     "name": "Blog",
-    "description": "xxxx",
+    "description": "Personal blog",
     "imagePath": "https://laiyu.s3.ap-southeast-2.amazonaws.com/blog/3.png",
-    "link": "https://github.com/LaiYu111/Blog"
+    "link": "https://github.com/LaiYu111/Blog",
+    "tags": [
+      {
+        "id" : 1,
+        "name": "JavaScript",
+        "bgColor": "red"
+      },
+      {
+        "id": 2,
+        "name": "React.Js",
+        "bgColor": "red"
+      }
+    ]
   }
 ]

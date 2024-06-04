@@ -2,7 +2,6 @@ import author from '@/assets/author.jpg'
 import s from './index.module.scss'
 import {useEffect, useRef, useState} from "react";
 import Timeline from "@/pages/AboutPage/Timeline/index.jsx";
-import TypingAnimation from "@/components/TypingAnimation/index.jsx";
 import useTypeWritter from "react-typewriter-hook";
 import Skills from "@/pages/AboutPage/Skills/index.jsx";
 import {FormattedMessage} from "react-intl";
