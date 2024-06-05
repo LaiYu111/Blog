@@ -1,23 +1,51 @@
 [
   {
-    "time": "2020 - 2022",
-    "event": "学习xxxx",
-    "title": "Bachelor of Science - Computer Science",
-    "subtitle": "University of Auckland, New Zealand",
-    "type": "school"
+    "time": "2020.2 - 2022.11",
+    "type": "school",
+    "event": {
+      "zh": "掌握计算机的基础知识。如计算机组成原理、软件开发方法（敏捷开发方法）、面向对象编程、SOLID Principle、数据库等等。并且学习图像处理，机器学习等非开发相关知识。",
+      "en": "Understanding of the fundamentals of computers. Such as Principles of Computer Composition, Software Development Methodology (Agile Development Methodology), Object Oriented Programming, SOLID Principle, Databases, and so on. And learn non-development related knowledge such as image processing, machine learning, etc."
+    },
+    "title": {
+      "zh": "计算机科学学士学位",
+      "en": "Bachelor of Science - Computer Science"
+    },
+    "subtitle": {
+      "zh": "奥克兰大学，新西兰 （QS 前100）",
+      "en": "University of Auckland, New Zealand"
+    }
   },
   {
-    "time": "2022 - 2023",
-    "event": "xxxx",
-    "title": "China Aerospace Science and Industry Corporation Limited",
-    "subtitle": "Backend developer - intern, Xi'An, China",
-    "type": "working"
+    "time": "2022.7 - 2023.1",
+    "type": "working",
+    "event": {
+      "zh": "使用 Python + Django (Django Restful Framework) 和前端团队开发Web应用；\n编写测试报告，产品报告以及调研报告；\n使用 Docker 进行项目打包，并利用 docker-compose 工具将项目部署到 Docker 环境中。",
+      "en": "Develop web applications with a team using Python and Django (Django Restful Framework); \n Write test reports, product reports, and research reports; \n Package projects using Docker and deploy them to a Docker environment using docker-compose."
+    },
+    "title": {
+      "zh": "中国航天科工集团有限公司 706所",
+      "en": "China Aerospace Science and Industry Corporation Limited (Global 500)"
+    },
+    "subtitle": {
+      "zh": "后端开发实习生；西安；",
+      "en": "Backend developer - intern, Xi'An, China"
+    }
+
   },
   {
-    "time": "2023 ~ ",
-    "event": "xxx",
-    "title": "Master of Information Technology",
-    "subtitle": "University of Auckland, New Zealand",
-    "type": "school"
+    "time": "2023.2 ~ ",
+    "type": "school",
+    "event": {
+      "zh": "学习大数据、数据挖掘、云计算等知识。以系统动力学的角度思考开发的思想，哲学与方法。利用 SAP 软件来对某公司建立Business Process模型，并提供解决方案。",
+      "en": "Learn about big data, data mining, and cloud computing. Thinking about development ideas, philosophies and methods in terms of system dynamics. Use SAP software to model Business Process for a company and provide solutions."
+    },
+    "title": {
+      "zh": "信息技术硕士学位",
+      "en": "Master of information Technology"
+    },
+    "subtitle": {
+      "zh": "奥克兰大学，新西兰 （QS 前100）",
+      "en": "University of Auckland, New Zealand"
+    }
   }
 ]

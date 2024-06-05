@@ -1,7 +1,8 @@
 [
   {
     "name": "Music Plus",
-    "description": "A music app which provides personalised recommendations based on a user's listening habits and preferences.",
+    "description_en": "A music app which provides personalised recommendations based on a user's listening habits and preferences.",
+    "description_zh": "一款音乐应用程序，可以根据用户的收听习惯和偏好提供个性化推荐。",
     "imagePath": "https://laiyu.s3.ap-southeast-2.amazonaws.com/blog/1.png",
     "link": "https://github.com/UOA-CS732-SE750-Students-2023/project-group-azure-aardvarks",
     "tags": [
@@ -34,7 +35,8 @@
   },
   {
     "name": "Marker & Tutor Management System",
-    "description": "Marker & Tutor Management System (MTMS) is an web based tool for managing enrollment of the tutor and markers for the University of Auckland.",
+    "description_en": "Marker & Tutor Management System (MTMS) is an web based tool for managing enrollment of the tutor and markers for the University of Auckland.",
+    "description_zh": "一个 SaaS 服务； 对奥克兰大学的 Tutor, Marker 的注册/审批/管理后台管理系统；",
     "imagePath": "https://laiyu.s3.ap-southeast-2.amazonaws.com/blog/2.png",
     "link": "https://github.com/uoa-compsci399-s2-2022/team3-front-end",
     "tags": [
@@ -62,7 +64,8 @@
   },
   {
     "name": "Blog",
-    "description": "Personal blog",
+    "description_en": "Personal blog site",
+    "description_zh": "个人博客网站",
     "imagePath": "https://laiyu.s3.ap-southeast-2.amazonaws.com/blog/3.png",
     "link": "https://github.com/LaiYu111/Blog",
     "tags": [

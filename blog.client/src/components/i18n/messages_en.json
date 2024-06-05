@@ -1,10 +1,14 @@
 {
   "base.author": "Author",
   "base.article": "Article",
+  "base.projects": "Projects",
 
   "article.title": "Article",
 
   "about": "About",
   "about.skills": "Skills",
-  "about.experiences": "Experiences"
+  "about.experiences": "Experiences",
+  "about.CV": "Download CV",
+  "about.introduction.caption": "Master of Information Technology student at the University of Auckland. Expected to graduate by the end of 2024.",
+  "about.introduction": "Hello, I am Laiyu Pei, born in Guangdong (China) in 2001, and I graduated with a bachelor's degree from the University of Auckland in New Zealand. I enjoy browsing Zhihu and Bilibili, reading technical articles, and playing games. Besides that, I am interested in development, such as building web applications based on React. Of course, I don't limit myself to a single tech stack; I also have project experience with various front-end and back-end frameworks like Vue3, Express.js, .Net Core, and Django."
 }

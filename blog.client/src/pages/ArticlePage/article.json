@@ -1,57 +1,27 @@
 [
   {
-    "id": 1,
-    "title": "Demo1",
-    "description": "xxxxx",
-    "imagePath": "xxx",
+    "id": "1",
+    "title": "欢迎！Welcome!",
+    "description": "welcome",
+    "imagePath": "https://laiyu.s3.ap-southeast-2.amazonaws.com/blog/articleImage1.png",
+    "content": "<h1>欢迎欢迎！！Welcome!!</h1><p>后续编写后端，富文本编辑器等功能</p><p>Add backend system and rich editor functions later</p>",
+    "createDate": "2024.6.5",
+    "modifyDate": "2024.6.5",
     "tags": [
       {
-        "id": 1,
-        "name": "xxx",
-        "bgColor": "red"
+        "id": "1",
+        "name": "中文",
+        "bgColor": ""
       },
       {
-        "id": 2,
-        "name": "yyy",
-        "bgColor": "blue"
-      }
-    ]
-  },
-
-  {
-    "id": 2,
-    "title": "Demo2",
-    "description": "x",
-    "imagePath": "xxx",
-    "tags": [
-      {
-        "id": 1,
-        "name": "xxx",
-        "bgColor": "red"
+        "id": "2",
+        "name": "日常",
+        "bgColor": ""
       },
       {
-        "id": 2,
-        "name": "yyy",
-        "bgColor": "blue"
-      }
-    ]
-  },
-
-  {
-    "id": 3,
-    "title": "Demo3",
-    "description": "x",
-    "imagePath": "xxx",
-    "tags": [
-      {
-        "id": 1,
-        "name": "xxx",
-        "bgColor": "red"
-      },
-      {
-        "id": 2,
-        "name": "yyy",
-        "bgColor": "blue"
+        "id": "3",
+        "name": "English",
+        "bgColor": ""
       }
     ]
   }

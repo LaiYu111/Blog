@@ -18,7 +18,7 @@ function Settings(){
         ): (
           <div className={s.element} onClick={ () => handleSetting(LANGUAGE.ZH)}>ZH</div>
         )}
-        <div className={s.element}>XX</div>
+        {/*<div className={s.element}>XX</div>*/}
       </div>
     </div>
   )

@@ -41,7 +41,6 @@ function Skills(){
     <div className={s.skillLayout}>
       <h1><FormattedMessage id={'about.skills'}/></h1>
       <div className={`${s.skills} ${s.flagLeft}`} ref={(el) => rowOneFlags.current[0] = el}>
-
         <Tag name={"JavaScript"}/>
         <Tag name={"TypeScript"}/>
         <Tag name={"Python"}/>
@@ -60,6 +59,7 @@ function Skills(){
         <Tag name={"MySQL"}/>
       </div>
       <div className={`${s.skills} ${s.flagLeft}`} ref={(el) => rowOneFlags.current[3] = el}>
+        <Tag name={"Linux"}/>
         <Tag name={"Docker"}/>
         <Tag name={"Docker-compose"}/>
         <Tag name={"AWS"}/>

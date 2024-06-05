@@ -6,6 +6,10 @@ import useTypeWritter from "react-typewriter-hook";
 import Skills from "@/pages/AboutPage/Skills/index.jsx";
 import {FormattedMessage} from "react-intl";
 import Projects from "@/pages/AboutPage/Projects/index.jsx";
+import Button from "@/components/Button/index.jsx";
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import DownloadIcon from '@mui/icons-material/Download';
 
 const prompts = [
   "Hi, I am Laiyu Pei!",
@@ -59,6 +63,10 @@ function AboutPage() {
 
   }, [prompt])
 
+  const handleNavigation = (url) => {
+    window.open(url)
+  }
+
   return (
     <div className={s.aboutLayout}>
       <section className={s.aboutSection}>
@@ -68,18 +76,25 @@ function AboutPage() {
 
         <div className={s.flagRight} ref={(el) => (flagsRef.current[1] = el)}>
           <h1><FormattedMessage id={'about'} /></h1>
+          <div className={s.icon}>
+            <Button onClick={() => handleNavigation('https://www.linkedin.com/in/laiyu-pei-90b572223/')}><LinkedInIcon/></Button>
+            <Button onClick={() => handleNavigation('https://github.com/LaiYu111')} ><GitHubIcon/></Button>
+            <Button><FormattedMessage id={'about.CV'} /> <DownloadIcon /> </Button>
+          </div>
           {/*<TypingAnimation /> */}
           <h2>{prompt}<span className={s.blink}>_</span></h2>
-          <div className={s.caption}>
-            asdasdasdasdasdasdasdasdasdasdasd
-          </div>
-          <div>
-            asdasdasdasdasdasd您asdasdasdasd您asdasdasdasd您asdasdasdasd您asdasdasdasd您asdasdasdasd您asdasd您asdaasdasdasdasd您sdasdasd您asdasdasdasd您asdasdasdasd您asdasdasdasd您asdasdasdasd您asdaasdasdasdasd您asdasdasdasd您sdasdasd您asdasdasdasd您asdasdasdasd您asdasdasdasd您asdasdasdasd您asdasdasdasd您
+          <div className={s.introduction}>
+            <div className={s.caption}>
+              <FormattedMessage id={'about.introduction.caption'}/>
+            </div>
+            <div>
+              <FormattedMessage id={'about.introduction'}/>
+            </div>
           </div>
         </div>
       </section>
-      <Projects />
-      <Skills />
+      <Projects/>
+      <Skills/>
       <Timeline/>
     </div>
   )

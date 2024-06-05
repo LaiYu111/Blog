@@ -14,8 +14,9 @@
   height: 250px;
   width: 100%;
   object-fit: cover;
+  background-size: cover;
   border-radius: $border-radius-md;
-  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.7);
   cursor: pointer;
 
   &:hover{

@@ -4,6 +4,8 @@ import event from './event.json'
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
 import WorkHistoryRoundedIcon from '@mui/icons-material/WorkHistoryRounded';
 import {FormattedMessage} from "react-intl";
+import {useSelector} from "react-redux";
+import {LANGUAGE} from "@/config.js";
 // 嵌套动画
 // mask 滑动长度
 // content 承载内容
@@ -11,6 +13,7 @@ function Timeline() {
   const timeFlagRef = useRef([])
   const contentFlagRef = useRef([])
   const maskRef = useRef(null)
+  const language = useSelector(state => state.language._)
 
   // 初始化 mask 的长度
   useEffect(() => {
@@ -70,14 +73,32 @@ function Timeline() {
             </div>
 
             <div className={`${s.flagRight} ${s.information}`} ref={(el) => (contentFlagRef.current[key] = el)}>
-              <h2>{value.title}</h2>
-              <div className={s.caption}>
-                <span>{value.time}</span>
-              </div>
-              <div className={s.caption}>
-                <span>{value.subtitle}</span>
-              </div>
-              <div>{value.event}</div>
+
+              { language === LANGUAGE.EN && (
+                <>
+                  <h2>{value.title.en}</h2>
+                  <div className={s.caption}>
+                    <span>{value.time}</span>
+                  </div>
+                  <div className={s.caption}>
+                    <span>{value.subtitle.en}</span>
+                  </div>
+                  <div dangerouslySetInnerHTML={{__html: value.event.en.replace(/\n/g, '<br/>')}}/>   {/* 灵活编辑 event 文本 */}
+                </>
+              )}
+
+              {language === LANGUAGE.ZH && (
+                <>
+                  <h2>{value.title.zh}</h2>
+                  <div className={s.caption}>
+                    <span>{value.time}</span>
+                  </div>
+                  <div className={s.caption}>
+                    <span>{value.subtitle.zh}</span>
+                  </div>
+                  <div dangerouslySetInnerHTML={{__html: value.event.zh.replace(/\n/g, '<br/>')}}/>
+                </>
+              )}
             </div>
           </section>
         ))}

@@ -1,10 +1,15 @@
 {
   "base.author": "作者",
   "base.article": "文章",
+  "base.projects": "项目",
 
   "article.title": "文章",
 
   "about": "关于",
   "about.skills": "技能",
-  "about.experiences": "经历"
+  "about.experiences": "经历",
+  "about.CV": "下载简历",
+  "about.introduction.caption": "奥克兰大学 Master  of Information Technology 学生。预计 24 年底毕业。",
+  "about.introduction": "你好，我是裴来宇，2001年出生于广东，本科毕业于新西兰的奥克兰大学。我喜欢逛知乎和B站，看看技术文章，打打游戏等。除此之外，我对开发感兴趣。比如说构建基于React的Web应用方面。当然我不局限自己在某一个技术栈，Vue3, Express.js, .Net Core, Django 等前后端框架也有项目经验。"
+
 }

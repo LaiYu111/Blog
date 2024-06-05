@@ -1,4 +1,5 @@
 @import "@/style/global.scss";
+@import "@/components/Cover/index.module.scss";
 
 .layout{
   display: grid;
@@ -9,6 +10,10 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
+
+  h1{
+    font-size: revert;
+  }
 }
 
 .navigation{
@@ -17,6 +22,17 @@
 
 .content{
   flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  img{
+    height: 200px;
+    object-fit: cover;
+    border-radius: $border-radius-md;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  }
 }
 
 .divider{

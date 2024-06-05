@@ -46,9 +46,6 @@
   box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5);
 }
 
-.aboutLayout h1{
-  font-size: 64px;
-}
 
 // 闪烁效果
 .blink {
@@ -66,6 +63,20 @@
     opacity: 1;
   }
 }
+
+.icon{
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.introduction {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 
 @media screen and (max-width: 940px) {
   .aboutLayout .aboutSection{

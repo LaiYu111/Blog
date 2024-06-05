@@ -60,6 +60,7 @@
   flex-direction: row;
   gap: 7px;
   flex-flow: wrap;
+  justify-content: center;
 }
 
 .information{
@@ -67,6 +68,7 @@
   flex-direction: column;
   gap: 10px;
   width: 40vw;
+  text-align: center;
   h2{
     text-align: center;
   }

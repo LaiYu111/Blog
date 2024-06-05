@@ -15,7 +15,7 @@ function Cover({
 
  return (
    <div className={s.cover}>
-     <img src={image} onClick={onClick}/>
+     <img src={`${imageURL? imageURL: image}`} onClick={onClick}/>
      <div className={s.tags}>
        {tags.map((tag) => (
          <div key={tag.id}>

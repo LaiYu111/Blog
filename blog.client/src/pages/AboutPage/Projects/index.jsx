@@ -3,13 +3,18 @@ import projectList from './projectList.json'
 import {useEffect, useRef, useState} from "react";
 import Button from "@/components/Button/index.jsx";
 import Tag from "@/components/Tag/index.jsx";
+import {FormattedMessage} from "react-intl";
+import {useSelector} from "react-redux";
+import {LANGUAGE} from "@/config.js";
 
 
 function Projects(){
   const imgRefs = useRef([])
   const [currentImg, setCurrentImg] = useState(Math.floor(projectList.length / 2))
+  const language = useSelector(state => state.language._)
   const touchStartX = useRef(0)
   const touchEndX = useRef(0)
+
   const onShown = (index) => {
     if (currentImg >= 0){
       return currentImg === index
@@ -92,11 +97,14 @@ function Projects(){
 
   return (
     <div className={s.root}>
-      <h1 className={s.header}>Projects</h1>
+      <h1 className={s.header}><FormattedMessage id={'base.projects'}/> </h1>
 
       <div className={s.information}>
         <h2>{projectList[pageConverter()].name}</h2>
-        <div className={s.caption}>{projectList[pageConverter()].description}</div>
+
+        {language === LANGUAGE.EN && <div className={s.caption}>{projectList[pageConverter()].description_en}</div>}
+        {language === LANGUAGE.ZH && <div className={s.caption}>{projectList[pageConverter()].description_zh}</div>}
+
         <div className={s.tags}>
           {projectList[pageConverter()].tags.map((tag) => (
             <div key={tag.id}>
