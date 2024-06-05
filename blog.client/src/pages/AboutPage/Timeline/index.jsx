@@ -15,12 +15,12 @@ function Timeline() {
   const maskRef = useRef(null)
   const language = useSelector(state => state.language._)
 
-  // 初始化 mask 的长度
-  useEffect(() => {
-    if (maskRef) {
-      maskRef.current.style.height = `${100*event.length}vh`
-    }
-  }, []);
+  // // 初始化 mask 的长度
+  // useEffect(() => {
+  //   if (maskRef) {
+  //     maskRef.current.style.height = `${100*event.length}vh`
+  //   }
+  // }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {

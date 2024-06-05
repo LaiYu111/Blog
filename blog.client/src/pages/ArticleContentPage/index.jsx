@@ -65,7 +65,7 @@ function ArticleContentPage(){
             ))}
           </div>
 
-          <img src={article.imagePath} />
+          <img src={article.imagePath} alt={'image'}/>
 
           <div
             dangerouslySetInnerHTML={{__html: article.content}}

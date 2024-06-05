@@ -1,5 +1,5 @@
 import s from './App.module.scss'
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import ArticlePage from "@/pages/ArticlePage/index.jsx";
 import AboutPage from "@/pages/AboutPage/index.jsx";
 import Header from "@/components/Header/index.jsx";
@@ -8,11 +8,18 @@ import ArticleContentPage from "@/pages/ArticleContentPage/index.jsx";
 import {useSelector} from "react-redux";
 import {IntlProvider} from "react-intl";
 import {MESSAGES} from "@/config.js";
+import {useEffect} from "react";
+import Footer from "@/components/Footer/index.jsx";
 
 
 
 function App() {
   const locale = useSelector( state => state.language._)
+  const navigator = useNavigate()
+
+  useEffect(() => {
+    navigator('/about')
+  }, []);
 
   return (
     <IntlProvider locale={locale} messages={MESSAGES[locale]}>
@@ -26,6 +33,9 @@ function App() {
             <Route path={`/article/:id`} element={<ArticleContentPage />} />
             <Route path={`/about`} element={<AboutPage />} />
           </Routes>
+        </div>
+        <div>
+          <Footer/>
         </div>
         <Settings />
       </div>
