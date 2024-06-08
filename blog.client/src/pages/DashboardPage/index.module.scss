@@ -1,0 +1,28 @@
+@import "@/style/base.scss";
+@import "@/style/global.scss";
+.layout{
+  background-color: $grey-100;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  border-radius: $border-radius-lg;
+}
+
+.layout aside{
+  flex-grow: 0;
+  min-width: 200px;
+  background-color: white;
+  overflow-y: auto;
+}
+.layout hr{
+  flex-grow: 0;
+  margin: 0;
+  border: 2px solid $grey-400;
+  box-shadow: 1px 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.layout section{
+  flex-grow: 2;
+  padding: 10px;
+}

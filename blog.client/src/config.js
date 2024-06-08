@@ -15,3 +15,11 @@ export const LANGUAGE = {
   EN: "en",
   ZH: "zh"
 }
+
+export const PATH = {
+  analysis_dashboard: "analysis/dashboard",
+  management_articles: "management/article",
+  management_tags: "management/tags",
+  management_users: "management/users",
+  publication_article: "publication/article"
+}

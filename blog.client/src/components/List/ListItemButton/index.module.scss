@@ -1,0 +1,31 @@
+@import "@/style/base.scss";
+
+.listButton{
+  min-height: 40px;
+  align-content: center;
+  padding: 5px;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.listButton:hover{
+  background-color: $grey-100;
+  transition: background-color 150ms linear;
+}
+
+.listButton:active{
+  background-color: $grey-300;
+}
+
+.selected {
+  background-color: $grey-300;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+}

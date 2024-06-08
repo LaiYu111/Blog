@@ -35,10 +35,13 @@ function Navigation(){
     <div className={s.navContainer}>
       <nav>
         <a ref={(el) => (navRefs.current[0] = el)} onClick={() => handleNavClick(0, `/article`)}>
-          <FormattedMessage id={"base.article"} />
+          <FormattedMessage id={"base.article"}/>
         </a>
         <a ref={(el) => (navRefs.current[1] = el)} onClick={() => handleNavClick(1, `/about`)}>
-          <FormattedMessage id={"base.author"} />
+          <FormattedMessage id={"base.author"}/>
+        </a>
+        <a ref={(el) => (navRefs.current[2] = el)} onClick={() => handleNavClick(2, `/admin_panel/analysis/dashboard`)}>
+          Dashboard
         </a>
       </nav>
       <div className={s.animation} style={sliderStyle}></div>
