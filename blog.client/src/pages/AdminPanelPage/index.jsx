@@ -27,7 +27,7 @@ function AdminPanelPage({destination}){
       <aside>
         <List>
           <small>Analysis</small>
-          <ListItemButton isSelected={true} icon={<SpaceDashboardOutlinedIcon fontSize={"large"} />} onClick={() => handleClick(PATH.analysis_dashboard)}>
+          <ListItemButton isSelected={true} icon={<SpaceDashboardOutlinedIcon />} onClick={() => handleClick(PATH.analysis_dashboard)}>
             <b>Dashboard</b>
           </ListItemButton>
           <br/>
