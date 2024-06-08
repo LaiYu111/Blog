@@ -10,7 +10,7 @@ import {IntlProvider} from "react-intl";
 import {MESSAGES, PATH} from "@/config.js";
 import {useEffect} from "react";
 import Footer from "@/components/Footer/index.jsx";
-import AdminPanelPage from "@/pages/DashboardPage/index.jsx";
+import AdminPanelPage from "@/pages/AdminPanelPage/index.jsx";
 
 
 
