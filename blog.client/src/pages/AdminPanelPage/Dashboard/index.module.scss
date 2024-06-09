@@ -1,0 +1,11 @@
+.demo{
+  width: 330px;
+  height: 200px;
+}
+
+.dashboardLayout{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-flow: wrap;
+}

@@ -14,50 +14,96 @@ import PropTypes from "prop-types";
 import UserManagement from "@/pages/AdminPanelPage/UserManagement/index.jsx";
 import Dashboard from "@/pages/AdminPanelPage/Dashboard/index.jsx";
 import ArticlePublication from "@/pages/AdminPanelPage/ArticlePublication/index.jsx";
+import {useState} from "react";
 
-function AdminPanelPage({destination}){
-  const navigator = useNavigate()
-  const handleClick = (path) => {
-    navigator(`/admin_panel/${path}`)
+const navigationList = [
+  {
+    category: "Analysis",
+    listItemButton: [
+      {
+        icon: <SpaceDashboardOutlinedIcon />,
+        text: "Dashboard",
+        path: PATH.analysis_dashboard
+      }
+    ]
+  },
+  {
+    category: "Manage",
+    listItemButton: [
+      {
+        icon: <AutoStoriesOutlinedIcon />,
+        text: "Articles",
+        path: PATH.management_articles
+      },
+      {
+        icon: <BookOutlinedIcon />,
+        text: "Tags",
+        path: PATH.management_tags
+      },
+      {
+        icon: <ManageAccountsOutlinedIcon />,
+        text: "Users",
+        path: PATH.management_users
+      }
+    ]
+  },
+  {
+    category: "Publish",
+    listItemButton: [
+      {
+        icon: <HistoryEduOutlinedIcon />,
+        text: "Article",
+        path: PATH.publication_article
+      }
+    ]
   }
+];
 
+
+function AdminPanelPage({ destination }) {
+  const [selectedPath, setSelectedPath] = useState(PATH.analysis_dashboard); // 定位
+  const navigator = useNavigate();
+
+  const handleClick = (path) => {
+    setSelectedPath(path);
+    navigator(`/admin_panel/${path}`);
+  };
 
   return (
     <div className={s.layout}>
-      <aside>
-        <List>
-          <small>Analysis</small>
-          <ListItemButton isSelected={true} icon={<SpaceDashboardOutlinedIcon />} onClick={() => handleClick(PATH.analysis_dashboard)}>
-            <b>Dashboard</b>
-          </ListItemButton>
-          <br/>
-          <small>Manage</small>
-          <ListItemButton icon={<AutoStoriesOutlinedIcon />} onClick={() => handleClick(PATH.management_articles)}>
-            <b>Articles</b>
-          </ListItemButton>
-          <ListItemButton icon={<BookOutlinedIcon />} onClick={() => handleClick(PATH.management_tags)}>
-            <b>Tags</b>
-          </ListItemButton>
-          <ListItemButton icon={<ManageAccountsOutlinedIcon />} onClick={() => handleClick(PATH.management_users)}>
-            <b>Users</b>
-          </ListItemButton>
-          <br/>
-          <small>Publish</small>
-          <ListItemButton icon={<HistoryEduOutlinedIcon /> }  onClick={() => handleClick(PATH.publication_article)}>
-            <b>Article</b>
-          </ListItemButton>
-        </List>
-      </aside>
-      <hr />
-      <section>
-        { PATH.analysis_dashboard === destination && <Dashboard />}
-        { PATH.management_articles === destination && <ArticleManagement /> }
-        { PATH.management_tags === destination && <TagManagement /> }
-        { PATH.management_users === destination && <UserManagement /> }
-        { PATH.publication_article === destination && <ArticlePublication /> }
+      <div className={`${s.navigation}`}>
+        <aside>
+          <List>
+            {navigationList.map((section, index) => (
+              <div key={index}>
+                <small>{section.category}</small>
+                {section.listItemButton.map((item, idx) => (
+                  <ListItemButton
+                    key={idx}
+                    icon={item.icon}
+                    isSelected={selectedPath === item.path}
+                    onClick={() => handleClick(item.path)}
+                  >
+                    <b>{item.text}</b>
+                  </ListItemButton>
+                ))}
+                <br/>
+              </div>
+            ))}
+          </List>
+        </aside>
+        <hr/>
+      </div>
+
+      <section >
+        {PATH.analysis_dashboard === destination && <Dashboard/>}
+        {PATH.management_articles === destination && <ArticleManagement/>}
+        {PATH.management_tags === destination && <TagManagement/>}
+        {PATH.management_users === destination && <UserManagement/>}
+        {PATH.publication_article === destination && <ArticlePublication/>}
       </section>
     </div>
-  )
+  );
 }
 
 AdminPanelPage.propTypes = {

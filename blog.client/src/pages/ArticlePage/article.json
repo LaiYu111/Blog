@@ -4,7 +4,7 @@
     "title": "欢迎！Welcome!",
     "description": "welcome",
     "imagePath": "https://laiyu.s3.ap-southeast-2.amazonaws.com/blog/articleImage1.png",
-    "content": "<h1>欢迎欢迎！！Welcome!!</h1><p>后续编写后端，富文本编辑器等功能</p><p>Add backend system and rich editor functions later</p>",
+    "content": "<h1>欢迎欢迎！！Welcome!!</h1><p>后续编写后端，富文本编辑器等功能</p><p>Add backend system and rich editor functions later</p><h2>Haha</h2>",
     "createDate": "2024.6.5",
     "modifyDate": "2024.6.5",
     "tags": [
@@ -21,6 +21,18 @@
       {
         "id": "3",
         "name": "English",
+        "bgColor": ""
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "text",
+    "content": "<h1>xxx</h1><h2>yyy</h2>",
+    "tags": [
+      {
+        "id": "1",
+        "name": "中文",
         "bgColor": ""
       }
     ]

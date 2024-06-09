@@ -1,9 +1,10 @@
 import {combineReducers} from "redux";
-import Navigation from "@/redux/reducers/navigation.js";
 import language from "@/redux/reducers/language.js";
+import publicationReducer from "@/redux/reducers/publication/index.js";
 
 const appReducer = combineReducers({
-  language: language
+  language: language,
+  publication: publicationReducer
 })
 
 export default appReducer

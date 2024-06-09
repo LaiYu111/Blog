@@ -1,0 +1,15 @@
+.textEditorContainer{
+  width: 95%;
+}
+
+.textPreview{
+  width: 95%;
+  min-height: 5vh;
+}
+
+.layout{
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: column;
+  gap: 10px;
+}

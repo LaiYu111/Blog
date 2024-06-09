@@ -1,30 +1,18 @@
 import PropTypes from "prop-types";
 import s from './index.module.scss'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 function ListItemButton({
-  children,
-  className,
-  icon,
-  onClick: externalOnClick,
-  isSelected=false
-                    }) {
-  const [selected, setSelected] = useState(isSelected)
-
-  const handleInternalClick = () => {
-    setSelected(!selected);
-  };
-
-  const handleClick = (event) => {
-    // Call both external and internal onClick handlers (if defined)
-    externalOnClick?.(event); // Optional chaining for safety
-    handleInternalClick();
-  };
-
+      children,
+      className,
+      icon,
+      onClick,
+      isSelected = false
+          }) {
   return (
     <div
-      className={`${className} ${s.listButton} ${selected ? s.selected : ''}`}
-      onClick={handleClick}
+      className={`${className} ${s.listButton} ${isSelected ? s.selected : ''}`}
+      onClick={onClick}
     >
       <div className={`${s.icon}`}>
         {icon}
@@ -33,7 +21,7 @@ function ListItemButton({
         {children}
       </div>
     </div>
-  )
+  );
 }
 
 ListItemButton.propTypes = {
