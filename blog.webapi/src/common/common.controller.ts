@@ -14,6 +14,7 @@ import { diskStorage } from 'multer';
 import { extname, join } from 'path';
 import * as sharp from 'sharp';
 import * as fs from 'fs-extra';
+import { handleResponse } from "../utils";
 
 @ApiTags('common')
 @Controller('/api/common')
@@ -41,7 +42,7 @@ export class CommonController {
       },
     }),
   )
-  async createImage(@UploadedFiles() files: Express.Multer.File[]) {
+  async createImage(@UploadedFiles() files: Express.Multer.File[], @Res() res) {
     const processedFiles = await Promise.all(
       files.map(async (file) => {
         const lowQualityFilename = file.filename.replace('origin-', 'min-');
@@ -58,19 +59,28 @@ export class CommonController {
           path: file.path,
           lowQualityFilename: lowQualityFilename,
           lowQualityPath: lowQualityPath,
+          highQualityFilename: file.filename
         };
       }),
     );
 
-    return {
-      message: 'Files uploaded successfully!',
-      files: processedFiles.map((file) => ({
+    return handleResponse(res, HttpStatus.OK, 'Files uploaded successfully!',
+      processedFiles.map((file) => ({
         originalname: file.originalname,
         filename: file.filename,
         lowQualityFilename: file.lowQualityFilename,
-        lowQualityPath: file.lowQualityPath,
-      })),
-    };
+        highQualityFilename: file.highQualityFilename
+      })), '')
+
+    // return {
+    //   message: 'Files uploaded successfully!',
+    //   files: processedFiles.map((file) => ({
+    //     originalname: file.originalname,
+    //     filename: file.filename,
+    //     lowQualityFilename: file.lowQualityFilename,
+    //     highQualityFilename: file.highQualityFilename
+    //   })),
+    // };
   }
 
   @Delete('/files/image')
@@ -116,15 +126,9 @@ export class CommonController {
         }),
       );
 
-      return res.status(HttpStatus.OK).json({
-        message: 'Batch deletion complete',
-        results: deletionResults,
-      });
+      return handleResponse(res, HttpStatus.OK, 'Batch deletion complete', deletionResults)
     } catch (error) {
-      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-        message: 'Error processing batch deletion',
-        error: error.message,
-      });
+      return handleResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, 'Batch deletion fail', null, error)
     }
   }
 }

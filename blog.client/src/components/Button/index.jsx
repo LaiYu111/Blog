@@ -7,7 +7,9 @@ function Button({children, onClick, className, disabled}){
       onClick={onClick}
       className={`${className} ${s.customButton} ${disabled ? s.disabled :"" }`}
     >
-      {children}
+      <span>
+        {children}
+      </span>
     </div>
   )
 }

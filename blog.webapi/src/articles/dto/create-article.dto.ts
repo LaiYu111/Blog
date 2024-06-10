@@ -12,6 +12,9 @@ export class CreateArticleDto {
   imagePath: string;
 
   @ApiProperty()
+  highQualityImage: string;
+
+  @ApiProperty()
   content: string;
 
   @ApiProperty()

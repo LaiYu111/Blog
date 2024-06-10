@@ -16,6 +16,9 @@ export class Article {
   imagePath: string;
 
   @Prop()
+  highQualityImage: string;
+
+  @Prop()
   content: string;
 
   @Prop({ default: new Date().getDate() })

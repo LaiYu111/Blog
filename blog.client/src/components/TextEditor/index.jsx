@@ -1,5 +1,5 @@
 import ReactQuill, {Quill} from "react-quill";
-import {useMemo, useRef} from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
 import 'highlight.js/styles/github.css';
 import 'react-quill/dist/quill.snow.css';
 import QuillMarkdown from 'quilljs-markdown'
@@ -9,6 +9,8 @@ import './customStyle.css'
 import usePost from "@/hooks/usePost.js";
 import {BACKEND_URL} from "@/config.js";
 import ImageResize from 'quill-image-resize-module-react';
+import axios from "axios";
+import ProgressBar from "@/components/ProgressBar/index.jsx";
 
 Quill.register('modules/imageResize', ImageResize);
 Quill.register('modules/QuillMarkdown', QuillMarkdown, true)
@@ -16,7 +18,8 @@ Quill.register('modules/QuillMarkdown', QuillMarkdown, true)
 
 function TextEditor({content, setContent}){
   const reactQuillRef = useRef(null);
-  const { postData } = usePost()
+  const { postData, progress } = usePost()
+  // const [uploadProgress, setUploadProgress] = useState(0);
   const toolbarOptions = [
     [{ 'header': [1, 2, 3, 4, false] }],
     // [{ 'font': [] }],
@@ -38,12 +41,29 @@ function TextEditor({content, setContent}){
     ['clean']                                         // remove formatting button
   ];
 
+  useEffect(() => {
+    console.log(`[Image upload progress]: `,progress)
+  }, [progress]);
+
   const uploadImage = async (files) => {
     const formData = new FormData()
     for (const file of files){ formData.append('images', file)}
     try{
       const result = await postData(`${BACKEND_URL}/api/common/files/image`, formData,null, 'images')
-      return result.files
+      console.log(result)
+
+      return result.data
+
+      // const result = await axios.post(`${BACKEND_URL}/api/common/files/image`, formData, {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data'
+      //   },
+      //   onUploadProgress: (progressEvent) => {
+      //     const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+      //     setUploadProgress(percentCompleted);
+      //   }
+      // });
+      // return result.data.files;
     }catch (e){
       console.error(e)
       return null
@@ -92,13 +112,18 @@ function TextEditor({content, setContent}){
     }
   }), []);
 
-  return  <ReactQuill
-    ref={reactQuillRef}
-    theme="snow"
-    value={content}
-    onChange={setContent}
-    modules={modules}
-  />
+  return  (
+    <>
+      <ProgressBar progress={progress} />
+      <ReactQuill
+        ref={reactQuillRef}
+        theme="snow"
+        value={content}
+        onChange={setContent}
+        modules={modules}
+      />
+    </>
+  )
 }
 
 

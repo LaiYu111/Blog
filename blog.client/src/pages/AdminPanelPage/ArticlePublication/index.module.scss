@@ -25,9 +25,19 @@
   gap: 10px;
 }
 
-.textEditorContainer .title{
+.textEditorContainer .row1{
+  align-self: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-flow: wrap;
+}
+
+
+.textEditorContainer .upload{
   align-self: flex-start;
 }
-.textEditorContainer .description{
 
+.textEditorContainer .submit{
+  align-self: flex-start;
 }

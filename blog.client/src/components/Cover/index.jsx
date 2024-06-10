@@ -18,7 +18,7 @@ function Cover({
      <img src={`${imageURL? imageURL: image}`} onClick={onClick} alt={'image'}/>
      <div className={s.tags}>
        {tags.map((tag) => (
-         <div key={tag.id}>
+         <div key={tag._id}>
            <Tag name={tag.name} bgColor={tag.bgColor} />
          </div>
        ))}

@@ -1,0 +1,17 @@
+@import "@/style/base.scss";
+
+.progressBarContainer{
+  position: fixed; /* 固定在当前视窗的顶部 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px; /* 进度条的高度 */
+  background-color: $white; /* 进度条底色 */
+  z-index: $z-index-lvl-10; /* 确保进度条在顶部显示 */
+}
+
+.progressBar{
+  height: 100%;
+  background-color: $blue-500; /* 进度条颜色 */
+  transition: width 0.5s ease-in-out; /* 进度条动画效果 */
+}

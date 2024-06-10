@@ -83,20 +83,31 @@
 // export default ArticleContentPage
 
 
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import s from './index.module.scss';
 import articles from '@/pages/ArticlePage/article.json';
 import ArticleContent from "@/components/ArticleContent/index.jsx";
+import useGet from "@/hooks/useGet.js";
+import {BACKEND_URL} from "@/config.js";
 
 
 function ArticleContentPage() {
   const { id: articleId } = useParams();
-  const [article] = useState(articles.find(x => x.id === articleId));
+  const [article, setArticle] = useState(null);
+  const {getData} = useGet()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getData(`${BACKEND_URL}/api/articles/${articleId}`)
+      setArticle(result)
+    }
+    fetchData()
+  }, []);
 
   return (
     <div className={s.layout}>
-      <ArticleContent article={article} />
+      <ArticleContent article={article? article: {}} />
     </div>
   );
 }

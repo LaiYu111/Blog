@@ -57,12 +57,12 @@ function ArticleContent({ article }) {
         <div className={s.tags}>
           {article.tags?.map((tag) => (
             <div key={tag.id}>
-              <Tag name={tag.name} />
+              <Tag name={tag.name} bgColor={tag.bgColor} />
             </div>
           ))}
         </div>
 
-        {article.imagePath && <img className={s.coverImage} src={article.imagePath} alt={'Lost image'}/>}
+        {article.highQualityImage && <img className={s.coverImage} src={article.highQualityImage} alt={'Lost image'}/>}
 
         <div
           dangerouslySetInnerHTML={{ __html: article.content }}
@@ -84,9 +84,10 @@ ArticleContent.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     imagePath: PropTypes.string,
+    highQualityImage: PropTypes.string,
     content: PropTypes.string,
-    createDate: PropTypes.string,
-    modifyDate: PropTypes.string,
+    createDate: PropTypes.any,
+    modifyDate: PropTypes.any,
     tags: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
