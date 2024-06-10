@@ -1,6 +1,8 @@
 import messages_en from "@/components/i18n/messages_en.json"
 import messages_zh from "@/components/i18n/messages_zh.json"
 
+export const BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL
+
 export const MESSAGES = {
   zh: messages_zh,
   en: messages_en

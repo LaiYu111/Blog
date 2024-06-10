@@ -80,7 +80,7 @@ function ArticleContent({ article }) {
 
 ArticleContent.propTypes = {
   article: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
     imagePath: PropTypes.string,

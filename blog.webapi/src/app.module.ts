@@ -9,6 +9,8 @@ import { DevtoolsModule } from '@nestjs/devtools-integration';
 import { UsersModule } from './users/users.module';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
+import { CommonController } from './common/common.controller';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -30,6 +32,7 @@ import { AuthModule } from './auth/auth.module';
     ArticlesModule,
     UsersModule,
     AuthModule,
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [AppService],

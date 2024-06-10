@@ -7,19 +7,30 @@ import Settings from "@/components/Settings/index.jsx";
 import ArticleContentPage from "@/pages/ArticleContentPage/index.jsx";
 import {useSelector} from "react-redux";
 import {IntlProvider} from "react-intl";
-import {MESSAGES, PATH} from "@/config.js";
+import {BACKEND_URL, MESSAGES, PATH} from "@/config.js";
 import {useEffect} from "react";
 import Footer from "@/components/Footer/index.jsx";
 import AdminPanelPage from "@/pages/AdminPanelPage/index.jsx";
+import useGet from "@/hooks/useGet.js";
 
 
 
 function App() {
   const locale = useSelector( state => state.language._)
+  const { getData } = useGet()
   const navigator = useNavigate()
 
   useEffect(() => {
-    navigator('/about')
+    const fetchData = async () => {
+      try {
+        const result = await getData(`${BACKEND_URL}/api/system/version`) // Assuming version is defined elsewhere
+        console.log(result);
+      } catch (error) {
+        console.error('Error fetching version:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
