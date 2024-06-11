@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import 'react-quill/dist/quill.snow.css';
 
 // 从 ArticleContentPage 分离出来
-function ArticleContent({ article }) {
+function ArticleContent({article}) {
   const tableOfContentAnchor = useRef();
   const [tableOfContent, setTableOfContent] = useState([]);
 
@@ -56,7 +56,7 @@ function ArticleContent({ article }) {
       <div className={s.content}>
         <div className={s.tags}>
           {article.tags?.map((tag) => (
-            <div key={tag.id}>
+            <div key={tag._id}>
               <Tag name={tag.name} bgColor={tag.bgColor} />
             </div>
           ))}
@@ -90,8 +90,8 @@ ArticleContent.propTypes = {
     modifyDate: PropTypes.any,
     tags: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
+        id: PropTypes.string,
+        name: PropTypes.string,
         bgColor: PropTypes.string
       })
     )

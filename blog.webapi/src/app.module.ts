@@ -11,6 +11,7 @@ import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
 import { CommonController } from './common/common.controller';
 import { CommonModule } from './common/common.module';
+import { TagsModule } from './tags/tags.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { CommonModule } from './common/common.module';
     UsersModule,
     AuthModule,
     CommonModule,
+    TagsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

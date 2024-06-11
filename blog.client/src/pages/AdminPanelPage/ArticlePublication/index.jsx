@@ -4,24 +4,70 @@ import s from './index.module.scss'
 import ArticleContent from "@/components/ArticleContent/index.jsx";
 import {useEffect, useRef, useState} from "react";
 import Cover from "@/components/Cover/index.jsx";
-import {TextField} from "@mui/material";
+import {FormControl, MenuItem, Select, TextField} from "@mui/material";
 import Button from "@/components/Button/index.jsx";
 import usePost from "@/hooks/usePost.js";
 import {BACKEND_URL} from "@/config.js";
 import ProgressBar from "@/components/ProgressBar/index.jsx";
+import PropTypes from "prop-types";
+import {useLocation} from "react-router-dom";
+import {useSelector} from "react-redux";
+import useGet from "@/hooks/useGet.js";
 
 function ArticlePublication() {
   // const article = useSelector(state => state.publication.article)
   const fileInputRef = useRef(null)
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search);
+  const { postData, progress } = usePost()
+  const { getData } = useGet()
+
+  // article basic information
   const [content, setContent] = useState('')
   const [description, setDescription] = useState('')
   const [title, setTitle]=useState('')
   const [imagePath, setImagePath] = useState('')
   const [highQualityImage, setHighQualityImage] = useState('')
   const [date] = useState(Date.now())
-  const [tags, setTags] = useState([{ id: "1", name: "Sample Tag 1", bgColor: "#abcdef" }])
-  const { postData, progress } = usePost()
+  const [tags, setTags] = useState([])
 
+  // picker
+  const [tagPicker, setTagPicker] = useState([])
+  // const [tagContainer, setTagContainer] = useState([])
+
+  // modify_mode
+  const modifyMode = searchParams.get('modify_mode');
+  const modifyArticleId = searchParams.get('article_id');
+  const modifyArticle = useSelector(state => {
+    if (modifyArticleId) {
+      return state.management.articles.find(x => x._id === modifyArticleId)
+    }else {
+      return {}
+    }
+  })
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getData(`${BACKEND_URL}/api/tags`)
+      if (result.data){
+        setTagPicker(result.data)
+      }
+    }
+    fetchData()
+  }, []);
+
+
+  useEffect(() => {
+    // Init article
+    if(modifyMode){
+      setContent(modifyArticle.content)
+      setTitle(modifyArticle.title);
+      setDescription(modifyArticle.description || "");
+      setImagePath(modifyArticle.imagePath || "");
+      setHighQualityImage(modifyArticle.highQualityImage || "");
+      setTags(modifyArticle.tags || []);
+    }
+  }, [modifyMode]);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -69,6 +115,23 @@ function ArticlePublication() {
     }
   }
 
+  const handleUpdateArticle = async () => {
+    //todo
+  }
+
+  const handleTagChange = (e) => {
+    setTags(e.target.value)
+  }
+
+  const renderSelector = (selectedTags) => {
+    if (selectedTags.length === 0){
+      return <em>Select Tags</em>
+    }
+
+    const tagNames = selectedTags.map( (tag) => tag.name )
+    return tagNames.join(', ')
+  }
+
   const reset = () => {
     // 重置所有输入状态为空值
     setTitle('');
@@ -77,6 +140,19 @@ function ArticlePublication() {
     setHighQualityImage('');
     setContent('');
     setTags([]);
+  }
+
+  const article = () => {
+      return {
+        content: content,
+        title: title,
+        description: description,
+        imagePath: imagePath,
+        highQualityImage: highQualityImage,
+        createDate: date,
+        modifyDate: date,
+        tags: tags
+      }
   }
 
   return (
@@ -97,21 +173,16 @@ function ArticlePublication() {
             <h2>Preview Article</h2>
             <hr/>
 
-            <ArticleContent article={{
-              content: content,
-              title: title,
-              description: description,
-              imagePath: imagePath,
-              highQualityImage: highQualityImage,
-              createDate: date,
-              modifyDate: date,
-              tags: tags
-            }} />
+            <ArticleContent article={article()} />
           </div>
         </Panel>
 
         <Panel className={s.textEditorContainer}>
-          <h2>Write an article</h2>
+          {modifyMode? (
+            <h2>Editing {modifyArticleId}</h2>
+          ): (
+            <h2>Write an article</h2>
+          )}
           <hr/>
           <section>
             <div className={s.row1}>
@@ -120,7 +191,6 @@ function ArticlePublication() {
                 label={"Title"}
                 value={title}
                 onChange={handleTitleChange}
-
               />
 
               <input
@@ -132,6 +202,25 @@ function ArticlePublication() {
               <Button onClick={handleUpload}>
                 Upload a cover
               </Button>
+
+              <FormControl>
+                <Select
+                  multiple={true}
+                  value={tags}
+                  onChange={handleTagChange}
+                  renderValue={renderSelector}
+                  style={ {width: "300px" }}
+                >
+                  { tagPicker.map( (tag) => (
+                    <MenuItem
+                      key={tag._id}
+                      value={tag}
+                    >
+                      {tag.name}
+                    </MenuItem>
+                  ) )}
+                </Select>
+              </FormControl>
             </div>
 
             <TextField
@@ -144,12 +233,20 @@ function ArticlePublication() {
 
             <TextEditor content={content} setContent={setContent}/>
 
-            <Button className={s.submit} onClick={handleSubmitArticle}>Submit</Button>
+            { modifyMode ?(
+              <Button className={s.submit} onClick={handleUpdateArticle}>Confirm Change</Button>
+            ):(
+              <Button className={s.submit} onClick={handleSubmitArticle}>Submit</Button>
+            )}
           </section>
         </Panel>
       </div>
     </>
   )
+}
+
+ArticlePublication.propTypes = {
+  modifyMode: PropTypes.bool
 }
 
 export default ArticlePublication
