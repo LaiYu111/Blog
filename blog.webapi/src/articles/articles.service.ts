@@ -3,6 +3,7 @@ import { Article } from '../schemas/article.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateArticleDto } from './dto/create-article.dto';
+import { UpdateArticleDto } from './dto/update-article.dto';
 
 @Injectable()
 export class ArticlesService {
@@ -21,5 +22,18 @@ export class ArticlesService {
 
   async queryByIDAsync(articleId: string): Promise<Article> {
     return this.articleModel.findById(articleId);
+  }
+
+  async updateByIDAsync(updateArticleDto: UpdateArticleDto) {
+    return this.articleModel.findByIdAndUpdate(
+      updateArticleDto.id,
+      updateArticleDto.article,
+      { new: true },
+    );
+  }
+  async deleteByIDsAsync(ids: string[]) {
+    return this.articleModel.deleteMany({
+      _id: { $in: ids },
+    });
   }
 }

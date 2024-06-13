@@ -5,18 +5,40 @@ import Panel from "@/components/Panel/index.jsx";
 import {IconButton, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow} from "@mui/material";
 import {useEffect} from "react";
 import {BACKEND_URL} from "@/config.js";
-import {initArticle} from "@/redux/actions/management/articleAction.js";
+import {deleteArticle, initArticle} from "@/redux/actions/management/articleAction.js";
 import PropTypes from "prop-types";
 import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined';
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined.js";
 import {useNavigate} from "react-router-dom";
+import useDelete from "@/hooks/useDelete.js";
+import useNotification from "@/hooks/useNotification.js";
+import Notification from "@/components/Notification/index.jsx";
 
 
 function ArticleRow({ id, title, createdDate, modifiedDate }) {
   const navigator = useNavigate()
+  const { notifications, showNotification, hideNotification } = useNotification();
+  const {deleteData} = useDelete()
+  const dispatch = useDispatch()
 
   const handleRouting = () => {
     navigator(`/admin_panel/publication/article/?modify_mode=true&article_id=${id}`)
+  }
+
+  const handleDeleteArticle = async () => {
+    try {
+      const result = await deleteData(`${BACKEND_URL}/api/articles`, [id]);
+      showNotification(result.message);
+      handleDeleteDispatch()
+    } catch (error) {
+      console.error('Error deleting article:', error);
+    }
+  }
+
+  const handleDeleteDispatch = () => {
+    setTimeout(() => {
+      dispatch(deleteArticle(id));
+    }, 1000)
   }
 
   return (
@@ -26,9 +48,9 @@ function ArticleRow({ id, title, createdDate, modifiedDate }) {
       <TableCell>{createdDate}</TableCell>
       <TableCell>{modifiedDate}</TableCell>
       <TableCell>
-        {/* Add icons or buttons for actions */}
-        <IconButton><DeleteOutlineOutlinedIcon/></IconButton>
+        <IconButton onClick={handleDeleteArticle}><DeleteOutlineOutlinedIcon/></IconButton>
         <IconButton onClick={handleRouting}><HandymanOutlinedIcon /></IconButton>
+        <Notification onClose={hideNotification} notifications={notifications} />
       </TableCell>
     </TableRow>
   );

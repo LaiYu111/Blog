@@ -25,3 +25,8 @@ export const PATH = {
   management_users: "management/users",
   publication_article: "publication/article"
 }
+
+export const NOTIFICATION = {
+  INFORMATION: "information",
+  WARNING: "warning"
+}

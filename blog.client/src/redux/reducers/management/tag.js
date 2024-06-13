@@ -1,4 +1,4 @@
-import {DELETE_TAGS, INIT_TAGS, SET_TAGS} from "@/redux/type.js";
+import {ADD_TAG, DELETE_TAGS, INIT_TAGS, SET_TAGS} from "@/redux/type.js";
 
 
 const initState = [
@@ -23,6 +23,8 @@ const tag = (state = initState, action) =>{
         return tempTag
       })
       return updatedTags
+    case ADD_TAG:
+      return state.concat([action.payload])
     case DELETE_TAGS:
       return state.filter( x => !action.payload.includes(x._id))
     default:

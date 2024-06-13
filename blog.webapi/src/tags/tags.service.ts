@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { CreateTagsDto } from './dto/create-tags.dto';
 import { UpdateTagsDto } from './dto/update-tags.dto';
 
+
 @Injectable()
 export class TagsService {
   constructor(@InjectModel(Tag.name) private tagModel: Model<Tag>) {}
@@ -19,6 +20,14 @@ export class TagsService {
   }
 
   async updateAsync(updateTagDto: UpdateTagsDto) {
-    return this.tagModel.findByIdAndUpdate(updateTagDto.id, updateTagDto.tag, {new: true});
+    return this.tagModel.findByIdAndUpdate(updateTagDto.id, updateTagDto.tag, {
+      new: true,
+    });
+  }
+
+  async deleteAsync(ids: string[]) {
+    return this.tagModel.deleteMany({
+      _id: { $in: ids },
+    });
   }
 }

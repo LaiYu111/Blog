@@ -71,7 +71,9 @@ function ArticleContent({article}) {
         />
 
         <div className={`${s.caption}`}>
-          <small>Create Date: {article.createDate}</small>
+          <small>Created at: {article.createDate}</small>
+          <br/>
+          <small>Modified at: {article.modifyDate}</small>
         </div>
       </div>
     </div>

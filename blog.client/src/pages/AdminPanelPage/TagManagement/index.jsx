@@ -12,20 +12,28 @@ import {
 import s from './index.module.scss'
 import useGet from "@/hooks/useGet.js";
 import {useEffect, useState} from "react";
-import {BACKEND_URL} from "@/config.js";
+import {BACKEND_URL, NOTIFICATION} from "@/config.js";
 import Tag from "@/components/Tag/index.jsx";
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import PropTypes from "prop-types";
 import ColorPicker from "@/components/ColorPicker/index.jsx";
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import {useDispatch, useSelector} from "react-redux";
-import {deleteTags, initTags, setTags} from "@/redux/actions/management/tagAction.js";
+import {addTag, deleteTags, initTags, setTags} from "@/redux/actions/management/tagAction.js";
 import usePut from "@/hooks/usePut.js";
+import Notification from "@/components/Notification/index.jsx";
+import useNotification from "@/hooks/useNotification.js";
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import usePost from "@/hooks/usePost.js";
+import useDelete from "@/hooks/useDelete.js";
+
 function TagRow({id, name:t_name, bgColor: t_bgColor, textColor: t_textColor}) {
   const [name, setName] = useState(t_name)
   const [bgColor, setBgColor] = useState(t_bgColor)
   const [textColor, setTextColor] = useState(t_textColor)
+  const {deleteData} = useDelete()
   const dispatch = useDispatch()
+  const { notifications, showNotification, hideNotification } = useNotification();
   const { putData} = usePut()
 
   useEffect(() => {
@@ -41,8 +49,8 @@ function TagRow({id, name:t_name, bgColor: t_bgColor, textColor: t_textColor}) {
     setName(e.target.value);
   }
 
-  const handleUpdate = () => {
-    putData(`${BACKEND_URL}/api/tags`, {
+  const handleUpdate = async () => {
+    const result = await putData(`${BACKEND_URL}/api/tags`, {
       id: id,
       tag: {
         name: name,
@@ -50,32 +58,49 @@ function TagRow({id, name:t_name, bgColor: t_bgColor, textColor: t_textColor}) {
         textColor: textColor
       }
     })
+    showNotification(result.message, NOTIFICATION.INFORMATION)
   }
 
-  const handleDelete = () => {
-    dispatch(deleteTags(id))
+  const handleDelete = async () => {
+    try {
+      const result = await deleteData(`${BACKEND_URL}/api/tags`, [id]);
+      showNotification(result.message, NOTIFICATION.INFORMATION);
+      handleDeleteDispatch()
+    } catch (e) {
+      console.error('Delete error:', e);
+      showNotification(e, NOTIFICATION.WARNING);
+    }
+
+  }
+
+  const handleDeleteDispatch = () => {
+    setTimeout(() => {
+      dispatch(deleteTags(id))
+    }, 1000)
   }
 
   return (
+
     <>
       <TableCell>{id}</TableCell>
       <TableCell><Tag name={name} bgColor={bgColor} textColor={textColor}/> </TableCell>
       <TableCell><input value={name} onChange={handleChange}/></TableCell>
       <TableCell>
-        <div className={s.rowItems}>
+        <span className={s.rowItems}>
           <ColorPicker onChange={setBgColor} color={bgColor} />
           {bgColor}
-        </div>
+        </span>
       </TableCell>
       <TableCell>
-        <div className={s.rowItems}>
+        <span className={s.rowItems}>
           <ColorPicker color={textColor} onChange={setTextColor} />
           {textColor}
-        </div>
+        </span>
       </TableCell>
       <TableCell>
         <IconButton onClick={handleDelete}><DeleteOutlineOutlinedIcon/></IconButton>
         <IconButton onClick={handleUpdate}><CheckOutlinedIcon/></IconButton>
+        <Notification onClose={hideNotification} notifications={notifications} />
       </TableCell>
     </>
   )
@@ -96,6 +121,13 @@ function TagManagement() {
   const { getData } = useGet()
   const dispatch = useDispatch()
   const tags = useSelector(state => state.management.tags)
+  const { notifications, showNotification, hideNotification } = useNotification();
+  const { postData} = usePost()
+
+  // new tag
+  const [name, setName] = useState('Tag')
+  const [bgColor, setBgColor] = useState('#ffffff')
+  const [textColor, setTextColor] = useState('#000000')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,8 +137,32 @@ function TagManagement() {
     fetchData()
   }, []);
 
+  const handleChange = (e) => {
+    setName(e.target.value);
+  }
+
+  const newTag = () =>{
+    return {
+      name: name,
+      bgColor: bgColor,
+      textColor: textColor
+    }
+  }
+
+  const handleCreateTag = async () => {
+    try{
+      const result = await postData(`${BACKEND_URL}/api/tags`, newTag())
+      showNotification(result.message)
+      dispatch(addTag(result.data))
+    }catch (e){
+      showNotification(e, NOTIFICATION.WARNING)
+    }
+
+  }
+
   return(
     <div className={s.layout}>
+      <Notification onClose={hideNotification} notifications={notifications} />
       <Panel>
         <TableContainer>
           <Table>
@@ -120,7 +176,29 @@ function TagManagement() {
                 <TableCell> </TableCell>
               </TableRow>
             </TableHead>
+
             <TableBody>
+              <TableRow>
+                <TableCell><b>Create a tag</b></TableCell>
+                <TableCell><Tag name={name} bgColor={bgColor} textColor={textColor}/></TableCell>
+                <TableCell><input value={name} onChange={handleChange}/></TableCell>
+                <TableCell>
+                  <span className={s.rowItems}>
+                    <ColorPicker onChange={setBgColor} color={bgColor} />
+                    {bgColor}
+                  </span>
+                </TableCell>
+                <TableCell>
+                  <span className={s.rowItems}>
+                    <ColorPicker color={textColor} onChange={setTextColor} />
+                    {textColor}
+                  </span>
+                </TableCell>
+                <TableCell>
+                  <IconButton onClick={handleCreateTag}><AddCircleOutlineOutlinedIcon/></IconButton>
+                </TableCell>
+              </TableRow>
+
 
               {tags?.map((tag)=>(
                 <TableRow key={tag._id}>

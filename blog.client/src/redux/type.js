@@ -6,3 +6,5 @@ export const INIT_TAGS = "INIT_TAGS"
 export const SET_TAGS = "SET_TAGS"
 export const DELETE_TAGS = "DELETE_TAGS"
 export const INIT_ARTICLES = 'INIT_ARTICLES'
+export const ADD_TAG= "ADD_TAG"
+export const DELETE_ARTICLES = "DELETE_ARTICLES"

@@ -1,10 +1,12 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpStatus,
   Post,
   Put,
+  Query,
   Res,
 } from '@nestjs/common';
 import { TagsService } from './tags.service';
@@ -43,6 +45,16 @@ export class TagsController {
       res,
       HttpStatus.OK,
       `[${result._id}] update complete`,
+      result,
+    );
+  }
+  @Delete()
+  async delete(@Query('ids') ids: string[], @Res() res) {
+    const result = await this.tagService.deleteAsync(ids);
+    return handleResponse(
+      res,
+      HttpStatus.OK,
+      `[${ids}] delete complete`,
       result,
     );
   }

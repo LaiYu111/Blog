@@ -7,20 +7,24 @@ import Cover from "@/components/Cover/index.jsx";
 import {FormControl, MenuItem, Select, TextField} from "@mui/material";
 import Button from "@/components/Button/index.jsx";
 import usePost from "@/hooks/usePost.js";
-import {BACKEND_URL} from "@/config.js";
+import {BACKEND_URL, NOTIFICATION} from "@/config.js";
 import ProgressBar from "@/components/ProgressBar/index.jsx";
 import PropTypes from "prop-types";
 import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 import useGet from "@/hooks/useGet.js";
+import usePut from "@/hooks/usePut.js";
+import useNotification from "@/hooks/useNotification.js";
+import Notification from "@/components/Notification/index.jsx";
+import useDelete from "@/hooks/useDelete.js";
 
 function ArticlePublication() {
-  // const article = useSelector(state => state.publication.article)
   const fileInputRef = useRef(null)
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search);
   const { postData, progress } = usePost()
   const { getData } = useGet()
+  const { putData} = usePut()
 
   // article basic information
   const [content, setContent] = useState('')
@@ -28,12 +32,15 @@ function ArticlePublication() {
   const [title, setTitle]=useState('')
   const [imagePath, setImagePath] = useState('')
   const [highQualityImage, setHighQualityImage] = useState('')
-  const [date] = useState(Date.now())
+  const [createDate] = useState(Date.now())
+  const [modifyDate, setModifyDate] = useState(Date.now())
   const [tags, setTags] = useState([])
 
   // picker
   const [tagPicker, setTagPicker] = useState([])
-  // const [tagContainer, setTagContainer] = useState([])
+
+  // notification
+  const { notifications, showNotification, hideNotification } = useNotification();
 
   // modify_mode
   const modifyMode = searchParams.get('modify_mode');
@@ -91,32 +98,44 @@ function ArticlePublication() {
       const result = await postData(`${BACKEND_URL}/api/common/files/image`, {"images": file}, null, 'images')
       setImagePath(`${BACKEND_URL}/api/common/files/image/${result.data[0].lowQualityFilename}`)
       setHighQualityImage(`${BACKEND_URL}/api/common/files/image/${result.data[0].highQualityFilename}`)
+      showNotification(result.message)
     }catch (e){
       console.log(e)
+      showNotification(e, NOTIFICATION.WARNING)
     }
   };
 
   const handleSubmitArticle = async () => {
     try {
-      const result = await postData(`${BACKEND_URL}/api/articles/`, {
-        title: title,
-        content: content,
-        description: description,
-        imagePath: imagePath,
-        highQualityImage: highQualityImage,
-        createDate: date,
-        modifyDate: date,
-        tags: tags
-      })
-      console.log('Article created:', result);
+      const result = await postData(`${BACKEND_URL}/api/articles/`, article())
+      showNotification(result.message)
       reset()
-    }catch (error) {
-      console.error('Error creating article:', error);
+    }catch (e) {
+      console.error('Error creating article:', e);
+      showNotification(e, NOTIFICATION.WARNING)
     }
   }
 
   const handleUpdateArticle = async () => {
-    //todo
+    try {
+      setModifyDate(Date.now())
+      const result = await putData(`${BACKEND_URL}/api/articles`, {
+        id: modifyArticleId,
+        article: {
+          content: content,
+          title: title,
+          description: description,
+          imagePath: imagePath,
+          highQualityImage: highQualityImage,
+          modifyDate: modifyDate,
+          tags: tags
+        }
+      })
+      showNotification(result.message)
+      reset()
+    }catch (e){
+      showNotification(e, NOTIFICATION.WARNING)
+    }
   }
 
   const handleTagChange = (e) => {
@@ -149,14 +168,15 @@ function ArticlePublication() {
         description: description,
         imagePath: imagePath,
         highQualityImage: highQualityImage,
-        createDate: date,
-        modifyDate: date,
+        createDate: createDate,
+        modifyDate: modifyDate,
         tags: tags
       }
   }
 
   return (
     <>
+      <Notification onClose={hideNotification} notifications={notifications} />
       <ProgressBar  progress={progress} />
       <div className={s.layout}>
         <Panel className={s.coverPreview}>
