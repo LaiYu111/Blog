@@ -3,10 +3,12 @@ import { ArticlesController } from './articles.controller';
 import { ArticlesService } from './articles.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Article, ArticleSchema } from '../schemas/article.schema';
+import { CaslModule } from "../casl/casl.module";
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Article.name, schema: ArticleSchema }]),
+    CaslModule,
   ],
   controllers: [ArticlesController],
   providers: [ArticlesService],

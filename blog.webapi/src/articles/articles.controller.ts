@@ -15,17 +15,26 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { handleResponse } from '../utils';
 import { UpdateArticleDto } from './dto/update-article.dto';
+import { CaslAbilityFactory } from '../casl/casl-ability.factory/casl-ability.factory';
+import { Public } from '../auth/constants';
+import { UpdateArticlePublicationDto } from './dto/update-articlePublication.dto';
 
 @ApiTags('article')
 @Controller('api/articles')
 export class ArticlesController {
-  constructor(private articleService: ArticlesService) {}
+  constructor(
+    private articleService: ArticlesService,
+    private caslAbilityFactory: CaslAbilityFactory,
+  ) {}
+
+  @Public()
   @Get()
   async queryAll(@Res() res) {
     const result = await this.articleService.queryAll();
     return handleResponse(res, HttpStatus.OK, ``, result, '');
   }
 
+  @Public()
   @ApiOperation({ summary: 'Create an Article' })
   @Post()
   async create(@Body() createArticleDto: CreateArticleDto, @Res() res) {
@@ -33,16 +42,42 @@ export class ArticlesController {
     return handleResponse(
       res,
       HttpStatus.OK,
-      `[${result.title}] create complete`,
+      `[${result.title}] create complete.`,
       result,
       '',
     );
   }
 
+  @Public()
+  @Get('/published')
+  async getPublishedArticles(@Res() res) {
+    const result = await this.articleService.getPublishedArticles();
+    return handleResponse(res, HttpStatus.OK, ``, result, '');
+  }
+
+  @Public()
   @ApiOperation({ summary: 'Get By ID' })
   @Get(':id')
   async query(@Param('id') id: string) {
     return this.articleService.queryByIDAsync(id);
+  }
+
+  @Public()
+  @Put('published')
+  async updateArticlePublication(
+    @Body() updateArticlePublication: UpdateArticlePublicationDto,
+    @Res() res,
+  ) {
+    const result = await this.articleService.updateArticlePublicationByIDAsync(
+      updateArticlePublication,
+    );
+    return handleResponse(
+      res,
+      HttpStatus.OK,
+      `[${result._id}] update complete`,
+      result,
+      '',
+    );
   }
 
   @ApiOperation({ summary: 'update by id' })

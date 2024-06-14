@@ -1,6 +1,6 @@
 import mongoose, { HydratedDocument } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Tag, TagSchema } from "./tag.schema";
+import { Tag, TagSchema } from './tag.schema';
 
 export type ArticleDocument = HydratedDocument<Article>;
 
@@ -29,6 +29,9 @@ export class Article {
 
   @Prop({ type: [TagSchema], default: [] })
   tags: Tag[];
+
+  @Prop({ default: false })
+  isPublished: boolean;
 }
 
 export const ArticleSchema = SchemaFactory.createForClass(Article);

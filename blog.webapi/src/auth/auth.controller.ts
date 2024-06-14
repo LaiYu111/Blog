@@ -5,18 +5,19 @@ import {
   HttpCode,
   HttpStatus,
   Post,
-  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from './auth.guard';
+import { Public } from './constants';
+import { GetUser } from "../customDecorators/getUser.decorator";
 
 @ApiTags('auth')
 @Controller('api/auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @Public()
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'sign in' })
   @Post('/login')
@@ -24,9 +25,9 @@ export class AuthController {
     return this.authService.signIn(authDto);
   }
 
-  @UseGuards(AuthGuard)
   @Get('/profile')
-  async profile() {
+  async profile(@GetUser() user) {
+    console.log(user)
     return 1;
   }
 }

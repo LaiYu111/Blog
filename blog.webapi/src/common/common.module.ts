@@ -10,6 +10,10 @@ import { join } from 'path';
       rootPath: join(__dirname, '..', 'images'),
       serveRoot: '/api/common/files/image',
     }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'static'),
+      serveRoot: '/api/common/files/static',
+    }),
   ],
   controllers: [CommonController],
   providers: [CommonService],

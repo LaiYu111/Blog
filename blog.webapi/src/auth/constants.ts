@@ -1,3 +1,8 @@
+import { SetMetadata } from '@nestjs/common';
+
 export const jwtConstants = {
-  secrets: 'asdfhwnuy78934251vi@dfgsy09*&^*&%@2 ',
+  secrets: 'dasdsggnas i@@@ joiasdgjp894372908*&()*@#Y',
 };
+
+export const IS_PUBLIC_KEY = 'isPublic';
+export const Public = () => SetMetadata(IS_PUBLIC_KEY, true);

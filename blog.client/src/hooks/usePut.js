@@ -15,7 +15,7 @@ const usePut = () => {
       setData(response.data);
       return response.data;
     } catch (error) {
-      setError(error instanceof Error ? error.message : String(error));
+      setError(error instanceof Error ? error : String(error));
     } finally {
       setLoading(false);
     }

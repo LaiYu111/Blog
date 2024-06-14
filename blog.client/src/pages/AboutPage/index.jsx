@@ -10,6 +10,8 @@ import Button from "@/components/Button/index.jsx";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import DownloadIcon from '@mui/icons-material/Download';
+import {BACKEND_URL, LANGUAGE} from "@/config.js";
+import {useSelector} from "react-redux";
 
 const prompts = [
   "Hi, I am Laiyu Pei!",
@@ -24,6 +26,7 @@ function AboutPage() {
   const [promptTemp, setPromptTemp] = useState('')
   const prompt = useTypeWritter(promptTemp)
   const intervalRef = useRef({})
+  const language = useSelector(state => state.language._)
 
   // 选择标签放入 flagsRef 作为锚点。如果被选中的锚点被观察（IntersectionObserver）到，则添加css动画样式。卸载组件时初始化状态。
   useEffect(() => {
@@ -67,6 +70,17 @@ function AboutPage() {
     window.open(url)
   }
 
+  const selectCV = (language) => {
+    switch (language){
+      case LANGUAGE.EN:
+        return `${BACKEND_URL}/api/common/files/static/LaiyuPei_CV_EN_2024-6-14.pdf`
+      case LANGUAGE.ZH:
+        return `${BACKEND_URL}/api/common/files/static/LaiyuPei_CV_ZH_2024-6-14.pdf`
+      default:
+        return `${BACKEND_URL}/api/common/files/static/LaiyuPei_CV_EN_2024-6-14.pdf`
+    }
+  }
+
   return (
     <div className={s.aboutLayout}>
       <section className={s.aboutSection}>
@@ -79,7 +93,9 @@ function AboutPage() {
           <div className={s.icon}>
             <Button onClick={() => handleNavigation('https://www.linkedin.com/in/laiyu-pei-90b572223/')}><LinkedInIcon/></Button>
             <Button onClick={() => handleNavigation('https://github.com/LaiYu111')} ><GitHubIcon/></Button>
-            <Button><FormattedMessage id={'about.CV'} /> <DownloadIcon /> </Button>
+            <Button onClick={() => handleNavigation(selectCV(language))}>
+                <FormattedMessage id={'about.CV'} />
+            </Button>
           </div>
           {/*<TypingAnimation /> */}
           <h2>{prompt}<span className={s.blink}>_</span></h2>

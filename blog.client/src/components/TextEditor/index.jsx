@@ -1,5 +1,5 @@
 import ReactQuill, {Quill} from "react-quill";
-import {useEffect, useMemo, useRef, useState} from "react";
+import {useEffect, useMemo, useRef} from "react";
 import 'highlight.js/styles/github.css';
 import 'react-quill/dist/quill.snow.css';
 import QuillMarkdown from 'quilljs-markdown'
@@ -9,7 +9,6 @@ import './customStyle.css'
 import usePost from "@/hooks/usePost.js";
 import {BACKEND_URL} from "@/config.js";
 import ImageResize from 'quill-image-resize-module-react';
-import axios from "axios";
 import ProgressBar from "@/components/ProgressBar/index.jsx";
 
 Quill.register('modules/imageResize', ImageResize);

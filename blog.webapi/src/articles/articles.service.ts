@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { Article } from '../schemas/article.schema';
-import { Model } from 'mongoose';
-import { InjectModel } from '@nestjs/mongoose';
-import { CreateArticleDto } from './dto/create-article.dto';
-import { UpdateArticleDto } from './dto/update-article.dto';
+import { Injectable } from "@nestjs/common";
+import { Article } from "../schemas/article.schema";
+import { Model } from "mongoose";
+import { InjectModel } from "@nestjs/mongoose";
+import { CreateArticleDto } from "./dto/create-article.dto";
+import { UpdateArticleDto } from "./dto/update-article.dto";
+import { UpdateArticlePublicationDto } from "./dto/update-articlePublication.dto";
 
 @Injectable()
 export class ArticlesService {
@@ -13,6 +14,10 @@ export class ArticlesService {
 
   async queryAll(): Promise<Article[]> {
     return this.articleModel.find().exec();
+  }
+
+  async getPublishedArticles() {
+    return this.articleModel.find({ isPublished: true }).exec();
   }
 
   async createAsync(createArticleDto: CreateArticleDto) {
@@ -35,5 +40,17 @@ export class ArticlesService {
     return this.articleModel.deleteMany({
       _id: { $in: ids },
     });
+  }
+
+  async updateArticlePublicationByIDAsync(
+    updateArticlePublication: UpdateArticlePublicationDto,
+  ) {
+    return this.articleModel
+      .findByIdAndUpdate(
+        updateArticlePublication.id,
+        { isPublished: updateArticlePublication.isPublished },
+        { new: true },
+      )
+      .exec();
   }
 }

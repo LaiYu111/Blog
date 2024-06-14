@@ -14,13 +14,15 @@ import { diskStorage } from 'multer';
 import { extname, join } from 'path';
 import * as sharp from 'sharp';
 import * as fs from 'fs-extra';
-import { handleResponse } from "../utils";
+import { handleResponse } from '../utils';
+import { Public } from '../auth/constants';
 
 @ApiTags('common')
 @Controller('/api/common')
 export class CommonController {
   constructor() {}
 
+  @Public()
   @Post('/files/image')
   @UseInterceptors(
     AnyFilesInterceptor({
@@ -59,18 +61,23 @@ export class CommonController {
           path: file.path,
           lowQualityFilename: lowQualityFilename,
           lowQualityPath: lowQualityPath,
-          highQualityFilename: file.filename
+          highQualityFilename: file.filename,
         };
       }),
     );
 
-    return handleResponse(res, HttpStatus.OK, 'Files uploaded successfully!',
+    return handleResponse(
+      res,
+      HttpStatus.OK,
+      'Files uploaded successfully!',
       processedFiles.map((file) => ({
         originalname: file.originalname,
         filename: file.filename,
         lowQualityFilename: file.lowQualityFilename,
-        highQualityFilename: file.highQualityFilename
-      })), '')
+        highQualityFilename: file.highQualityFilename,
+      })),
+      '',
+    );
 
     // return {
     //   message: 'Files uploaded successfully!',
@@ -126,9 +133,20 @@ export class CommonController {
         }),
       );
 
-      return handleResponse(res, HttpStatus.OK, 'Batch deletion complete', deletionResults)
+      return handleResponse(
+        res,
+        HttpStatus.OK,
+        'Batch deletion complete',
+        deletionResults,
+      );
     } catch (error) {
-      return handleResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, 'Batch deletion fail', null, error)
+      return handleResponse(
+        res,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+        'Batch deletion fail',
+        null,
+        error,
+      );
     }
   }
 }

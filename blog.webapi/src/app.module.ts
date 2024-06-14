@@ -7,11 +7,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import * as process from 'process';
 import { DevtoolsModule } from '@nestjs/devtools-integration';
 import { UsersModule } from './users/users.module';
-import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
-import { CommonController } from './common/common.controller';
 import { CommonModule } from './common/common.module';
 import { TagsModule } from './tags/tags.module';
+import { CaslModule } from './casl/casl.module';
 
 @Module({
   imports: [
@@ -35,6 +34,7 @@ import { TagsModule } from './tags/tags.module';
     AuthModule,
     CommonModule,
     TagsModule,
+    CaslModule,
   ],
   controllers: [AppController],
   providers: [AppService],

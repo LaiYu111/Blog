@@ -16,15 +16,14 @@ import useGet from "@/hooks/useGet.js";
 import usePut from "@/hooks/usePut.js";
 import useNotification from "@/hooks/useNotification.js";
 import Notification from "@/components/Notification/index.jsx";
-import useDelete from "@/hooks/useDelete.js";
 
 function ArticlePublication() {
   const fileInputRef = useRef(null)
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search);
-  const { postData, progress } = usePost()
-  const { getData } = useGet()
-  const { putData} = usePut()
+  const { postData, progress, error:postError } = usePost()
+  const { getData,error:getError } = useGet()
+  const { putData,error:putError} = usePut()
 
   // article basic information
   const [content, setContent] = useState('')
@@ -63,6 +62,18 @@ function ArticlePublication() {
     fetchData()
   }, []);
 
+  useEffect(() => {
+    const showErrorNotification = (error) => {
+      if (error && error.response) {
+        showNotification(`[${error.response.statusText}]: ${error.message}`, NOTIFICATION.WARNING);
+      }
+    };
+
+    showErrorNotification(putError);
+    showErrorNotification(getError);
+    showErrorNotification(postError);
+  }, [putError, getError, postError]);
+
 
   useEffect(() => {
     // Init article
@@ -94,47 +105,40 @@ function ArticlePublication() {
     const file = event.target.files[0]; // 获取选择的文件
 
     // 文件上传逻辑
-    try {
-      const result = await postData(`${BACKEND_URL}/api/common/files/image`, {"images": file}, null, 'images')
+    const result = await postData(`${BACKEND_URL}/api/common/files/image`, {"images": file}, null, 'images')
+    if (result){
       setImagePath(`${BACKEND_URL}/api/common/files/image/${result.data[0].lowQualityFilename}`)
       setHighQualityImage(`${BACKEND_URL}/api/common/files/image/${result.data[0].highQualityFilename}`)
       showNotification(result.message)
-    }catch (e){
-      console.log(e)
-      showNotification(e, NOTIFICATION.WARNING)
     }
   };
 
   const handleSubmitArticle = async () => {
-    try {
-      const result = await postData(`${BACKEND_URL}/api/articles/`, article())
+    const result = await postData(`${BACKEND_URL}/api/articles/`, article())
+    if (result){
       showNotification(result.message)
       reset()
-    }catch (e) {
-      console.error('Error creating article:', e);
-      showNotification(e, NOTIFICATION.WARNING)
     }
   }
 
   const handleUpdateArticle = async () => {
-    try {
-      setModifyDate(Date.now())
-      const result = await putData(`${BACKEND_URL}/api/articles`, {
-        id: modifyArticleId,
-        article: {
-          content: content,
-          title: title,
-          description: description,
-          imagePath: imagePath,
-          highQualityImage: highQualityImage,
-          modifyDate: modifyDate,
-          tags: tags
-        }
-      })
+
+    setModifyDate(Date.now())
+    const result = await putData(`${BACKEND_URL}/api/articles`, {
+      id: modifyArticleId,
+      article: {
+        content: content,
+        title: title,
+        description: description,
+        imagePath: imagePath,
+        highQualityImage: highQualityImage,
+        modifyDate: modifyDate,
+        tags: tags
+      }
+    })
+    if (result){
       showNotification(result.message)
       reset()
-    }catch (e){
-      showNotification(e, NOTIFICATION.WARNING)
     }
   }
 

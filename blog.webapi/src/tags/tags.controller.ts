@@ -14,12 +14,14 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateTagsDto } from './dto/create-tags.dto';
 import { handleResponse } from '../utils';
 import { UpdateTagsDto } from './dto/update-tags.dto';
+import { Public } from "../auth/constants";
 
 @ApiTags('tags')
 @Controller('api/tags')
 export class TagsController {
   constructor(private tagService: TagsService) {}
 
+  @Public()
   @ApiOperation({ summary: 'Get all tags ' })
   @Get()
   async queryAll(@Res() res) {

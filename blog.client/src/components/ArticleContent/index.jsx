@@ -3,6 +3,7 @@ import s from './index.module.scss';
 import Tag from "@/components/Tag/index.jsx";
 import PropTypes from "prop-types";
 import 'react-quill/dist/quill.snow.css';
+import {formatDate} from "@/utils.js";
 
 // 从 ArticleContentPage 分离出来
 function ArticleContent({article}) {
@@ -11,7 +12,7 @@ function ArticleContent({article}) {
 
   useEffect(() => {
     if (tableOfContentAnchor.current) {
-      const titles = tableOfContentAnchor.current.querySelectorAll('h1, h2, h3, h4, h5');
+      const titles = tableOfContentAnchor.current.querySelectorAll('h1, h2, h3, h4');
       const temp = [];
       titles.forEach((title, index) => {
         const anchorId = `anchor${index}`;
@@ -33,6 +34,13 @@ function ArticleContent({article}) {
     }
   };
 
+  const styleMap = {
+    H1: { indent: 0, fontSize: '16px' },
+    H2: { indent: 20, fontSize: '14px' },
+    H3: { indent: 40, fontSize: '12px' },
+    H4: { indent: 60, fontSize: '10px' }
+  }
+
   return (
     <div className={s.article}>
       {/* Navigation */}
@@ -41,6 +49,10 @@ function ArticleContent({article}) {
           <div
             key={index}
             onClick={() => handleScrolling(value.anchorId)}
+            style={{
+              marginLeft: `${styleMap[value.level].indent}px`,
+              fontSize: styleMap[value.level].fontSize
+            }}
           >
             {value.name}
           </div>
@@ -71,9 +83,9 @@ function ArticleContent({article}) {
         />
 
         <div className={`${s.caption}`}>
-          <small>Created at: {article.createDate}</small>
+          <small>Created at: {formatDate(article.createDate)}</small>
           <br/>
-          <small>Modified at: {article.modifyDate}</small>
+          <small>Modified at: {formatDate(article.modifyDate)}</small>
         </div>
       </div>
     </div>

@@ -86,7 +86,6 @@
 import {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import s from './index.module.scss';
-import articles from '@/pages/ArticlePage/article.json';
 import ArticleContent from "@/components/ArticleContent/index.jsx";
 import useGet from "@/hooks/useGet.js";
 import {BACKEND_URL} from "@/config.js";

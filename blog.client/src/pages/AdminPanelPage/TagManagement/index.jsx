@@ -31,10 +31,10 @@ function TagRow({id, name:t_name, bgColor: t_bgColor, textColor: t_textColor}) {
   const [name, setName] = useState(t_name)
   const [bgColor, setBgColor] = useState(t_bgColor)
   const [textColor, setTextColor] = useState(t_textColor)
-  const {deleteData} = useDelete()
   const dispatch = useDispatch()
   const { notifications, showNotification, hideNotification } = useNotification();
-  const { putData} = usePut()
+  const { putData, error:putError} = usePut()
+  const {deleteData, error:deleteError} = useDelete()
 
   useEffect(() => {
     dispatch(setTags({
@@ -44,6 +44,17 @@ function TagRow({id, name:t_name, bgColor: t_bgColor, textColor: t_textColor}) {
       textColor: textColor
     }))
   }, [name, bgColor, textColor]);
+
+  useEffect(() => {
+    const showErrorNotification = (error) => {
+      if (error && error.response) {
+        showNotification(`[${error.response.statusText}]: ${error.message}`, NOTIFICATION.WARNING);
+      }
+    };
+
+    showErrorNotification(putError);
+    showErrorNotification(deleteError);
+  }, [putError, deleteError]);
 
   const handleChange = (e) => {
     setName(e.target.value);
@@ -62,15 +73,11 @@ function TagRow({id, name:t_name, bgColor: t_bgColor, textColor: t_textColor}) {
   }
 
   const handleDelete = async () => {
-    try {
-      const result = await deleteData(`${BACKEND_URL}/api/tags`, [id]);
+    const result = await deleteData(`${BACKEND_URL}/api/tags`, [id]);
+    if(result){
       showNotification(result.message, NOTIFICATION.INFORMATION);
       handleDeleteDispatch()
-    } catch (e) {
-      console.error('Delete error:', e);
-      showNotification(e, NOTIFICATION.WARNING);
     }
-
   }
 
   const handleDeleteDispatch = () => {
@@ -122,7 +129,7 @@ function TagManagement() {
   const dispatch = useDispatch()
   const tags = useSelector(state => state.management.tags)
   const { notifications, showNotification, hideNotification } = useNotification();
-  const { postData} = usePost()
+  const { postData, error } = usePost()
 
   // new tag
   const [name, setName] = useState('Tag')
@@ -137,6 +144,12 @@ function TagManagement() {
     fetchData()
   }, []);
 
+  useEffect(() => {
+    if(error){
+      showNotification(`[${error.response.statusText}]: ${error.message}`, NOTIFICATION.WARNING)
+    }
+  }, [error]);
+
   const handleChange = (e) => {
     setName(e.target.value);
   }
@@ -150,14 +163,11 @@ function TagManagement() {
   }
 
   const handleCreateTag = async () => {
-    try{
-      const result = await postData(`${BACKEND_URL}/api/tags`, newTag())
+    const result = await postData(`${BACKEND_URL}/api/tags`, newTag())
+    if (result){
       showNotification(result.message)
       dispatch(addTag(result.data))
-    }catch (e){
-      showNotification(e, NOTIFICATION.WARNING)
     }
-
   }
 
   return(
