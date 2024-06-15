@@ -6,67 +6,102 @@ import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import HistoryEduOutlinedIcon from '@mui/icons-material/HistoryEduOutlined';
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
 import { useNavigate} from "react-router-dom";
 import ArticleManagement from "@/pages/AdminPanelPage/ArticleManagement/index.jsx";
-import {PATH} from "@/config.js";
+import {AUTH, PATH} from "@/config.js";
 import TagManagement from "@/pages/AdminPanelPage/TagManagement/index.jsx";
-import PropTypes from "prop-types";
 import UserManagement from "@/pages/AdminPanelPage/UserManagement/index.jsx";
 import Dashboard from "@/pages/AdminPanelPage/Dashboard/index.jsx";
 import ArticlePublication from "@/pages/AdminPanelPage/ArticlePublication/index.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import Login from "@/pages/AdminPanelPage/Login/index.jsx";
+import PropTypes from "prop-types";
 
-const navigationList = [
-  {
-    category: "Analysis",
-    listItemButton: [
-      {
-        icon: <SpaceDashboardOutlinedIcon />,
-        text: "Dashboard",
-        path: PATH.analysis_dashboard
-      }
-    ]
-  },
-  {
-    category: "Manage",
-    listItemButton: [
-      {
-        icon: <AutoStoriesOutlinedIcon />,
-        text: "Articles",
-        path: PATH.management_articles
-      },
-      {
-        icon: <BookOutlinedIcon />,
-        text: "Tags",
-        path: PATH.management_tags
-      },
-      {
-        icon: <ManageAccountsOutlinedIcon />,
-        text: "Users",
-        path: PATH.management_users
-      }
-    ]
-  },
-  {
-    category: "Publish",
-    listItemButton: [
-      {
-        icon: <HistoryEduOutlinedIcon />,
-        text: "Article",
-        path: PATH.publication_article
-      }
-    ]
-  }
-];
+
 
 
 function AdminPanelPage({ destination }) {
-  const [selectedPath, setSelectedPath] = useState(PATH.analysis_dashboard); // 定位
+  const [selectedPath, setSelectedPath] = useState(destination); // 定位
   const navigator = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [token] = useState(localStorage.getItem(AUTH.TOKEN))
+
+  useEffect(() => {
+    setIsAuthenticated(!!token);
+  }, [token]);
+
+  const navigationList = [
+    {
+      category: "Analysis",
+      listItemButton: [
+        {
+          icon: <SpaceDashboardOutlinedIcon />,
+          text: "Dashboard",
+          path: PATH.analysis_dashboard
+        }
+      ]
+    },
+    {
+      category: "Manage",
+      listItemButton: [
+        {
+          icon: <AutoStoriesOutlinedIcon />,
+          text: "Articles",
+          path: PATH.management_articles
+        },
+        {
+          icon: <BookOutlinedIcon />,
+          text: "Tags",
+          path: PATH.management_tags
+        },
+        {
+          icon: <ManageAccountsOutlinedIcon />,
+          text: "Users",
+          path: PATH.management_users
+        }
+      ]
+    },
+    {
+      category: "Publish",
+      listItemButton: [
+        {
+          icon: <HistoryEduOutlinedIcon />,
+          text: "Article",
+          path: PATH.publication_article
+        }
+      ]
+    },
+    {
+      category: "Others",
+      listItemButton: isAuthenticated
+        ? [
+          {
+            icon: <LogoutIcon />,
+            text: "Logout",
+            path: PATH.others_logout
+          }
+        ]
+        : [
+          {
+            icon: <LoginIcon />,
+            text: "Login",
+            path: PATH.others_login
+          }
+        ]
+    },
+  ];
 
   const handleClick = (path) => {
-    setSelectedPath(path);
-    navigator(`/admin_panel/${path}`);
+    if (path === PATH.others_logout){
+      localStorage.setItem(AUTH.TOKEN, "")
+      localStorage.setItem(AUTH.EXPIRE, "")
+      window.location.reload() // 刷新 Adminpanel 状态， 否则组件状态不更新
+    }else{
+      setSelectedPath(path);
+      navigator(`/admin_panel/${path}`);
+    }
   };
 
   return (
@@ -96,6 +131,7 @@ function AdminPanelPage({ destination }) {
       </div>
 
       <section >
+        {PATH.others_login === destination && <Login />}
         {PATH.analysis_dashboard === destination && <Dashboard/>}
         {PATH.management_articles === destination && <ArticleManagement/>}
         {PATH.management_tags === destination && <TagManagement/>}

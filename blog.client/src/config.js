@@ -23,10 +23,18 @@ export const PATH = {
   management_articles: "management/article",
   management_tags: "management/tags",
   management_users: "management/users",
-  publication_article: "publication/article"
+  publication_article: "publication/article",
+  others_login: "others/login",
+  others_logout: "others/logout"
 }
 
 export const NOTIFICATION = {
   INFORMATION: "information",
   WARNING: "warning"
+}
+
+export const AUTH = {
+  _: 'token',
+  TOKEN: 'access_token',
+  EXPIRE: "expires_in"
 }

@@ -1,5 +1,5 @@
 import s from './App.module.scss'
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import ArticlePage from "@/pages/ArticlePage/index.jsx";
 import AboutPage from "@/pages/AboutPage/index.jsx";
 import Header from "@/components/Header/index.jsx";
@@ -7,18 +7,27 @@ import Settings from "@/components/Settings/index.jsx";
 import ArticleContentPage from "@/pages/ArticleContentPage/index.jsx";
 import {useSelector} from "react-redux";
 import {IntlProvider} from "react-intl";
-import {BACKEND_URL, MESSAGES, PATH} from "@/config.js";
-import {useEffect} from "react";
+import {AUTH, BACKEND_URL, MESSAGES, PATH} from "@/config.js";
+import {useEffect, useState} from "react";
 import Footer from "@/components/Footer/index.jsx";
 import AdminPanelPage from "@/pages/AdminPanelPage/index.jsx";
 import useGet from "@/hooks/useGet.js";
+import {isTokenExpired} from "@/utils.js";
 
 
 
 function App() {
   const locale = useSelector( state => state.language._)
+  const [ token ] = useState(localStorage.getItem(AUTH.TOKEN))
+  const [expire] = useState(localStorage.getItem(AUTH.EXPIRE))
   const { getData } = useGet()
-  const navigator = useNavigate()
+
+  useEffect(() => {
+    if (!token || isTokenExpired(expire) ){
+      localStorage.setItem(AUTH.TOKEN, '')
+      localStorage.setItem(AUTH.EXPIRE, '') // 初始化 token
+    }
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,6 +62,8 @@ function App() {
               <Route path={PATH.management_users} element={<AdminPanelPage destination={PATH.management_users}/> }/>
 
               <Route path={PATH.publication_article} element={<AdminPanelPage destination={PATH.publication_article}/> }/>
+
+              <Route path={PATH.others_login} element={<AdminPanelPage destination={PATH.others_login}/> }/>
             </Route>
           </Routes>
         </div>

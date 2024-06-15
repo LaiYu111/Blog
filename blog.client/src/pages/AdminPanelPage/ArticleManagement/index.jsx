@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import s from "@/pages/AdminPanelPage/TagManagement/index.module.scss";
 import Panel from "@/components/Panel/index.jsx";
 import {IconButton, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow} from "@mui/material";
-import {useEffect} from "react";
-import {BACKEND_URL, NOTIFICATION} from "@/config.js";
+import {useEffect, useState} from "react";
+import {AUTH, BACKEND_URL, NOTIFICATION} from "@/config.js";
 import {
   deleteArticle,
   initArticle,
@@ -28,6 +28,7 @@ function ArticleRow({ id }) {
   const {putData, error: putError} = usePut()
   const article = useSelector(state => state.management.articles.find(x => x._id === id))
   const dispatch = useDispatch()
+  const [token] = useState(localStorage.getItem(AUTH.TOKEN))
 
   useEffect(() => {
     const showErrorNotification = (error) => {
@@ -45,7 +46,7 @@ function ArticleRow({ id }) {
   }
 
   const handleDeleteArticle = async () => {
-    const result = await deleteData(`${BACKEND_URL}/api/articles`, [id]);
+    const result = await deleteData(`${BACKEND_URL}/api/articles`, [id],token);
     if (result){
       showNotification(result.message);
       handleDeleteDispatch()
@@ -63,7 +64,7 @@ function ArticleRow({ id }) {
     const result = await putData(`${BACKEND_URL}/api/articles/published`, {
       id: id,
       isPublished: !article.isPublished
-    })
+    }, token)
     if (result){
       dispatch(setArticlePublication(id))
       showNotification(result.message);
@@ -96,11 +97,12 @@ ArticleRow.propTypes = {
 function ArticleManagement(){
   const { getData } = useGet()
   const dispatch = useDispatch()
+  const [token] = useState(localStorage.getItem(AUTH.TOKEN))
   const articles = useSelector(state => state.management.articles)
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getData(`${BACKEND_URL}/api/articles`)
+      const result = await getData(`${BACKEND_URL}/api/articles`, token)
       dispatch(initArticle(result.data))
     }
     fetchData()

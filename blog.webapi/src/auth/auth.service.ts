@@ -13,8 +13,9 @@ export class AuthService {
 
   async signIn(authDto: AuthDto) {
     const user = await this.usersService.findOneAsync(authDto.email);
+
     if (user?.password !== md5Encrypt(authDto.password)) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Invalid email or password');
     }
 
     // Generate a JWT
@@ -23,8 +24,12 @@ export class AuthService {
       username: user.username,
       roles: user.role,
     };
+    const accessToken = this.jwtService.sign(payload);
+    const decodedToken = this.jwtService.decode(accessToken) as { exp: number };
+
     return {
-      access_token: await this.jwtService.signAsync(payload),
+      access_token: accessToken,
+      expires_in: decodedToken.exp,
     };
   }
 }

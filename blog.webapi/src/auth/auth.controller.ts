@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Public } from './constants';
-import { GetUser } from "../customDecorators/getUser.decorator";
+import { GetUser } from '../customDecorators/getUser.decorator';
 
 @ApiTags('auth')
 @Controller('api/auth')
@@ -27,7 +27,7 @@ export class AuthController {
 
   @Get('/profile')
   async profile(@GetUser() user) {
-    console.log(user)
+    console.log(user);
     return 1;
   }
 }

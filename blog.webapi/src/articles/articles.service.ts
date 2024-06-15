@@ -1,10 +1,10 @@
-import { Injectable } from "@nestjs/common";
-import { Article } from "../schemas/article.schema";
-import { Model } from "mongoose";
-import { InjectModel } from "@nestjs/mongoose";
-import { CreateArticleDto } from "./dto/create-article.dto";
-import { UpdateArticleDto } from "./dto/update-article.dto";
-import { UpdateArticlePublicationDto } from "./dto/update-articlePublication.dto";
+import { Injectable } from '@nestjs/common';
+import { Article } from '../schemas/article.schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { CreateArticleDto } from './dto/create-article.dto';
+import { UpdateArticleDto } from './dto/update-article.dto';
+import { UpdateArticlePublicationDto } from './dto/update-articlePublication.dto';
 
 @Injectable()
 export class ArticlesService {

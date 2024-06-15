@@ -1,0 +1,11 @@
+.layout{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.layout form{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

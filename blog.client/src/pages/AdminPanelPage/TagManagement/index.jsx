@@ -12,7 +12,7 @@ import {
 import s from './index.module.scss'
 import useGet from "@/hooks/useGet.js";
 import {useEffect, useState} from "react";
-import {BACKEND_URL, NOTIFICATION} from "@/config.js";
+import {AUTH, BACKEND_URL, NOTIFICATION} from "@/config.js";
 import Tag from "@/components/Tag/index.jsx";
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import PropTypes from "prop-types";
@@ -35,6 +35,7 @@ function TagRow({id, name:t_name, bgColor: t_bgColor, textColor: t_textColor}) {
   const { notifications, showNotification, hideNotification } = useNotification();
   const { putData, error:putError} = usePut()
   const {deleteData, error:deleteError} = useDelete()
+  const [token] = useState(localStorage.getItem(AUTH.TOKEN))
 
   useEffect(() => {
     dispatch(setTags({
@@ -48,7 +49,7 @@ function TagRow({id, name:t_name, bgColor: t_bgColor, textColor: t_textColor}) {
   useEffect(() => {
     const showErrorNotification = (error) => {
       if (error && error.response) {
-        showNotification(`[${error.response.statusText}]: ${error.message}`, NOTIFICATION.WARNING);
+        showNotification(`[${error.response.statusText}]: ${error.response.data.message}`, NOTIFICATION.WARNING);
       }
     };
 
@@ -68,12 +69,12 @@ function TagRow({id, name:t_name, bgColor: t_bgColor, textColor: t_textColor}) {
         bgColor: bgColor,
         textColor: textColor
       }
-    })
+    }, token)
     showNotification(result.message, NOTIFICATION.INFORMATION)
   }
 
   const handleDelete = async () => {
-    const result = await deleteData(`${BACKEND_URL}/api/tags`, [id]);
+    const result = await deleteData(`${BACKEND_URL}/api/tags`, [id], token);
     if(result){
       showNotification(result.message, NOTIFICATION.INFORMATION);
       handleDeleteDispatch()
@@ -126,6 +127,7 @@ TagRow.propTypes = {
 
 function TagManagement() {
   const { getData } = useGet()
+  const [token] = useState(localStorage.getItem(AUTH.TOKEN))
   const dispatch = useDispatch()
   const tags = useSelector(state => state.management.tags)
   const { notifications, showNotification, hideNotification } = useNotification();
@@ -138,7 +140,7 @@ function TagManagement() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getData(`${BACKEND_URL}/api/tags`)
+      const result = await getData(`${BACKEND_URL}/api/tags`, token)
       dispatch(initTags(result.data))
     }
     fetchData()
@@ -163,7 +165,7 @@ function TagManagement() {
   }
 
   const handleCreateTag = async () => {
-    const result = await postData(`${BACKEND_URL}/api/tags`, newTag())
+    const result = await postData(`${BACKEND_URL}/api/tags`, newTag(), token)
     if (result){
       showNotification(result.message)
       dispatch(addTag(result.data))

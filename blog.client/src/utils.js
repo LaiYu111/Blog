@@ -32,6 +32,12 @@ export const getRequestConfig = ({ token, contentType = 'json' }) => {
   return { headers };
 };
 
+export const isTokenExpired = (expire) => {
+  if (!expire) return true;
+  const now = Math.floor(Date.now() / 1000); // Current time in seconds
+  return now >= expire;
+};
+
 export const errorStatusCodeList = () => {
   return [
     400, // Bad Request
