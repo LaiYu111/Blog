@@ -64,7 +64,7 @@ function AdminPanelPage({ destination }) {
       ]
     },
     {
-      category: "Publish",
+      category: "Create",
       listItemButton: [
         {
           icon: <HistoryEduOutlinedIcon />,

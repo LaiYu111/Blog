@@ -7,10 +7,10 @@ import Cover from "@/components/Cover/index.jsx";
 import {FormControl, MenuItem, Select, TextField} from "@mui/material";
 import Button from "@/components/Button/index.jsx";
 import usePost from "@/hooks/usePost.js";
-import {BACKEND_URL, NOTIFICATION} from "@/config.js";
+import {AUTH, BACKEND_URL, NOTIFICATION, PATH} from "@/config.js";
 import ProgressBar from "@/components/ProgressBar/index.jsx";
 import PropTypes from "prop-types";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import useGet from "@/hooks/useGet.js";
 import usePut from "@/hooks/usePut.js";
@@ -21,6 +21,8 @@ function ArticlePublication() {
   const fileInputRef = useRef(null)
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search);
+  const navigator = useNavigate()
+  const [token] = useState(localStorage.getItem(AUTH.TOKEN))
   const { postData, progress, error:postError } = usePost()
   const { getData,error:getError } = useGet()
   const { putData,error:putError} = usePut()
@@ -35,7 +37,7 @@ function ArticlePublication() {
   const [modifyDate, setModifyDate] = useState(Date.now())
   const [tags, setTags] = useState([])
 
-  // picker
+  // picker*
   const [tagPicker, setTagPicker] = useState([])
 
   // notification
@@ -75,9 +77,26 @@ function ArticlePublication() {
   }, [putError, getError, postError]);
 
 
+  // useEffect(() => {
+  //   if (!modifyArticleId){
+  //     navigator(`/admin_panel/${PATH.management_articles}`)
+  //   }
+  //
+  //   // Init article
+  //   if(modifyMode){
+  //     setContent(modifyArticle.content)
+  //     setTitle(modifyArticle.title);
+  //     setDescription(modifyArticle.description || "");
+  //     setImagePath(modifyArticle.imagePath || "");
+  //     setHighQualityImage(modifyArticle.highQualityImage || "");
+  //     setTags(modifyArticle.tags || []);
+  //   }
+  // }, [modifyMode]);
+
   useEffect(() => {
-    // Init article
-    if(modifyMode){
+    if (!modifyArticle){
+      navigator(`/admin_panel/${PATH.management_articles}`) // redux 找不到article
+    }else{
       setContent(modifyArticle.content)
       setTitle(modifyArticle.title);
       setDescription(modifyArticle.description || "");
@@ -85,7 +104,8 @@ function ArticlePublication() {
       setHighQualityImage(modifyArticle.highQualityImage || "");
       setTags(modifyArticle.tags || []);
     }
-  }, [modifyMode]);
+
+  }, [modifyMode, modifyArticleId]);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -114,7 +134,7 @@ function ArticlePublication() {
   };
 
   const handleSubmitArticle = async () => {
-    const result = await postData(`${BACKEND_URL}/api/articles/`, article())
+    const result = await postData(`${BACKEND_URL}/api/articles/`, article(), token)
     if (result){
       showNotification(result.message)
       reset()
@@ -135,7 +155,7 @@ function ArticlePublication() {
         modifyDate: modifyDate,
         tags: tags
       }
-    })
+    }, token)
     if (result){
       showNotification(result.message)
       reset()
@@ -174,7 +194,8 @@ function ArticlePublication() {
         highQualityImage: highQualityImage,
         createDate: createDate,
         modifyDate: modifyDate,
-        tags: tags
+        tags: tags,
+        tagIds: tags.map((tag) => tag._id)
       }
   }
 

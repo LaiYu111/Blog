@@ -23,4 +23,8 @@ export class UsersService {
     const createdUser = new this.userModel(createUserDto);
     return createdUser.save();
   }
+
+  async queryAll(){
+    return this.userModel.find().exec();
+  }
 }

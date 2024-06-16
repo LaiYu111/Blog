@@ -1,11 +1,20 @@
 .layout{
   display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  flex-flow: wrap;
 }
 
 .layout form{
   display: flex;
   flex-direction: column;
+  gap: 5px;
+}
+
+.layout .buttons{
+  display: flex;
+  flex-direction: row;
   gap: 5px;
 }

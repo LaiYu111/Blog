@@ -25,4 +25,7 @@ export class CreateArticleDto {
 
   @ApiProperty({ type: [TagSchema] })
   tags: Tag[];
+
+  @ApiProperty({ type: [TagSchema] })
+  tagIds: Tag[];
 }

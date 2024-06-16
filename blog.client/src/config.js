@@ -38,3 +38,8 @@ export const AUTH = {
   TOKEN: 'access_token',
   EXPIRE: "expires_in"
 }
+
+export const GUEST = {
+  EMAIL: import.meta.env.VITE_API_GUEST_EMAIL,
+  PASSWORD: import.meta.env.VITE_API_GUEST_PASSWORD
+}

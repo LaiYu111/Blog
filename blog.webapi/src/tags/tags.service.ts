@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Tag } from '../schemas/tag.schema';
-import { Model } from 'mongoose';
-import { CreateTagsDto } from './dto/create-tags.dto';
-import { UpdateTagsDto } from './dto/update-tags.dto';
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Tag } from "../schemas/tag.schema";
+import { Model } from "mongoose";
+import { CreateTagsDto } from "./dto/create-tags.dto";
+import { UpdateTagsDto } from "./dto/update-tags.dto";
 
 
 @Injectable()
@@ -13,6 +13,10 @@ export class TagsService {
   async createAsync(createTagDto: CreateTagsDto) {
     const createdTag = new this.tagModel(createTagDto);
     return createdTag.save();
+  }
+
+  async getById(tagId: string){
+    return await this.tagModel.findById(tagId).exec();
   }
 
   async queryAll(): Promise<Tag[]> {

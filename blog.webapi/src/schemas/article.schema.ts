@@ -32,6 +32,9 @@ export class Article {
 
   @Prop({ default: false })
   isPublished: boolean;
+
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Tag.name }] })
+  tagIds: Tag[];
 }
 
 export const ArticleSchema = SchemaFactory.createForClass(Article);

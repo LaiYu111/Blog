@@ -1,15 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { Article } from '../schemas/article.schema';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
 import { UpdateArticlePublicationDto } from './dto/update-articlePublication.dto';
+import { Tag, TagSchema } from '../schemas/tag.schema';
 
 @Injectable()
 export class ArticlesService {
   constructor(
     @InjectModel(Article.name) private articleModel: Model<Article>,
+    @InjectModel(Tag.name) private tagModel: Model<Tag>,
   ) {}
 
   async queryAll(): Promise<Article[]> {
@@ -53,4 +55,5 @@ export class ArticlesService {
       )
       .exec();
   }
+
 }

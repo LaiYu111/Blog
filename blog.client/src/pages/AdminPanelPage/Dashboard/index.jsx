@@ -2,28 +2,60 @@ import Panel from "@/components/Panel/index.jsx";
 import s from './index.module.scss'
 import { PieChart } from '@mui/x-charts/PieChart';
 import Switch from "@/components/Switch/index.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import useGet from "@/hooks/useGet.js";
+import {BACKEND_URL} from "@/config.js";
 
-const data = [
-  { id: 0, value: 10, label: 'Frontend' },
-  { id: 1, value: 15, label: 'Backend' },
-  { id: 2, value: 20, label: 'Deployment' },
-  { id: 3, value: 30, label: 'Deployment' },
-  { id: 4, value: 40, label: 'Deployment' },
-  { id: 5, value: 50, label: 'Deployment' },
-  { id: 6, value: 60, label: 'Deployment' },
-  { id: 7, value: 70, label: 'Deployment' },
-  { id: 8, value: 80, label: 'Deployment' },
-  { id: 9, value: 90, label: 'Deployment' },
-  { id: 10, value: 100, label: 'Deployment' },
-  { id: 11, value: 110, label: 'Deployment' },
-
-];
+// const data = [
+//   { id: 0, value: 10, label: 'Frontend' },
+//   { id: 1, value: 15, label: 'Backend' },
+//   { id: 2, value: 20, label: 'Deployment' },
+//   { id: 3, value: 30, label: 'Deployment' },
+//   { id: 4, value: 40, label: 'Deployment' },
+//   { id: 5, value: 50, label: 'Deployment' },
+//   { id: 6, value: 60, label: 'Deployment' },
+//   { id: 7, value: 70, label: 'Deployment' },
+//   { id: 8, value: 80, label: 'Deployment' },
+//   { id: 9, value: 90, label: 'Deployment' },
+//   { id: 10, value: 100, label: 'Deployment' },
+//   { id: 11, value: 110, label: 'Deployment' },
+//
+// ];
 function Dashboard(){
+  const {getData} = useGet()
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getData(`${BACKEND_URL}/api/statistic/tag/tag-distribution`)
+      const tempData = result.data.distribution.map((data, index) => {
+        let id;
+        let value;
+        let label;
+        if (data.tagId === null) {
+          id = index;
+          label = "Untagged"
+          value = data.count
+        }else{
+          id = data.tagId
+          label = data.tagName
+          value = data.count
+        }
+        return {
+          id: id,
+          label: label,
+          value: value
+        }
+      })
+      setData(tempData)
+    }
+    fetchData()
+  }, []);
 
   return (
     <div className={s.dashboardLayout}>
       <Panel className={s.demo}>
+        <b>Distribution</b>
         <PieChart
           slotProps={{
             legend: {hidden : false}
@@ -38,12 +70,6 @@ function Dashboard(){
           ]}
           height={300}
         />
-      </Panel>
-      <Panel className={s.demo}>
-        Dashboard
-      </Panel>
-      <Panel className={s.demo}>
-        Dashboard
       </Panel>
     </div>
   )

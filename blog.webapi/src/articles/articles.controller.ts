@@ -15,16 +15,18 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { handleResponse } from '../utils';
 import { UpdateArticleDto } from './dto/update-article.dto';
-import { CaslAbilityFactory } from '../casl/casl-ability.factory/casl-ability.factory';
 import { Public } from '../auth/constants';
 import { UpdateArticlePublicationDto } from './dto/update-articlePublication.dto';
+import { Roles } from '../auth/roles/roles.decorator';
+import { Role } from '../enums/role.enum';
+import { TagsService } from '../tags/tags.service';
 
 @ApiTags('article')
 @Controller('api/articles')
 export class ArticlesController {
   constructor(
     private articleService: ArticlesService,
-    private caslAbilityFactory: CaslAbilityFactory,
+    private tagService: TagsService,
   ) {}
 
   @Public()
@@ -33,6 +35,7 @@ export class ArticlesController {
     const result = await this.articleService.queryAll();
     return handleResponse(res, HttpStatus.OK, ``, result, '');
   }
+
 
   @Public()
   @ApiOperation({ summary: 'Create an Article' })
@@ -61,8 +64,7 @@ export class ArticlesController {
   async query(@Param('id') id: string) {
     return this.articleService.queryByIDAsync(id);
   }
-
-  @Public()
+  @Roles(Role.Admin)
   @Put('published')
   async updateArticlePublication(
     @Body() updateArticlePublication: UpdateArticlePublicationDto,
@@ -80,6 +82,7 @@ export class ArticlesController {
     );
   }
 
+  @Roles(Role.Admin)
   @ApiOperation({ summary: 'update by id' })
   @Put()
   async update(@Body() updateArticleDto: UpdateArticleDto, @Res() res) {
@@ -91,7 +94,7 @@ export class ArticlesController {
       result,
     );
   }
-
+  @Roles(Role.Admin)
   @ApiOperation({ summary: 'delete by ids' })
   @Delete()
   async delete(@Query('ids') ids: string[], @Res() res) {

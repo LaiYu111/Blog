@@ -14,7 +14,9 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateTagsDto } from './dto/create-tags.dto';
 import { handleResponse } from '../utils';
 import { UpdateTagsDto } from './dto/update-tags.dto';
-import { Public } from "../auth/constants";
+import { Public } from '../auth/constants';
+import { Roles } from '../auth/roles/roles.decorator';
+import { Role } from '../enums/role.enum';
 
 @ApiTags('tags')
 @Controller('api/tags')
@@ -29,6 +31,7 @@ export class TagsController {
     return handleResponse(res, HttpStatus.OK, `complete`, result);
   }
 
+  @Roles(Role.Admin)
   @Post()
   async create(@Body() createTagDto: CreateTagsDto, @Res() res) {
     const result = await this.tagService.createAsync(createTagDto);
@@ -39,7 +42,7 @@ export class TagsController {
       result,
     );
   }
-
+  @Roles(Role.Admin)
   @Put()
   async update(@Body() updateTagDto: UpdateTagsDto, @Res() res) {
     const result = await this.tagService.updateAsync(updateTagDto);
@@ -50,6 +53,8 @@ export class TagsController {
       result,
     );
   }
+
+  @Roles(Role.Admin)
   @Delete()
   async delete(@Query('ids') ids: string[], @Res() res) {
     const result = await this.tagService.deleteAsync(ids);

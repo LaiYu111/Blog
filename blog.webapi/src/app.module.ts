@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './common/common.module';
 import { TagsModule } from './tags/tags.module';
 import { CaslModule } from './casl/casl.module';
+import { StatisticModule } from './statistic/statistic.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { CaslModule } from './casl/casl.module';
     CommonModule,
     TagsModule,
     CaslModule,
+    StatisticModule,
   ],
   controllers: [AppController],
   providers: [AppService],

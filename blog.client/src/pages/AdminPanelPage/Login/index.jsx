@@ -2,7 +2,7 @@ import s from './index.module.scss'
 import Button from "@/components/Button/index.jsx";
 import {useEffect, useState} from "react";
 import usePost from "@/hooks/usePost.js";
-import {AUTH, BACKEND_URL, NOTIFICATION} from "@/config.js";
+import {AUTH, BACKEND_URL, GUEST, NOTIFICATION} from "@/config.js";
 import useNotification from "@/hooks/useNotification.js";
 import Notification from "@/components/Notification/index.jsx";
 import {useNavigate} from "react-router-dom";
@@ -43,18 +43,53 @@ function Login(){
     }
   }
 
+  const handleLoginAsGuest = async () => {
+    const result = await postData(`${BACKEND_URL}/api/auth/login`, {
+      email: GUEST.EMAIL,
+      password: GUEST.PASSWORD
+    })
+    if (result){
+      localStorage.setItem(AUTH.TOKEN, result.access_token)
+      localStorage.setItem(AUTH.EXPIRE, result.expires_in)
+      navigator('/admin_panel/analysis/dashboard')
+      window.location.reload()
+    }
+  }
+
   return (
     <>
     <Notification onClose={hideNotification} notifications={notifications} />
-    <div className={s.layout}>
-      <form>
-        <label >Email</label>
-        <input type="text" value={email} onChange={handleEmail} required/>
-        <label >Password</label>
-        <input type="password"  value={password} onChange={handlePassword} required/>
-        <Button onClick={handleLogin}>Login</Button>
-      </form>
-    </div>
+      <div className={s.layout}>
+
+        <div >
+
+          <small>
+            Guest user <b>can</b> <b>Create Articles</b>;
+            <br/>
+            Guest user <b>cannot</b>
+            <ul>
+              <li><b>Publish/Delete/Update Articles</b>;</li>
+              <li><b>Create/Delete/Update Tags</b>;</li>
+            </ul>
+          </small>
+          <Button onClick={handleLoginAsGuest}>
+            Guest
+          </Button>
+        </div>
+
+        <small>
+          or
+        </small>
+
+        <form>
+          <label>Email</label>
+          <input type="text" value={email} onChange={handleEmail} required/>
+          <label>Password</label>
+          <input type="password" value={password} onChange={handlePassword} required/>
+          <Button onClick={handleLogin}>Login</Button>
+
+        </form>
+      </div>
     </>
   )
 }
