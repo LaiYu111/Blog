@@ -4,12 +4,10 @@ import Tag from "@/components/Tag/index.jsx";
 import PropTypes from "prop-types";
 
 function Cover({
-  id,
   title,
   description,
   imageURL,
   tags,
-
   onClick
                }){
 

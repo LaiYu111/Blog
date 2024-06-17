@@ -1,11 +1,10 @@
 import Panel from "@/components/Panel/index.jsx";
 import s from './index.module.scss'
 import { PieChart } from '@mui/x-charts/PieChart';
-import Switch from "@/components/Switch/index.jsx";
 import {useEffect, useState} from "react";
 import useGet from "@/hooks/useGet.js";
 import {BACKEND_URL} from "@/config.js";
-import TagSelector from "@/components/TagSelector/index.jsx";
+import I18n from "@/components/i18n/index.jsx";
 
 // const data = [
 //   { id: 0, value: 10, label: 'Frontend' },
@@ -58,7 +57,7 @@ function Dashboard(){
       {/*<TagSelector/>*/}
 
       <Panel className={s.demo}>
-        <b>Distribution</b>
+        <b>{I18n.analysisDashboardDistribution}</b>
         <PieChart
           slotProps={{
             legend: {hidden : false}

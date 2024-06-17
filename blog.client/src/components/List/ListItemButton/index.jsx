@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import s from './index.module.scss'
-import {useEffect, useState} from "react";
 
 function ListItemButton({
       children,

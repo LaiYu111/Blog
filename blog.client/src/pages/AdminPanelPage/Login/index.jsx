@@ -6,6 +6,7 @@ import {AUTH, BACKEND_URL, GUEST, NOTIFICATION} from "@/config.js";
 import useNotification from "@/hooks/useNotification.js";
 import Notification from "@/components/Notification/index.jsx";
 import {useNavigate} from "react-router-dom";
+import I18n from "@/components/i18n/index.jsx";
 function Login(){
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -64,27 +65,27 @@ function Login(){
         <div >
 
           <small>
-            Guest user <b>can</b> <b>Create Articles</b>;
+            {I18n.othersLoginGuestAllowAction}
             <br/>
-            Guest user <b>cannot</b>
+            {I18n.othersLoginGuestNotAllowAction}
             <ul>
-              <li><b>Publish/Delete/Update Articles</b>;</li>
-              <li><b>Create/Delete/Update Tags</b>;</li>
+              <li><b>{I18n.othersLoginGuestArticlesAction}</b>;</li>
+              <li><b>{I18n.othersLoginGuestTagsAction}</b>;</li>
             </ul>
           </small>
           <Button onClick={handleLoginAsGuest}>
-            Guest
+            {I18n.othersLoginGuest}
           </Button>
         </div>
 
         <small>
-          or
+          {I18n.baseOr}
         </small>
 
         <form>
-          <label>Email</label>
+          <label>{I18n.othersLoginEmail}</label>
           <input type="text" value={email} onChange={handleEmail} required/>
-          <label>Password</label>
+          <label>{I18n.othersLoginPassword}</label>
           <input type="password" value={password} onChange={handlePassword} required/>
           <Button onClick={handleLogin}>Login</Button>
 

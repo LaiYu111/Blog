@@ -26,6 +26,7 @@ import useNotification from "@/hooks/useNotification.js";
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import usePost from "@/hooks/usePost.js";
 import useDelete from "@/hooks/useDelete.js";
+import I18n from "@/components/i18n/index.jsx";
 
 function TagRow({id, name:t_name, bgColor: t_bgColor, textColor: t_textColor}) {
   const [name, setName] = useState(t_name)
@@ -181,17 +182,17 @@ function TagManagement() {
             <TableHead>
               <TableRow>
                 <TableCell><b>Id</b></TableCell>
-                <TableCell><b>Tag</b></TableCell>
-                <TableCell><b>Tag name</b></TableCell>
-                <TableCell><b>Background Color</b></TableCell>
-                <TableCell><b>Text Color</b></TableCell>
+                <TableCell><b>{I18n.manageTagsTag}</b></TableCell>
+                <TableCell><b>{I18n.manageTagsName}</b></TableCell>
+                <TableCell><b>{I18n.manageTagsBackgroundColor}</b></TableCell>
+                <TableCell><b>{I18n.manageTagsTextColor}</b></TableCell>
                 <TableCell> </TableCell>
               </TableRow>
             </TableHead>
 
             <TableBody>
               <TableRow>
-                <TableCell><b>Create a tag</b></TableCell>
+                <TableCell><b>{I18n.manageTagsCreateTag}</b></TableCell>
                 <TableCell><Tag name={name} bgColor={bgColor} textColor={textColor}/></TableCell>
                 <TableCell><input value={name} onChange={handleChange}/></TableCell>
                 <TableCell>

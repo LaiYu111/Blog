@@ -41,7 +41,7 @@ function Navigation(){
           <FormattedMessage id={"base.author"}/>
         </a>
         <a ref={(el) => (navRefs.current[2] = el)} onClick={() => handleNavClick(2, `/admin_panel/analysis/dashboard`)}>
-          Dashboard
+          <FormattedMessage id={"base.dashboard"}/>
         </a>
       </nav>
       <div className={s.animation} style={sliderStyle}></div>

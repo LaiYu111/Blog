@@ -18,6 +18,7 @@ import ArticlePublication from "@/pages/AdminPanelPage/ArticlePublication/index.
 import {useEffect, useState} from "react";
 import Login from "@/pages/AdminPanelPage/Login/index.jsx";
 import PropTypes from "prop-types";
+import {FormattedMessage} from "react-intl";
 
 
 
@@ -34,59 +35,59 @@ function AdminPanelPage({ destination }) {
 
   const navigationList = [
     {
-      category: "Analysis",
+      category: <FormattedMessage id={"base.analysis"}/>,
       listItemButton: [
         {
           icon: <SpaceDashboardOutlinedIcon />,
-          text: "Dashboard",
+          text: <FormattedMessage id={"base.dashboard"}/>,
           path: PATH.analysis_dashboard
         }
       ]
     },
     {
-      category: "Manage",
+      category: <FormattedMessage id={"base.manage"}/>,
       listItemButton: [
         {
           icon: <AutoStoriesOutlinedIcon />,
-          text: "Articles",
+          text: <FormattedMessage id={"base.articles"}/>,
           path: PATH.management_articles
         },
         {
           icon: <BookOutlinedIcon />,
-          text: "Tags",
+          text: <FormattedMessage id={"base.tags"}/>,
           path: PATH.management_tags
         },
         {
           icon: <ManageAccountsOutlinedIcon />,
-          text: "Users",
+          text: <FormattedMessage id={"base.users"}/>,
           path: PATH.management_users
         }
       ]
     },
     {
-      category: "Create",
+      category: <FormattedMessage id={"base.create"}/>,
       listItemButton: [
         {
           icon: <HistoryEduOutlinedIcon />,
-          text: "Article",
+          text: <FormattedMessage id={"base.article"}/>,
           path: PATH.publication_article
         }
       ]
     },
     {
-      category: "Others",
+      category: <FormattedMessage id={"base.others"}/>,
       listItemButton: isAuthenticated
         ? [
           {
             icon: <LogoutIcon />,
-            text: "Logout",
+            text: <FormattedMessage id={"base.logout"}/>,
             path: PATH.others_logout
           }
         ]
         : [
           {
             icon: <LoginIcon />,
-            text: "Login",
+            text: <FormattedMessage id={"base.login"}/>,
             path: PATH.others_login
           }
         ]

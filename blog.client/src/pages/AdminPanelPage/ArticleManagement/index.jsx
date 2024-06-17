@@ -19,6 +19,7 @@ import useNotification from "@/hooks/useNotification.js";
 import Notification from "@/components/Notification/index.jsx";
 import Switch from "@/components/Switch/index.jsx";
 import usePut from "@/hooks/usePut.js";
+import I18n from "@/components/i18n/index.jsx";
 
 
 function ArticleRow({ id }) {
@@ -116,10 +117,10 @@ function ArticleManagement(){
             <TableHead>
               <TableRow>
                 <TableCell><b>Id</b></TableCell>
-                <TableCell><b>Article Title</b></TableCell>
-                <TableCell><b>Created Date</b></TableCell>
-                <TableCell><b>Modified Date</b></TableCell>
-                <TableCell><b>Publish</b></TableCell>
+                <TableCell><b>{I18n.manageArticlesTitle}</b></TableCell>
+                <TableCell><b>{I18n.manageArticlesCreatedDate}</b></TableCell>
+                <TableCell><b>{I18n.manageArticlesModifiedDate}</b></TableCell>
+                <TableCell><b>{I18n.manageArticlesPublish}</b></TableCell>
                 <TableCell> </TableCell>
               </TableRow>
             </TableHead>

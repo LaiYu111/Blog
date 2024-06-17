@@ -4,7 +4,7 @@ import s from './index.module.scss'
 import ArticleContent from "@/components/ArticleContent/index.jsx";
 import {useEffect, useRef, useState} from "react";
 import Cover from "@/components/Cover/index.jsx";
-import {Checkbox, FormControl, ListItem, MenuItem, Select, TextField} from "@mui/material";
+import { TextField} from "@mui/material";
 import Button from "@/components/Button/index.jsx";
 import usePost from "@/hooks/usePost.js";
 import {AUTH, BACKEND_URL, NOTIFICATION, PATH} from "@/config.js";
@@ -12,11 +12,12 @@ import ProgressBar from "@/components/ProgressBar/index.jsx";
 import PropTypes from "prop-types";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
-import useGet from "@/hooks/useGet.js";
 import usePut from "@/hooks/usePut.js";
 import useNotification from "@/hooks/useNotification.js";
 import Notification from "@/components/Notification/index.jsx";
 import TagSelector from "@/components/TagSelector/index.jsx";
+import I18n from "@/components/i18n/index.jsx";
+import {FormattedMessage} from "react-intl";
 
 function ArticlePublication() {
   const fileInputRef = useRef(null)
@@ -168,7 +169,7 @@ function ArticlePublication() {
       <div className={s.layout}>
         <Panel className={s.coverPreview}>
           <div>
-            <h2>Preview Cover</h2>
+            <h2>{I18n.createArticlePreviewCover}</h2>
             <hr/>
 
             <Cover description={description} title={title} imageURL={imagePath} tags={tags}/>
@@ -177,7 +178,7 @@ function ArticlePublication() {
 
         <Panel className={s.textPreview}>
           <div>
-            <h2>Preview Article</h2>
+            <h2>{I18n.createArticlePreviewArticle}</h2>
             <hr/>
 
             <ArticleContent article={getArticleContent()} />
@@ -186,16 +187,16 @@ function ArticlePublication() {
 
         <Panel className={s.textEditorContainer}>
           {modifyMode? (
-            <h2>Editing {modifyArticleId}</h2>
+            <h2>{I18n.updateArticleEditing} {modifyArticleId}</h2>
           ): (
-            <h2>Write an article</h2>
+            <h2>{I18n.createArticleWriteArticle}</h2>
           )}
           <hr/>
           <section>
             <div className={s.row1}>
               <TextField
                 required={true}
-                label={"Title"}
+                label={<FormattedMessage id="create.article.title" />}
                 value={title}
                 onChange={handleTitleChange}
               />
@@ -217,7 +218,7 @@ function ArticlePublication() {
 
             <TextField
               required={false}
-              label={"Description"}
+              label={<FormattedMessage id="create.article.description" />}
               value={description}
               onChange={handleDescriptionChange}
               className={s.description}
@@ -226,9 +227,9 @@ function ArticlePublication() {
             <TextEditor content={content} setContent={setContent}/>
 
             { modifyMode ?(
-              <Button className={s.submit} onClick={handleUpdateArticle}>Confirm Change</Button>
+              <Button className={s.submit} onClick={handleUpdateArticle}> {I18n.createArticleConfirmChange} </Button>
             ):(
-              <Button className={s.submit} onClick={handleSubmitArticle}>Submit</Button>
+              <Button className={s.submit} onClick={handleSubmitArticle}>{I18n.createArticleSubmit}</Button>
             )}
           </section>
         </Panel>

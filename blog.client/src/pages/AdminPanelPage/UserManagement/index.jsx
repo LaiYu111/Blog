@@ -7,6 +7,7 @@ import s from "@/pages/AdminPanelPage/TagManagement/index.module.scss";
 import {useDispatch, useSelector} from "react-redux";
 import {initUsers} from "@/redux/actions/management/userAction.js";
 import PropTypes from "prop-types";
+import I18n from "@/components/i18n/index.jsx";
 
 function UserRow({id}){
   const user = useSelector(state => state.management.users.find(x => x._id === id))
@@ -60,8 +61,8 @@ function UserManagement() {
             <TableHead>
               <TableRow>
                 <TableCell><b>Id</b></TableCell>
-                <TableCell><b>Email</b></TableCell>
-                <TableCell><b>Roles</b></TableCell>
+                <TableCell><b>{I18n.manageUsersEmail}</b></TableCell>
+                <TableCell><b>{I18n.manageUsersRoles}</b></TableCell>
               </TableRow>
             </TableHead>
 

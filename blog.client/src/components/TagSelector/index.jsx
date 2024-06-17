@@ -9,7 +9,7 @@ function TagSelector({ selectedTags, setSelectedTags}){
   const [tagContainer, setTagContainer] = useState([]); // 所有的 tags
   // const [selectedTags, setSelectedTags] = useState([]); // 存放选中的 tags
   const [showTagList, setShowTagList] = useState(false); // 控制 tag 列表的显示
-  const { getData, error: getError} = useGet()
+  const { getData } = useGet()
   const tagListRef = useRef(null);
 
   useEffect(() => {
