@@ -11,6 +11,7 @@ import { ResponseUserDto } from './dto/response-user.dto';
 export class UsersController {
   constructor(private userService: UsersService) {}
 
+  @Public()
   @Post()
   @ApiOperation({ summary: 'create/register a user' })
   async create(@Body() createUserDto: CreateUserDto) {

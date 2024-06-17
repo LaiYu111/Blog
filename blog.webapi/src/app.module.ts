@@ -26,7 +26,10 @@ import { StatisticModule } from './statistic/statistic.module';
     // 数据库模块
     // MongooseModule.forRoot(process.env.MONGODB_CONNECTION_STR),
     MongooseModule.forRoot(process.env.MONGODB_URI, {
-      dbName: process.env.MONGODB_DB_NAME,
+      dbName: process.env.MONGODB_DB_NAME_DEPLOYMENT
+        // process.env.NODE_ENV !== 'production'
+        //   ? process.env.MONGODB_DB_NAME
+        //   : process.env.MONGODB_DB_NAME_DEPLOYMENT,
     }),
 
     // 业务模块
