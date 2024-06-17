@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { Article } from '../schemas/article.schema';
-import { Model, Types } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
 import { UpdateArticlePublicationDto } from './dto/update-articlePublication.dto';
-import { Tag, TagSchema } from '../schemas/tag.schema';
+import { Tag } from '../schemas/tag.schema';
 
 @Injectable()
 export class ArticlesService {
@@ -15,11 +15,36 @@ export class ArticlesService {
   ) {}
 
   async queryAll(): Promise<Article[]> {
-    return this.articleModel.find().exec();
+    return this.articleModel
+      .aggregate([
+        {
+          $lookup: {
+            from: 'tags',
+            localField: 'tagIds',
+            foreignField: '_id',
+            as: 'tags',
+          },
+        },
+      ])
+      .exec();
   }
 
   async getPublishedArticles() {
-    return this.articleModel.find({ isPublished: true }).exec();
+    return this.articleModel
+      .aggregate([
+        {
+          $match: { isPublished: true },
+        },
+        {
+          $lookup: {
+            from: 'tags',
+            localField: 'tagIds',
+            foreignField: '_id',
+            as: 'tags',
+          },
+        },
+      ])
+      .exec();
   }
 
   async createAsync(createArticleDto: CreateArticleDto) {
@@ -28,7 +53,21 @@ export class ArticlesService {
   }
 
   async queryByIDAsync(articleId: string): Promise<Article> {
-    return this.articleModel.findById(articleId);
+    // return this.articleModel.findById(articleId);
+    const articles = await this.articleModel.aggregate([
+      {
+        $match: { _id: new mongoose.Types.ObjectId(articleId) },
+      },
+      {
+        $lookup: {
+          from: 'tags',
+          localField: 'tagIds',
+          foreignField: '_id',
+          as: 'tags',
+        },
+      },
+    ]);
+    return articles[0];
   }
 
   async updateByIDAsync(updateArticleDto: UpdateArticleDto) {
@@ -55,5 +94,4 @@ export class ArticlesService {
       )
       .exec();
   }
-
 }

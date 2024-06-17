@@ -19,7 +19,7 @@ function Cover({
      <div className={s.tags}>
        {tags.map((tag) => (
          <div key={tag._id}>
-           <Tag name={tag.name} bgColor={tag.bgColor} />
+           <Tag name={tag.name} bgColor={tag.bgColor} textColor={tag.textColor}/>
          </div>
        ))}
      </div>

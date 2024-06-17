@@ -5,6 +5,7 @@ import Switch from "@/components/Switch/index.jsx";
 import {useEffect, useState} from "react";
 import useGet from "@/hooks/useGet.js";
 import {BACKEND_URL} from "@/config.js";
+import TagSelector from "@/components/TagSelector/index.jsx";
 
 // const data = [
 //   { id: 0, value: 10, label: 'Frontend' },
@@ -32,13 +33,13 @@ function Dashboard(){
         let id;
         let value;
         let label;
-        if (data.tagId === null) {
+        if (data.name === null) {
           id = index;
           label = "Untagged"
           value = data.count
         }else{
           id = data.tagId
-          label = data.tagName
+          label = data.name
           value = data.count
         }
         return {
@@ -54,13 +55,15 @@ function Dashboard(){
 
   return (
     <div className={s.dashboardLayout}>
+      {/*<TagSelector/>*/}
+
       <Panel className={s.demo}>
         <b>Distribution</b>
         <PieChart
           slotProps={{
             legend: {hidden : false}
           }}
-          
+
           series={[
             {
               data,

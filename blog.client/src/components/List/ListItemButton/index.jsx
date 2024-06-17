@@ -7,12 +7,16 @@ function ListItemButton({
       className,
       icon,
       onClick,
+      onMouseLeave,
+      onMouseEnter,
       isSelected = false
           }) {
   return (
     <div
       className={`${className} ${s.listButton} ${isSelected ? s.selected : ''}`}
       onClick={onClick}
+      onMouseLeave={onMouseLeave}
+      onMouseEnter={onMouseEnter}
     >
       <div className={`${s.icon}`}>
         {icon}
@@ -28,8 +32,10 @@ ListItemButton.propTypes = {
   children: PropTypes.node,
   icon: PropTypes.node,
   onClick: PropTypes.func,
+  onMouseLeave: PropTypes.func,
+  onMouseEnter: PropTypes.func,
   className: PropTypes.string,
-  isSelected: PropTypes.bool
+  isSelected: PropTypes.bool,
 }
 
 export default ListItemButton

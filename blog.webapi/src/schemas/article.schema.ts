@@ -27,8 +27,6 @@ export class Article {
   @Prop()
   modifyDate: Date;
 
-  @Prop({ type: [TagSchema], default: [] })
-  tags: Tag[];
 
   @Prop({ default: false })
   isPublished: boolean;

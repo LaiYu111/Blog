@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import { HexColorPicker } from 'react-colorful';
 import PropTypes from 'prop-types';
 import s from './index.module.scss'
@@ -6,6 +6,20 @@ import s from './index.module.scss'
 function ColorPicker({ color, onChange }) {
   const [currentColor, setCurrentColor] = useState(color);
   const [pickerVisible, setPickerVisible] = useState(false);
+  const colorPickerRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (colorPickerRef.current && !colorPickerRef.current.contains(event.target)) {
+        setPickerVisible(false); // 点击标签列表外部，隐藏标签列表
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleChange = (newColor) => {
     setCurrentColor(newColor);
@@ -25,7 +39,7 @@ function ColorPicker({ color, onChange }) {
       />
 
       {pickerVisible && (
-        <div className={s.pickerOverlay}>
+        <div className={s.pickerOverlay} ref={colorPickerRef}>
           <div className={s.pickerBackground}/>
           <HexColorPicker
             color={currentColor}

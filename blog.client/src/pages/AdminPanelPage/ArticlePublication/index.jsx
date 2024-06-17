@@ -4,7 +4,7 @@ import s from './index.module.scss'
 import ArticleContent from "@/components/ArticleContent/index.jsx";
 import {useEffect, useRef, useState} from "react";
 import Cover from "@/components/Cover/index.jsx";
-import {FormControl, MenuItem, Select, TextField} from "@mui/material";
+import {Checkbox, FormControl, ListItem, MenuItem, Select, TextField} from "@mui/material";
 import Button from "@/components/Button/index.jsx";
 import usePost from "@/hooks/usePost.js";
 import {AUTH, BACKEND_URL, NOTIFICATION, PATH} from "@/config.js";
@@ -16,6 +16,7 @@ import useGet from "@/hooks/useGet.js";
 import usePut from "@/hooks/usePut.js";
 import useNotification from "@/hooks/useNotification.js";
 import Notification from "@/components/Notification/index.jsx";
+import TagSelector from "@/components/TagSelector/index.jsx";
 
 function ArticlePublication() {
   const fileInputRef = useRef(null)
@@ -24,7 +25,6 @@ function ArticlePublication() {
   const navigator = useNavigate()
   const [token] = useState(localStorage.getItem(AUTH.TOKEN))
   const { postData, progress, error:postError } = usePost()
-  const { getData,error:getError } = useGet()
   const { putData,error:putError} = usePut()
 
   // article basic information
@@ -37,8 +37,6 @@ function ArticlePublication() {
   const [modifyDate, setModifyDate] = useState(Date.now())
   const [tags, setTags] = useState([])
 
-  // picker*
-  const [tagPicker, setTagPicker] = useState([])
 
   // notification
   const { notifications, showNotification, hideNotification } = useNotification();
@@ -54,15 +52,6 @@ function ArticlePublication() {
     }
   })
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getData(`${BACKEND_URL}/api/tags`)
-      if (result.data){
-        setTagPicker(result.data)
-      }
-    }
-    fetchData()
-  }, []);
 
   useEffect(() => {
     const showErrorNotification = (error) => {
@@ -72,26 +61,10 @@ function ArticlePublication() {
     };
 
     showErrorNotification(putError);
-    showErrorNotification(getError);
     showErrorNotification(postError);
-  }, [putError, getError, postError]);
+  }, [putError, postError]);
 
 
-  // useEffect(() => {
-  //   if (!modifyArticleId){
-  //     navigator(`/admin_panel/${PATH.management_articles}`)
-  //   }
-  //
-  //   // Init article
-  //   if(modifyMode){
-  //     setContent(modifyArticle.content)
-  //     setTitle(modifyArticle.title);
-  //     setDescription(modifyArticle.description || "");
-  //     setImagePath(modifyArticle.imagePath || "");
-  //     setHighQualityImage(modifyArticle.highQualityImage || "");
-  //     setTags(modifyArticle.tags || []);
-  //   }
-  // }, [modifyMode]);
 
   useEffect(() => {
     if (!modifyArticle){
@@ -133,47 +106,49 @@ function ArticlePublication() {
     }
   };
 
-  const handleSubmitArticle = async () => {
-    const result = await postData(`${BACKEND_URL}/api/articles/`, article(), token)
-    if (result){
-      showNotification(result.message)
-      reset()
+  const getArticleData = (isUpdate = false) => {
+    const articleData = {
+      content: content,
+      title: title,
+      description: description,
+      imagePath: imagePath,
+      highQualityImage: highQualityImage,
+      tagIds: tags.map((tag) => tag._id),
+    };
+    if (isUpdate) {
+      articleData.modifyDate = Date.now();
+    } else {
+      articleData.createDate = createDate;
+      articleData.modifyDate = modifyDate;
+    }
+    return articleData;
+  };
+
+  const getArticleContent = () => {
+    return {
+      ...getArticleData(false),
+      tags: tags
     }
   }
+
+  const handleSubmitArticle = async () => {
+    const result = await postData(`${BACKEND_URL}/api/articles/`, getArticleData(), token);
+    if (result) {
+      showNotification(result.message);
+      reset();
+    }
+  };
 
   const handleUpdateArticle = async () => {
-
-    setModifyDate(Date.now())
     const result = await putData(`${BACKEND_URL}/api/articles`, {
       id: modifyArticleId,
-      article: {
-        content: content,
-        title: title,
-        description: description,
-        imagePath: imagePath,
-        highQualityImage: highQualityImage,
-        modifyDate: modifyDate,
-        tags: tags
-      }
-    }, token)
-    if (result){
-      showNotification(result.message)
-      reset()
+      article: getArticleData(true)
+    }, token);
+    if (result) {
+      showNotification(result.message);
+      reset();
     }
-  }
-
-  const handleTagChange = (e) => {
-    setTags(e.target.value)
-  }
-
-  const renderSelector = (selectedTags) => {
-    if (selectedTags.length === 0){
-      return <em>Select Tags</em>
-    }
-
-    const tagNames = selectedTags.map( (tag) => tag.name )
-    return tagNames.join(', ')
-  }
+  };
 
   const reset = () => {
     // 重置所有输入状态为空值
@@ -183,21 +158,8 @@ function ArticlePublication() {
     setHighQualityImage('');
     setContent('');
     setTags([]);
-  }
+  };
 
-  const article = () => {
-      return {
-        content: content,
-        title: title,
-        description: description,
-        imagePath: imagePath,
-        highQualityImage: highQualityImage,
-        createDate: createDate,
-        modifyDate: modifyDate,
-        tags: tags,
-        tagIds: tags.map((tag) => tag._id)
-      }
-  }
 
   return (
     <>
@@ -218,7 +180,7 @@ function ArticlePublication() {
             <h2>Preview Article</h2>
             <hr/>
 
-            <ArticleContent article={article()} />
+            <ArticleContent article={getArticleContent()} />
           </div>
         </Panel>
 
@@ -248,25 +210,10 @@ function ArticlePublication() {
                 Upload a cover
               </Button>
 
-              <FormControl>
-                <Select
-                  multiple={true}
-                  value={tags}
-                  onChange={handleTagChange}
-                  renderValue={renderSelector}
-                  style={ {width: "300px" }}
-                >
-                  { tagPicker.map( (tag) => (
-                    <MenuItem
-                      key={tag._id}
-                      value={tag}
-                    >
-                      {tag.name}
-                    </MenuItem>
-                  ) )}
-                </Select>
-              </FormControl>
+              <TagSelector selectedTags={tags} setSelectedTags={setTags} />
             </div>
+
+
 
             <TextField
               required={false}
