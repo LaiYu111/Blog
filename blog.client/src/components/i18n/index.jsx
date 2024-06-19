@@ -15,6 +15,7 @@ const I18n = {
   baseLogin: <FormattedMessage id="base.login" />,
   baseLogout: <FormattedMessage id="base.logout" />,
   baseOr: <FormattedMessage id="base.or" />,
+  baseDashboardSupport: <FormattedMessage id={"base.dashboard.support"}/>,
 
   articleTitle: <FormattedMessage id="article.title" />,
 

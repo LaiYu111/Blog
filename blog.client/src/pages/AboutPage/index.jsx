@@ -9,7 +9,6 @@ import Projects from "@/pages/AboutPage/Projects/index.jsx";
 import Button from "@/components/Button/index.jsx";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import DownloadIcon from '@mui/icons-material/Download';
 import {BACKEND_URL, LANGUAGE} from "@/config.js";
 import {useSelector} from "react-redux";
 

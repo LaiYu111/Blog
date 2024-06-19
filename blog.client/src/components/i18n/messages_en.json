@@ -13,6 +13,7 @@
   "base.login": "Login",
   "base.logout": "Logout",
   "base.or": "or",
+  "base.dashboard.support": "Backend system does not support mobile devices.",
 
   "article.title": "Article",
 

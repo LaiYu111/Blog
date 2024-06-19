@@ -19,6 +19,8 @@ import {useEffect, useState} from "react";
 import Login from "@/pages/AdminPanelPage/Login/index.jsx";
 import PropTypes from "prop-types";
 import {FormattedMessage} from "react-intl";
+import {useMediaQuery} from "@mui/material";
+import I18n from "@/components/i18n/index.jsx";
 
 
 
@@ -28,6 +30,7 @@ function AdminPanelPage({ destination }) {
   const navigator = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token] = useState(localStorage.getItem(AUTH.TOKEN))
+  const isMobile = useMediaQuery('(max-width:700px)');
 
   useEffect(() => {
     setIsAuthenticated(!!token);
@@ -107,38 +110,44 @@ function AdminPanelPage({ destination }) {
 
   return (
     <div className={s.layout}>
-      <div className={`${s.navigation}`}>
-        <aside>
-          <List>
-            {navigationList.map((section, index) => (
-              <div key={index}>
-                <small>{section.category}</small>
-                {section.listItemButton.map((item, idx) => (
-                  <ListItemButton
-                    key={idx}
-                    icon={item.icon}
-                    isSelected={selectedPath === item.path}
-                    onClick={() => handleClick(item.path)}
-                  >
-                    <b>{item.text}</b>
-                  </ListItemButton>
+      {isMobile? (
+        <div className={`${s.systemReminder}`}>{I18n.baseDashboardSupport}</div>
+      ):(
+        <>
+          <div className={`${s.navigation}`}>
+            <aside>
+              <List>
+                {navigationList.map((section, index) => (
+                  <div key={index}>
+                    <small>{section.category}</small>
+                    {section.listItemButton.map((item, idx) => (
+                      <ListItemButton
+                        key={idx}
+                        icon={item.icon}
+                        isSelected={selectedPath === item.path}
+                        onClick={() => handleClick(item.path)}
+                      >
+                        <b>{item.text}</b>
+                      </ListItemButton>
+                    ))}
+                    <br/>
+                  </div>
                 ))}
-                <br/>
-              </div>
-            ))}
-          </List>
-        </aside>
-        <hr/>
-      </div>
+              </List>
+            </aside>
+            <hr/>
+          </div>
 
-      <section >
-        {PATH.others_login === destination && <Login />}
-        {PATH.analysis_dashboard === destination && <Dashboard/>}
-        {PATH.management_articles === destination && <ArticleManagement/>}
-        {PATH.management_tags === destination && <TagManagement/>}
-        {PATH.management_users === destination && <UserManagement/>}
-        {PATH.publication_article === destination && <ArticlePublication/>}
-      </section>
+          <section>
+            {PATH.others_login === destination && <Login/>}
+            {PATH.analysis_dashboard === destination && <Dashboard/>}
+            {PATH.management_articles === destination && <ArticleManagement/>}
+            {PATH.management_tags === destination && <TagManagement/>}
+            {PATH.management_users === destination && <UserManagement/>}
+            {PATH.publication_article === destination && <ArticlePublication/>}
+          </section>
+        </>
+      )}
     </div>
   );
 }
