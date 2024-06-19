@@ -14,20 +14,19 @@ import { diskStorage } from 'multer';
 import { extname, join } from 'path';
 import * as sharp from 'sharp';
 import * as fs from 'fs-extra';
-import { handleResponse } from '../utils';
+import { handleResponse, imagePath } from '../utils';
 import { Public } from '../auth/constants';
 
 @ApiTags('common')
 @Controller('/api/common')
 export class CommonController {
   constructor() {}
-
   @Public()
   @Post('/files/image')
   @UseInterceptors(
     AnyFilesInterceptor({
       storage: diskStorage({
-        destination: './images', // specify the destination folder
+        destination: imagePath(), // specify the destination folder
         filename: (req, file, callback) => {
           const uniqueSuffix =
             Date.now() + '-' + Math.round(Math.random() * 1e9);
@@ -48,7 +47,7 @@ export class CommonController {
     const processedFiles = await Promise.all(
       files.map(async (file) => {
         const lowQualityFilename = file.filename.replace('origin-', 'min-');
-        const lowQualityPath = `./images/${lowQualityFilename}`;
+        const lowQualityPath = `${imagePath()}/${lowQualityFilename}`;
 
         // Generate low-quality image
         await sharp(file.path)

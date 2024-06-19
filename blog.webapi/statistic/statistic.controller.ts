@@ -1,8 +1,8 @@
 import { Controller, Get, HttpStatus, Res } from '@nestjs/common';
 import { StatisticService } from './statistic.service';
 import { ApiTags } from '@nestjs/swagger';
-import { Public } from '../auth/constants';
-import { handleResponse } from '../utils';
+import { Public } from '../src/auth/constants';
+import { handleResponse } from '../src/utils';
 @ApiTags('statistic')
 @Controller('api/statistic')
 export class StatisticController {

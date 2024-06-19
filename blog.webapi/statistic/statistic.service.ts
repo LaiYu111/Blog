@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { ArticlesService } from '../articles/articles.service';
-import { TagsService } from '../tags/tags.service';
-import { Article } from '../schemas/article.schema';
+import { ArticlesService } from '../src/articles/articles.service';
+import { TagsService } from '../src/tags/tags.service';
+import { Article } from '../src/schemas/article.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Tag } from '../schemas/tag.schema';
+import { Tag } from '../src/schemas/tag.schema';
 
 @Injectable()
 export class StatisticService {

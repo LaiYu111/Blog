@@ -1,9 +1,16 @@
 import * as CryptoJS from 'crypto-js';
+import { status } from './config';
 export const md5Encrypt = (input: string): string => {
   return CryptoJS.MD5(input).toString();
 };
 
-export const imageStoragePath = './images';
+export const imagePath = () => {
+  const productionPath = './dist/src/images'; // 生产环境的图片路径 (common/controller.ts)
+  const developmentPath = './images'; // 开发环境的图片路径(common/controller.ts)
+
+  return status === 'PRODUCTION' ? productionPath : developmentPath;
+  // return './dist/src/images';
+};
 
 export const handleResponse = (
   res: Response,

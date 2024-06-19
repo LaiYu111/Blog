@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { StatisticController } from './statistic.controller';
 import { StatisticService } from './statistic.service';
-import { ArticlesService } from '../articles/articles.service';
-import { TagsService } from '../tags/tags.service';
+import { ArticlesService } from '../src/articles/articles.service';
+import { TagsService } from '../src/tags/tags.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Article, ArticleSchema } from "../schemas/article.schema";
-import { Tag, TagSchema } from "../schemas/tag.schema";
+import { Article, ArticleSchema } from "../src/schemas/article.schema";
+import { Tag, TagSchema } from "../src/schemas/tag.schema";
 
 @Module({
   imports: [
