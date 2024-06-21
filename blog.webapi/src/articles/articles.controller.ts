@@ -1,25 +1,14 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  HttpStatus,
-  Param,
-  Post,
-  Put,
-  Query,
-  Res,
-} from '@nestjs/common';
-import { ArticlesService } from './articles.service';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateArticleDto } from './dto/create-article.dto';
-import { handleResponse } from '../utils';
-import { UpdateArticleDto } from './dto/update-article.dto';
-import { Public } from '../auth/constants';
-import { UpdateArticlePublicationDto } from './dto/update-articlePublication.dto';
-import { Roles } from '../auth/roles/roles.decorator';
-import { Role } from '../enums/role.enum';
-import { TagsService } from '../tags/tags.service';
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Query, Res } from "@nestjs/common";
+import { ArticlesService } from "./articles.service";
+import { ApiOperation, ApiTags } from "@nestjs/swagger";
+import { CreateArticleDto } from "./dto/create-article.dto";
+import { handleResponse } from "../utils";
+import { UpdateArticleDto } from "./dto/update-article.dto";
+import { Public } from "../auth/constants";
+import { UpdateArticlePublicationDto } from "./dto/update-articlePublication.dto";
+import { Roles } from "../auth/roles/roles.decorator";
+import { Role } from "../enums/role.enum";
+import { TagsService } from "../tags/tags.service";
 
 @ApiTags('article')
 @Controller('api/articles')
@@ -36,8 +25,7 @@ export class ArticlesController {
     return handleResponse(res, HttpStatus.OK, ``, result, '');
   }
 
-
-  @Public()
+  @Roles(Role.Admin, Role.User)
   @ApiOperation({ summary: 'Create an Article' })
   @Post()
   async create(@Body() createArticleDto: CreateArticleDto, @Res() res) {

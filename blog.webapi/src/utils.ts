@@ -5,7 +5,7 @@ export const md5Encrypt = (input: string): string => {
 };
 
 export const imagePath = () => {
-  const productionPath = './dist/src/images'; // 生产环境的图片路径 (common/controller.ts)
+  const productionPath = './dist/images'; // 生产环境的图片路径 (common/controller.ts)
   const developmentPath = './images'; // 开发环境的图片路径(common/controller.ts)
 
   return status === 'PRODUCTION' ? productionPath : developmentPath;
