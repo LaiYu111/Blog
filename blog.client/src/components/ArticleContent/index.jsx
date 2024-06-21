@@ -4,6 +4,7 @@ import Tag from "@/components/Tag/index.jsx";
 import PropTypes from "prop-types";
 import 'react-quill/dist/quill.snow.css';
 import {formatDate} from "@/utils.js";
+import './codeBlock.scss'
 
 // 从 ArticleContentPage 分离出来
 function ArticleContent({article}) {
@@ -25,7 +26,36 @@ function ArticleContent({article}) {
       });
       setTableOfContent(temp);
     }
+
+    // 添加 clipboard
+    if (tableOfContentAnchor.current){
+      const preCodeBlocks = tableOfContentAnchor.current.querySelectorAll('pre')
+
+      preCodeBlocks.forEach((block) => {
+        const container = document.createElement('div')
+        container.className = 'clipboardContainer'
+
+        const button = document.createElement('button')
+        button.innerText = 'Copy'
+        button.className = 'clipboard'
+
+        container.appendChild(button)
+        block.prepend(container)
+
+        button.onclick = () => {
+          copyToClipboard(block.innerText)
+          button.innerText = '√ Copied !'
+          setTimeout(() => {
+            button.innerText = 'Copy'
+          }, 3000)
+        }
+      });
+    }
   }, [article]);
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text)
+  }
 
   const handleScrolling = (anchorId) => {
     const element = document.getElementById(anchorId);
