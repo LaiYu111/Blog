@@ -12,4 +12,4 @@ ENV TZ Pacific/Auckland
 
 EXPOSE 5000
 
-CMD [ "node", "./dist/src/main" ]
+CMD [ "node", "./dist/main" ]
