@@ -74,7 +74,7 @@ function AboutPage() {
       case LANGUAGE.EN:
         return `${BACKEND_URL}/api/common/files/static/LaiyuPei_CV_EN_2024-6-14.pdf`
       case LANGUAGE.ZH:
-        return `${BACKEND_URL}/api/common/files/static/LaiyuPei_CV_ZH_2024-6-14.pdf`
+        return `${BACKEND_URL}/api/common/files/static/LaiyuPei_CV_ZH_2024-8-06.pdf`
       default:
         return `${BACKEND_URL}/api/common/files/static/LaiyuPei_CV_EN_2024-6-14.pdf`
     }
